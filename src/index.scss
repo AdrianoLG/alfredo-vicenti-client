@@ -1,0 +1,8 @@
+@import 'scss/reset.scss';
+@import 'scss/fonts.scss';
+
+body {
+    font-family: $inter;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
