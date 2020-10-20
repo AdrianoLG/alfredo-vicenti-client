@@ -1,8 +1,18 @@
-@import 'scss/reset.scss';
-@import 'scss/fonts.scss';
+@import 'scss/reset';
+@import 'scss/fonts';
+@import 'scss/colors';
+
+@import '~foundation-sites/scss/util/util';
+@import 'scss/settings';
+@import '~foundation-sites/scss/foundation';
+@include foundation-everything;
 
 body {
     font-family: $inter;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+    color: $light-blue;
 }
