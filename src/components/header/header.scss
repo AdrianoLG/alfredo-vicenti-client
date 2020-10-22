@@ -1,0 +1,94 @@
+@import '../../assets/scss/mixins';
+
+header {
+    color: var(--primary-color-light);
+    h1 {
+        display: inline-block;
+        font-family: var(--font-secondary);
+        font-size: var(--size4);
+        line-height: 0.8;
+        margin-left: 0.25em;
+        @include tablet {
+            margin-left: 0.5em;
+            font-size: var(--size7);
+        }
+        .subheader {
+            font-size: var(--size1);
+            @include tablet {
+                font-size: var(--size4);
+            }
+        }
+    }
+    a {
+        color: var(--primary-color-light);
+    }
+    p {
+        margin-bottom: 0;
+    }
+}
+#logo {
+    width: 3rem;
+    @include tablet {
+        width: 4rem;
+    }
+}
+#menu {
+    width: 1.5em;
+    @include tablet {
+        display: none;
+    }
+}
+#settings {
+    display: none;
+    @include tablet {
+        display: block;
+        margin-left: 1em;
+        width: 2em;
+    }
+}
+.brand {
+    align-items: center;
+    display: flex;
+}
+.user {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+.user-data {
+    display: none;
+    @include tablet {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: var(--size3);
+    }
+    a {
+        display: none;
+        opacity: 0.8;
+        margin-top: 0.25em;
+        @include tablet {
+            display: inline-block;
+            font-size: var(--size-1);
+        }
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+}
+.top-bar {
+    background: var(--primary-color);
+}
+.top-bar-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 90em;
+    padding: 0.5em 0.75em;
+    @include tablet {
+        padding: 1em;
+    }
+    width: 100%;
+}

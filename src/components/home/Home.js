@@ -1,8 +1,10 @@
 import React from 'react';
-import Header from './Header';
+import Header from '../header/Header';
 
 const Home = () => (
-  <Header />
+  <React.Fragment>
+    <Header />
+  </React.Fragment>
 );
 
 export default Home;
