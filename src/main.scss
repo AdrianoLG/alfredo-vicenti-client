@@ -1,51 +1,54 @@
 @import './assets/scss/main';
 
 :root {
-    --primary-color: #{$dark-blue};
-    --primary-color-light: #{$light-blue};
-    --accent-color: #{$red};
-    --font-main: #{$inter};
-    --font-secondary: #{$kelly};
-    --size7: #{$size7};
-    --size6: #{$size6};
-    --size5: #{$size5};
-    --size4: #{$size4};
-    --size3: #{$size3};
-    --size2: #{$size2};
-    --size1: #{$size1};
-    --size0: #{$size0};
-    --size-1: #{$size-1};
-    --size-2: #{$size-2};
+  --primary-color: #{$dark-blue};
+  --primary-color-light: #{$light-blue};
+  --accent-color: #{$red};
+  --font-main: #{$inter};
+  --font-secondary: #{$kelly};
+  --size7: #{$size7};
+  --size6: #{$size6};
+  --size5: #{$size5};
+  --size4: #{$size4};
+  --size3: #{$size3};
+  --size2: #{$size2};
+  --size1: #{$size1};
+  --size0: #{$size0};
+  --size-1: #{$size-1};
+  --size-2: #{$size-2};
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-family: $inter;
-    font-size: $size0;
-    overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: $inter;
+  font-size: $size0;
+  overflow-x: hidden;
 }
 
 a {
-    text-decoration: none;
-    &:hover {
-        opacity: 0.8;
-    }
+  text-decoration: none;
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .container {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    max-width: 90em;
-    padding: 0.5em 0.75em;
-    width: 100%;
-    @include tablet {
-        padding: 1em;
-    }
+  margin: 0 auto;
+  max-width: 90em;
+  padding: 0.5em 0.75em;
+  width: 100%;
+  @include tablet {
+    padding: 1em;
+  }
+}
+
+.flex-center-between {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
