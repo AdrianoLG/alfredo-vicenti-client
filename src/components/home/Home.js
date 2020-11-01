@@ -11,7 +11,7 @@ class Home extends React.Component {
     const { books, actions } = this.props;
     if (books.length === 0) {
       actions.loadBooks().catch(error => {
-        alert('Loading books failed' + error);
+        alert('Loading books failed\n' + error);
       });
     }
   }

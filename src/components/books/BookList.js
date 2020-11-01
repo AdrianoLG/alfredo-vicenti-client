@@ -3,17 +3,21 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const BookList = ({ books }) => (
-  <div className='card'>
+  <React.Fragment>
     {books.map(book => {
       return (
-        <Link to={'/libro/' + book.id}>
-          <p className='title'>{book.title}</p>
-          <p className='author'>{book.author}</p>
-          <p className='category'>{book.category}</p>
+        <Link to={'/libro/' + book.id} className='card'>
+          <div>
+            <p className='card-title'>{book.title}</p>
+            <p className='card-author'>{book.author}</p>
+          </div>
+          <div>
+            <p className='card-category'>{book.category}</p>
+          </div>
         </Link>
       );
     })}
-  </div>
+  </React.Fragment>
 );
 
 BookList.propTypes = {

@@ -37,6 +37,17 @@ a {
   }
 }
 
+.card {
+  align-items: flex-start;
+  border: 1px solid #222;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  padding: 0.5rem 1.5rem;
+  width: 20rem;
+}
+
 .container {
   margin: 0 auto;
   max-width: 90em;

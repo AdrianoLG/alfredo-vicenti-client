@@ -22,8 +22,8 @@ class Detail extends React.Component {
         <Header />
         <div className='container'>
           <h1>Libro {this.props.match.params.id}</h1>
+          <BookDetail book={this.props.book} />
         </div>
-        <BookDetail book={this.props.book} />
       </React.Fragment>
     );
   }
