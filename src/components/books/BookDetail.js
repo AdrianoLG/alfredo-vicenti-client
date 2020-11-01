@@ -1,13 +1,18 @@
 import React from 'react';
-import Header from '../header/Header';
+import PropTypes from 'prop-types';
 
-const BookDetail = (props) => (
+const BookDetail = ({ book }) => (
   <React.Fragment>
-    <Header />
-    <div className="container">
-      <h1>Libro {props.match.params.id}</h1>
-    </div>
+    <p>Autor: {book.author}</p>
+    <p>Título: {book.title}</p>
+    <p>Categoría: {book.category}</p>
+    <p>Páginas: {book.pages}</p>
+    <p>Editorial: {book.editorial}</p>
   </React.Fragment>
 );
+
+BookDetail.propTypes = {
+  book: PropTypes.object.isRequired
+};
 
 export default BookDetail;
