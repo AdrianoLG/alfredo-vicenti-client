@@ -8,8 +8,9 @@ import BookDetail from './BookDetail';
 
 class Detail extends React.Component {
   componentDidMount() {
-    if (this.props.book.length === 0) {
-      this.props.actions.loadBook().catch(error => {
+    const { book, actions } = this.props;
+    if (book.length === 0) {
+      actions.loadBook().catch(error => {
         alert('Loading books failed' + error);
       });
     }
