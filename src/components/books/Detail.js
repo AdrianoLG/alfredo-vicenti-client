@@ -22,8 +22,8 @@ class Detail extends React.Component {
       <React.Fragment>
         <Header />
         <div className='main-container height-pad'>
-          <h1>Libro {this.props.match.params.id}</h1>
-          <BookDetail book={this.props.book} />
+          <h1>Libro {this.props?.match.params.id}</h1>
+          <BookDetail book={this.props?.book} />
           <Button>Cancelar</Button>
           <Button primary>Editar</Button>
         </div>

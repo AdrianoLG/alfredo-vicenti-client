@@ -53,7 +53,7 @@ class Home extends React.Component {
                     <i className='filter icon'></i> Filtrar
                   </NavLink>
                 </div>
-                <BookList books={this.props.books} />
+                <BookList books={this.props?.books} />
               </Grid.Column>
               <Grid.Column
                 mobile={16}
