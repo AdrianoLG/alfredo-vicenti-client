@@ -25,41 +25,144 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: $inter;
+  font-family: $inter !important;
   font-size: $size0;
   overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $kelly !important;
+}
+
+h2 {
+  margin: calc(2rem - 0.14285714em) 0 calc(1rem - 0.14285714em) !important;
+  &:first-child {
+    margin: 0 0 calc(1rem - 0.14285714em) !important;
+  }
 }
 
 a {
   text-decoration: none;
   &:hover {
+    color: inherit !important;
     opacity: 0.8;
   }
 }
 
-.card {
-  align-items: flex-start;
-  border: 1px solid #222;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem 0;
-  padding: 0.5rem 1.5rem;
-  width: 20rem;
+.aside {
+  background: var(--primary-color-light);
 }
 
-.container {
-  margin: 0 auto;
-  max-width: 90em;
-  padding: 0.5em 0.75em;
-  width: 100%;
-  @include tablet {
-    padding: 1em;
+.button-group {
+  margin-bottom: 1em;
+  .ui.button {
+    margin-right: 1em;
   }
+}
+
+.card-link {
+  display: block;
+  color: inherit;
 }
 
 .flex-center-between {
   align-items: center;
   display: flex;
   justify-content: space-between;
+}
+
+.main-container {
+  margin: 0 auto;
+  max-width: 90em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  width: 100%;
+  @include tablet {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  .ui {
+    &.basic.primary.active.button,
+    &.basic.primary.buttons .active.button {
+      color: var(--primary-color) !important;
+      box-shadow: 0 0 0 1px var(--primary-color) inset !important;
+    }
+    &.buttons {
+      display: inline-block;
+      margin: 1em 0 2em;
+    }
+    &.button {
+      background-color: var(--primary-color-light);
+      &:hover {
+        background-color: var(--primary-color);
+        color: var(--primary-color-light);
+      }
+      &:focus {
+        background-color: var(--primary-color);
+        color: var(--primary-color-light);
+      }
+    }
+    &.grid {
+      padding: 1rem 0;
+      .min-height {
+        min-height: calc(100vh - 109px);
+      }
+    }
+    &.card {
+      max-width: 35em !important;
+      width: 100% !important;
+      .content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        .description {
+          font-style: italic;
+        }
+        .header {
+          font-weight: 700;
+          font-size: 1.28571429em;
+          margin-top: -0.21425em;
+          line-height: 1.28571429em;
+        }
+        .left {
+          width: 100%;
+        }
+        .right {
+          margin-left: 1em;
+        }
+      }
+    }
+    &.input {
+      margin-bottom: 1em;
+      max-width: 35em;
+      width: 100%;
+      > input {
+        border: none !important;
+        border-bottom: 1px solid rgba(34, 36, 38, 0.15) !important;
+        font-family: var(--font-main) !important;
+      }
+    }
+    &.menu {
+      font-family: $inter !important;
+      margin: 0 !important;
+    }
+    &.primary.button,
+    &.primary.buttons .button {
+      background-color: var(--primary-color) !important;
+    }
+  }
+}
+
+.height-pad {
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  @include tablet {
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
 }

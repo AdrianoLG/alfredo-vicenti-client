@@ -1,11 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
 import './main.scss';
-import App from './components/app/App';
+import App from './components/App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import configureStore from './redux/configurestore';
 import { Provider as ReduxProvider } from 'react-redux';
+import 'semantic-ui-css/semantic.min.css';
 
 const store = configureStore();
 render(

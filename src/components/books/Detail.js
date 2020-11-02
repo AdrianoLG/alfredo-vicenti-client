@@ -1,10 +1,11 @@
 import React from 'react';
-import Header from '../header/Header';
+import Header from '../common/header/Header';
 import { connect } from 'react-redux';
 import * as bookActions from '../../redux/actions/bookActions';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import BookDetail from './BookDetail';
+import { Button } from 'semantic-ui-react';
 
 class Detail extends React.Component {
   componentDidMount() {
@@ -20,9 +21,11 @@ class Detail extends React.Component {
     return (
       <React.Fragment>
         <Header />
-        <div className='container'>
+        <div className='main-container height-pad'>
           <h1>Libro {this.props.match.params.id}</h1>
           <BookDetail book={this.props.book} />
+          <Button>Cancelar</Button>
+          <Button primary>Editar</Button>
         </div>
       </React.Fragment>
     );

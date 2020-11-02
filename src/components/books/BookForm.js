@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../header/Header';
+import Header from '../common/header/Header';
 import { connect } from 'react-redux';
 import * as booksActions from '../../redux/actions/booksActions';
 import PropTypes from 'prop-types';

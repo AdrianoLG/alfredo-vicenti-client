@@ -1,0 +1,88 @@
+@import '../../../assets/scss/mixins';
+@import '../../../assets/scss/typography';
+
+.top-bar {
+  background: var(--primary-color);
+  color: var(--primary-color-light);
+  h1 {
+    display: inline-block;
+    font-family: var(--font-secondary);
+    font-size: var(--size4);
+    line-height: 0.8;
+    margin-left: 0.25em;
+    margin-top: 0;
+    @include tablet {
+      font-size: var(--size7);
+      margin-left: 0.5em;
+    }
+    .subheader {
+      font-size: var(--size1);
+      @include tablet {
+        font-size: var(--size4);
+      }
+    }
+  }
+  a {
+    color: var(--primary-color-light);
+  }
+  p {
+    margin-bottom: 0;
+  }
+  #logo {
+    width: 3rem;
+    @include tablet {
+      width: 4rem;
+    }
+  }
+  #menu {
+    background: none;
+    border: none;
+    i {
+      font-size: $size3;
+    }
+    .item {
+      color: var(--primary-color-light);
+      &:hover i {
+        opacity: 0.8;
+      }
+    }
+    .transition {
+      left: auto;
+      right: 0;
+    }
+  }
+  .brand {
+    align-items: center;
+    display: flex;
+  }
+  .menu {
+    display: block;
+    z-index: 3;
+  }
+  .user {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .user p {
+    display: none;
+    @include tablet {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      font-size: var(--size3);
+      justify-content: center;
+    }
+    a {
+      display: none;
+      opacity: 0.8;
+      @include tablet {
+        display: inline-block;
+        font-size: var(--size-1);
+      }
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+}

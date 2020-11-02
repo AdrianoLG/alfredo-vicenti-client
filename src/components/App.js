@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import BookDetail from '../books/Detail';
-import BookForm from '../books/BookForm';
-import Home from '../home/Home';
-import Login from '../login/Login';
+import BookForm from './books/BookForm';
+import BookDetail from './books/Detail';
+import Home from './home/Home';
+import Login from './login/Login';
 import PageNotFound from './NotFound';
 
 const App = () => (
