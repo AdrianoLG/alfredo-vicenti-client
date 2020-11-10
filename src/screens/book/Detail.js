@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import Book from '../../components/book/Book';
 import { Button } from 'semantic-ui-react';
 
-class Detail extends React.Component {
+class BookDetail extends React.Component {
   componentDidMount() {
     const { book, actions } = this.props;
     if (book.length === 0) {
@@ -32,7 +32,7 @@ class Detail extends React.Component {
   }
 }
 
-Detail.propTypes = {
+BookDetail.propTypes = {
   book: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 };
@@ -51,4 +51,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Detail);
+export default connect(mapStateToProps, mapDispatchToProps)(BookDetail);
