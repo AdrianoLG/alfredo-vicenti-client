@@ -3,12 +3,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as booksActions from '../../redux/actions/booksActions';
 import PropTypes from 'prop-types';
-import BookList from '../books/BookList';
-import Header from '../common/header/Header';
-import { Grid } from 'semantic-ui-react';
+import Books from '../../components/book/Books';
+import Header from '../../components/common/header/Header';
+import { Button, Grid } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
-class Home extends React.Component {
+class BookList extends React.Component {
   componentDidMount() {
     const { books, actions } = this.props;
     if (books.length === 0) {
@@ -21,7 +21,7 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <Header />
-        <section className='main-container'>
+        <main className='main-container'>
           <Grid>
             <Grid.Row>
               <Grid.Column
@@ -46,14 +46,18 @@ class Home extends React.Component {
                   <i className='search icon'></i>
                 </div>
                 <div class='button-group'>
-                  <NavLink to='/' className='ui basic primary tiny button'>
-                    <i className='plus icon'></i> Añadir
+                  <NavLink to='/libro/crear'>
+                    <Button size='tiny' primary>
+                      <i className='plus icon'></i> Añadir
+                    </Button>
                   </NavLink>
-                  <NavLink to='/' className='ui basic secondary tiny button'>
-                    <i className='filter icon'></i> Filtrar
+                  <NavLink to='/'>
+                    <Button size='tiny'>
+                      <i className='filter icon'></i> Filtrar
+                    </Button>
                   </NavLink>
                 </div>
-                <BookList books={this.props?.books} />
+                <Books books={this.props?.books} />
               </Grid.Column>
               <Grid.Column
                 mobile={16}
@@ -63,12 +67,12 @@ class Home extends React.Component {
               ></Grid.Column>
             </Grid.Row>
           </Grid>
-        </section>
+        </main>
       </React.Fragment>
     );
   }
 }
-Home.propTypes = {
+BookList.propTypes = {
   books: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
@@ -87,4 +91,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(BookList);

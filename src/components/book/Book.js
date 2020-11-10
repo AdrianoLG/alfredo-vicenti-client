@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const BookDetail = ({ book }) => (
+const Book = ({ book }) => (
   <React.Fragment>
     <p>Autor: {book.author}</p>
     <p>Título: {book.title}</p>
@@ -11,8 +11,8 @@ const BookDetail = ({ book }) => (
   </React.Fragment>
 );
 
-BookDetail.propTypes = {
+Book.propTypes = {
   book: PropTypes.object.isRequired
 };
 
-export default BookDetail;
+export default Book;

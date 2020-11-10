@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as booksActions from '../../redux/actions/booksActions';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import BookList from './BookList';
+import Books from './Books';
 
 class BookForm extends React.Component {
   componentDidMount() {
@@ -27,7 +27,7 @@ class BookForm extends React.Component {
         <Header />
         <section className='container'>
           <h2>Libros</h2>
-          <BookList books={this.props.books} />
+          <Books books={this.props?.books} />
         </section>
       </React.Fragment>
     );

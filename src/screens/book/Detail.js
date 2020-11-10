@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../common/header/Header';
+import Header from '../../components/common/header/Header';
 import { connect } from 'react-redux';
 import * as bookActions from '../../redux/actions/bookActions';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import BookDetail from './BookDetail';
+import Book from '../../components/book/Book';
 import { Button } from 'semantic-ui-react';
 
 class Detail extends React.Component {
@@ -23,7 +23,7 @@ class Detail extends React.Component {
         <Header />
         <div className='main-container height-pad'>
           <h1>Libro {this.props?.match.params.id}</h1>
-          <BookDetail book={this.props?.book} />
+          <Book book={this.props?.book} />
           <Button>Cancelar</Button>
           <Button primary>Editar</Button>
         </div>

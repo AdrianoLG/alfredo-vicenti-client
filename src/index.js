@@ -1,19 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-import './main.scss';
-import App from './components/App';
-import { BrowserRouter as Router } from 'react-router-dom';
-import * as serviceWorker from './serviceWorker';
-import configureStore from './redux/configurestore';
 import { Provider as ReduxProvider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import configureStore from './redux/configurestore';
+import * as serviceWorker from './serviceWorker';
+import './main.scss';
 import 'semantic-ui-css/semantic.min.css';
+import ScreensRoot from './screens/Root';
 
 const store = configureStore();
 render(
   <React.StrictMode>
     <ReduxProvider store={store}>
       <Router>
-        <App />
+        <ScreensRoot />
       </Router>
     </ReduxProvider>
   </React.StrictMode>,

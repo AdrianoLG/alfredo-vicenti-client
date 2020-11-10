@@ -51,6 +51,9 @@ a {
   &:hover {
     color: inherit !important;
     opacity: 0.8;
+    &.button {
+      color: var(--primary-color-light) !important;
+    }
   }
 }
 
@@ -66,8 +69,10 @@ a {
 }
 
 .card-link {
-  display: block;
   color: inherit;
+  display: block;
+  max-width: 35em !important;
+  width: 100% !important;
 }
 
 .flex-center-between {
@@ -91,6 +96,9 @@ a {
     &.basic.primary.buttons .active.button {
       color: var(--primary-color) !important;
       box-shadow: 0 0 0 1px var(--primary-color) inset !important;
+      &:hover {
+        color: var(--primary-color-light) !important;
+      }
     }
     &.buttons {
       display: inline-block;
@@ -98,6 +106,8 @@ a {
     }
     &.button {
       background-color: var(--primary-color-light);
+      font-family: var(--font-main);
+      font-weight: 300;
       &:hover {
         background-color: var(--primary-color);
         color: var(--primary-color-light);
@@ -113,8 +123,7 @@ a {
       }
     }
     &.card {
-      max-width: 35em !important;
-      width: 100% !important;
+      width: 100%;
       .content {
         display: flex;
         justify-content: space-between;
