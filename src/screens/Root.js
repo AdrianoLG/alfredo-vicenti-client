@@ -12,6 +12,7 @@ const ScreensRoot = () => (
     <Switch>
       <Route exact path='/' component={BookList} />
       <Route path='/libro/crear' component={BookManage} />
+      <Route path='/libro/editar/:id' component={BookManage} />
       <Route path='/libro/:id' component={BookDetail} />
       <Route path='/login' component={Login} />
       <Route component={NotFound} />

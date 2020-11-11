@@ -7,6 +7,8 @@ export default function bookReducer(state = initialState.book, action) {
       return [...state, { ...action.book }];
     case types.LOAD_BOOK:
       return action.book;
+    case types.UPDATE_BOOK:
+      return action.book;
     default:
       return state;
   }

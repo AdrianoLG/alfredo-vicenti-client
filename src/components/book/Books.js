@@ -7,23 +7,19 @@ const Books = ({ books }) => (
   <React.Fragment>
     {books.map(book => {
       return (
-        <>
-          <Link to={'/libro/' + book.id} className='card-link'>
-            <Card>
-              <Card.Content>
-                <div className='left'>
-                  <Card.Header>{book.title}</Card.Header>
-                  <Card.Meta>{book.author}</Card.Meta>
-                </div>
-                <div className='right'>
-                  <Card.Description className='floated right'>
-                    {book.category}
-                  </Card.Description>
-                </div>
-              </Card.Content>
-            </Card>
-          </Link>
-        </>
+        <Link key={book.id} to={'/libro/' + book.id} className='card-link'>
+          <Card key={book.id}>
+            <Card.Content>
+              <div className='left'>
+                <Card.Header>{book.title}</Card.Header>
+                <Card.Meta>{book.author}</Card.Meta>
+              </div>
+              <div className='right'>
+                <Card.Description>{book.category}</Card.Description>
+              </div>
+            </Card.Content>
+          </Card>
+        </Link>
       );
     })}
   </React.Fragment>

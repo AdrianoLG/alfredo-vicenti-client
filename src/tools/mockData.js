@@ -117,19 +117,21 @@ const groupsUser = [
 
 const newBook = {
   id: null,
-  title: null,
-  author: null,
-  category: null
+  user_id: 1, // TODO
+  title: '',
+  author: '',
+  category: '',
+  pages: null
 };
 
 const newGroup = {
-  id: 1,
+  id: 0,
   name: null,
-  admin: 1
+  admin: 0
 };
 
 const newUser = {
-  id: 1,
+  id: 0,
   name: null,
   email: null,
   password: null,
@@ -138,9 +140,9 @@ const newUser = {
 };
 
 const newGroupUser = {
-  id: 1,
-  user_id: 1,
-  group_id: 1,
+  id: 0,
+  user_id: 0,
+  group_id: 0,
   color: null
 };
 

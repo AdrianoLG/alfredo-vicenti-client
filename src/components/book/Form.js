@@ -1,56 +1,72 @@
 import React from 'react';
-import Header from '../common/header/Header';
-import { connect } from 'react-redux';
-import * as booksActions from '../../redux/actions/booksActions';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import Books from './Books';
+import { Button, Input } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 
-class BookForm extends React.Component {
-  componentDidMount() {
-    if (this.props.books.length === 0) {
-      this.props.actions.loadBooks().catch(error => {
-        alert('Loading books failed' + error);
-      });
-    }
-
-    if (this.props.books.length === 0) {
-      this.props.actions.loadBook().catch(error => {
-        alert('Loading books failed' + error);
-      });
-    }
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <Header />
-        <section className='container'>
-          <h2>Libros</h2>
-          <Books books={this.props?.books} />
-        </section>
-      </React.Fragment>
-    );
-  }
-}
+const BookForm = ({ book, onSave, onChange, saving = false, errors = {} }) => {
+  return (
+    <>
+      <h2>{book.id ? 'Editar' : 'Añadir'} libro</h2>
+      <form onSubmit={onSave} className='bookForm'>
+        {errors.onSave && (
+          <div className='alert alert-danger' role='alert'>
+            {errors.onSave}
+          </div>
+        )}
+        <div className='bookForm-fields'>
+          <Input
+            name='title'
+            label='Título'
+            value={book.title || ''}
+            onChange={onChange}
+            error={errors.title}
+          />
+          <br />
+          <Input
+            name='author'
+            label='Autor'
+            value={book.author || ''}
+            onChange={onChange}
+            error={errors.author}
+          />
+          <br />
+          <Input
+            name='category'
+            label='Categoría'
+            value={book.category || ''}
+            onChange={onChange}
+            error={errors.category}
+          />
+          <br />
+          <Input
+            type='number'
+            min='0'
+            name='pages'
+            label='Páginas'
+            value={book.pages || ''}
+            onChange={onChange}
+            error={errors.pages}
+          />
+        </div>
+        <div className='buttons'>
+          <NavLink to='/'>
+            <Button>Cancelar</Button>
+          </NavLink>
+          <Button type='submit' disabled={saving} secondary>
+            {saving ? 'Guardando...' : 'Guardar'}
+          </Button>
+        </div>
+      </form>
+    </>
+  );
+};
 
 BookForm.propTypes = {
-  books: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  book: PropTypes.object.isRequired,
+  errors: PropTypes.object,
+  onSave: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  saving: PropTypes.bool
 };
 
-const mapStateToProps = state => {
-  return {
-    books: state.books
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    actions: {
-      loadBooks: bindActionCreators(booksActions.loadBooks, dispatch)
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(BookForm);
+export default BookForm;

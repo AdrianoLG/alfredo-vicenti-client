@@ -4,6 +4,7 @@
   --primary-color: #{$dark-blue};
   --primary-color-light: #{$light-blue};
   --accent-color: #{$red};
+  --light-color: #{$light-gray};
   --font-main: #{$inter};
   --font-secondary: #{$kelly};
   --size7: #{$size7};
@@ -57,8 +58,18 @@ a {
   }
 }
 
+button {
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
 .aside {
   background: var(--primary-color-light);
+}
+
+.bookForm-fields {
+  margin: 2em 0;
 }
 
 .button-group {
@@ -71,8 +82,7 @@ a {
 .card-link {
   color: inherit;
   display: block;
-  max-width: 35em !important;
-  width: 100% !important;
+  margin-bottom: 1em;
 }
 
 .flex-center-between {
@@ -103,23 +113,25 @@ a {
     &.buttons {
       display: inline-block;
       margin: 1em 0 2em;
+      &.group-users {
+        .button {
+          margin-bottom: 0.5em;
+        }
+      }
     }
     &.button {
-      background-color: var(--primary-color-light);
+      background-color: var(--primary-color);
+      color: var(--primary-color-light);
       font-family: var(--font-main);
       font-weight: 300;
       &:hover {
         background-color: var(--primary-color);
         color: var(--primary-color-light);
+        opacity: 0.8;
       }
       &:focus {
         background-color: var(--primary-color);
         color: var(--primary-color-light);
-      }
-    }
-    &.grid {
-      .min-height {
-        min-height: calc(100vh - 109px);
       }
     }
     &.card {
@@ -134,15 +146,25 @@ a {
         .header {
           font-weight: 700;
           font-size: 1.28571429em;
+          margin-bottom: 0.1em;
           margin-top: -0.21425em;
           line-height: 1.28571429em;
         }
         .left {
-          width: 100%;
+          width: 70%;
         }
         .right {
-          margin-left: 1em;
+          margin-left: 5%;
+          width: 25%;
+          .description {
+            text-align: right;
+          }
         }
+      }
+    }
+    &.grid {
+      .min-height {
+        min-height: calc(100vh - 109px);
       }
     }
     &.input {
@@ -151,9 +173,13 @@ a {
       width: 100%;
       > input {
         border: none !important;
-        border-bottom: 1px solid rgba(34, 36, 38, 0.15) !important;
+        border-bottom: 1px solid var(--light-color) !important;
         font-family: var(--font-main) !important;
       }
+    }
+    &.label {
+      background-color: var(--light-color);
+      font-weight: normal;
     }
     &.menu {
       font-family: $inter !important;
@@ -162,6 +188,10 @@ a {
     &.primary.button,
     &.primary.buttons .button {
       background-color: var(--primary-color) !important;
+    }
+    &.secondary.button,
+    &.secondary.buttons .button {
+      background-color: var(--accent-color) !important;
     }
   }
 }

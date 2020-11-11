@@ -1,40 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../../components/common/header/Header';
 import { connect } from 'react-redux';
-import * as bookActions from '../../redux/actions/bookActions';
+import { loadBook } from '../../redux/actions/bookActions';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import Book from '../../components/book/Book';
 import { Button } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 
-class BookDetail extends React.Component {
-  componentDidMount() {
-    const { book, actions } = this.props;
-    if (book.length === 0) {
-      actions.loadBook().catch(error => {
-        alert('Loading books failed' + error);
-      });
-    }
-  }
+function BookDetail({ book, loadBook, history, ...props }) {
+  useEffect(() => {
+    loadBook(props.match.params.id).catch(error => {
+      alert('La carga del libro ha fallado\n' + error);
+    });
+  }, [loadBook, props.match.params.id]);
 
-  render() {
-    return (
-      <React.Fragment>
-        <Header />
-        <div className='main-container height-pad'>
-          <h1>Libro {this.props?.match.params.id}</h1>
-          <Book book={this.props?.book} />
+  return (
+    <React.Fragment>
+      <Header />
+      <div className='main-container height-pad'>
+        <h2>Libro {props.match.params.id}</h2>
+        <Book book={book} />
+        <NavLink to='/'>
           <Button>Cancelar</Button>
-          <Button primary>Editar</Button>
-        </div>
-      </React.Fragment>
-    );
-  }
+        </NavLink>
+        <NavLink to={`/libro/editar/${props.match.params.id}`}>
+          <Button secondary>Editar</Button>
+        </NavLink>
+      </div>
+    </React.Fragment>
+  );
 }
 
 BookDetail.propTypes = {
-  book: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired
+  book: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {
@@ -43,12 +41,8 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    actions: {
-      loadBook: bindActionCreators(bookActions.loadBook, dispatch)
-    }
-  };
+const mapDispatchToProps = {
+  loadBook
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookDetail);

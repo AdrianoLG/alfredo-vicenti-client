@@ -12,8 +12,8 @@ export function getBooks() {
     .catch(handleError);
 }
 
-export function getBook() {
-  return fetch(baseUrl + '/book/1/user/1', {
+export function getBook(bookId) {
+  return fetch(baseUrl + '/book/' + bookId + '/user/1', {
     headers: {
       Authorization: `Bearer ${bearer}`
     }
@@ -23,9 +23,12 @@ export function getBook() {
 }
 
 export function saveBook(book) {
-  return fetch(baseUrl + (book.id || ''), {
+  return fetch(baseUrl + '/book/' + (book.id || ''), {
     method: book.id ? 'PUT' : 'POST',
-    headers: { 'content-type': 'application/json' },
+    headers: {
+      Authorization: `Bearer ${bearer}`,
+      'content-type': 'application/json'
+    },
     body: JSON.stringify(book)
   })
     .then(handleResponse)
