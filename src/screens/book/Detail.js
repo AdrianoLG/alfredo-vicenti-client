@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 import Header from '../../components/common/header/Header';
 import { connect } from 'react-redux';
 import { loadBook } from '../../redux/actions/bookActions';
-import PropTypes from 'prop-types';
 import Book from '../../components/book/Book';
-import { Button } from 'semantic-ui-react';
+import { Button, Loader } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
 function BookDetail({ book, loadBook, history, ...props }) {
@@ -19,25 +18,28 @@ function BookDetail({ book, loadBook, history, ...props }) {
       <Header />
       <div className='main-container height-pad'>
         <h2>Libro {props.match.params.id}</h2>
-        <Book book={book} />
-        <NavLink to='/'>
-          <Button>Cancelar</Button>
-        </NavLink>
-        <NavLink to={`/libro/editar/${props.match.params.id}`}>
-          <Button secondary>Editar</Button>
-        </NavLink>
+        {props.loading ? (
+          <Loader active />
+        ) : (
+          <>
+            <Book book={book} />
+            <NavLink to='/'>
+              <Button>Cancelar</Button>
+            </NavLink>
+            <NavLink to={`/libro/editar/${props.match.params.id}`}>
+              <Button secondary>Editar</Button>
+            </NavLink>
+          </>
+        )}
       </div>
     </React.Fragment>
   );
 }
 
-BookDetail.propTypes = {
-  book: PropTypes.object.isRequired
-};
-
 const mapStateToProps = state => {
   return {
-    book: state.book
+    book: state.book,
+    loading: state.apiCallsInProgress > 0
   };
 };
 

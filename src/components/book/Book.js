@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Book = ({ book }) => (
   <React.Fragment>
@@ -10,9 +9,5 @@ const Book = ({ book }) => (
     <p>Editorial: {book.editorial}</p>
   </React.Fragment>
 );
-
-Book.propTypes = {
-  book: PropTypes.object.isRequired
-};
 
 export default Book;

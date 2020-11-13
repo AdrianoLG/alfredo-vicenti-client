@@ -1,4 +1,6 @@
 export default {
+  created: false,
   books: [],
-  book: []
+  book: [],
+  apiCallsInProgress: 0
 };

@@ -5,15 +5,18 @@ import { loadBooks } from '../../redux/actions/booksActions';
 import PropTypes from 'prop-types';
 import Books from '../../components/book/Books';
 import Header from '../../components/common/header/Header';
-import { Button, Grid } from 'semantic-ui-react';
+import { Button, Grid, Loader } from 'semantic-ui-react';
 import { useEffect } from 'react';
 
-function BookList({ book, books, loadBooks }) {
+function BookList({ book, books, loadBooks, ...props }) {
   useEffect(() => {
+    // TODO
+    // if (books.length === 0) {
     loadBooks().catch(error => {
       alert('La carga de los libros ha fallado\n' + error);
     });
-  }, [book]);
+    // }
+  }, [loadBooks]);
   return (
     <React.Fragment>
       <Header />
@@ -53,7 +56,13 @@ function BookList({ book, books, loadBooks }) {
                   </Button>
                 </NavLink>
               </div>
-              <Books books={books} />
+              {props.loading ? (
+                <div className='hundred'>
+                  <Loader active />
+                </div>
+              ) : (
+                <Books books={books} />
+              )}
             </Grid.Column>
             <Grid.Column computer={1}></Grid.Column>
             <Grid.Column
@@ -71,12 +80,15 @@ function BookList({ book, books, loadBooks }) {
   );
 }
 BookList.propTypes = {
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => {
   return {
-    books: state.books
+    book: state.book,
+    books: state.books,
+    loading: state.apiCallsInProgress > 0
   };
 };
 

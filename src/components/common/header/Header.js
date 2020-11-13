@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../../assets/images/logo.svg';
 import './header.scss';
-
 import MenuDropdown from './MenuDropdown';
 
 const Header = () => (

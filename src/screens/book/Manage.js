@@ -5,20 +5,23 @@ import { loadBook, saveBook } from '../../redux/actions/bookActions';
 import Header from '../../components/common/header/Header';
 import BookForm from '../../components/book/Form';
 import { newBook } from '../../tools/mockData';
+import { toast } from 'react-toastify';
 
-function BookManage({ loadBook, saveBook, history, ...props }) {
+function BookManage({ books, loadBook, saveBook, history, ...props }) {
   const [book, setBook] = useState({ ...props.book });
   const [errors, setErrors] = useState({});
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    if (props.match.params.id) {
-      loadBook(props.match.params.id).catch(error => {
+    const paramId = props.match.params.id;
+    if (paramId) {
+      loadBook(paramId).catch(error => {
         alert('La carga del libro ha fallado\n' + error);
       });
     } else {
       setBook({ newBook });
     }
-  }, [loadBook]);
+  }, [props.match.params.id, loadBook]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -30,9 +33,11 @@ function BookManage({ loadBook, saveBook, history, ...props }) {
 
   function handleSave(event) {
     event.preventDefault();
+    setSaving(true);
     // TODO
     book.user_id = 1;
     saveBook(book).then(() => {
+      toast('Libro guardado');
       history.push('/');
     });
   }
@@ -46,22 +51,22 @@ function BookManage({ loadBook, saveBook, history, ...props }) {
           errors={errors}
           onChange={handleChange}
           onSave={handleSave}
+          saving={saving}
         />
       </main>
     </React.Fragment>
   );
 }
 BookManage.propTypes = {
-  book: PropTypes.object.isRequired,
-  books: PropTypes.array.isRequired,
-  loadBooks: PropTypes.func.isRequired,
+  loadBook: PropTypes.func.isRequired,
   saveBook: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    book: state.book
+    book: state.book,
+    books: state.books
   };
 };
 
