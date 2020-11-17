@@ -70,27 +70,27 @@ function createSlug(value) {
 }
 
 function validateBook(book) {
-  if (!book.title) return 'Title is required.';
-  if (!book.author) return 'Author is required.';
-  if (!book.category) return 'Category is required.';
+  if (!book.title) return 'El título es necesario.';
+  if (!book.author) return 'El autor es necesario.';
+  if (!book.category) return 'La categoría es necesaria.';
   return '';
 }
 
 function validateUser(user) {
-  if (!user.name) return 'Name is required.';
-  if (!user.email) return 'Email is required.';
-  if (!user.password) return 'Password is required.';
+  if (!user.name) return 'El nombre es necesario.';
+  if (!user.email) return 'El email es necesario.';
+  if (!user.password) return 'La contraseña es necesaria.';
   return '';
 }
 
 function validateGroup(group) {
-  if (!group.name) return 'Name is required.';
-  if (!group.admin) return 'Admin is required.';
+  if (!group.name) return 'El nombre es necesario.';
+  if (!group.admin) return 'El admin es necesario.';
   return '';
 }
 
 function validateGroupsUser(groupsUser) {
-  if (!groupsUser.user_id) return 'User_id is required.';
-  if (!groupsUser.group_id) return 'Group_id is required.';
+  if (!groupsUser.user_id) return 'El user_id es necesario.';
+  if (!groupsUser.group_id) return 'El group_id es necesario.';
   return '';
 }

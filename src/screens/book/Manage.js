@@ -31,15 +31,33 @@ function BookManage({ books, loadBook, saveBook, history, ...props }) {
     }));
   }
 
+  function formIsValid() {
+    const { title, author, category } = book;
+    const errors = {};
+
+    if (!title) errors.title = 'El título es necesario.';
+    if (!author) errors.author = 'El autor es necesario.';
+    if (!category) errors.category = 'El autor es necesario.';
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  }
+
   function handleSave(event) {
     event.preventDefault();
+    if (!formIsValid()) return;
     setSaving(true);
     // TODO
     book.user_id = 1;
-    saveBook(book).then(() => {
-      toast('Libro guardado');
-      history.push('/');
-    });
+    saveBook(book)
+      .then(() => {
+        toast('Libro guardado');
+        history.push('/');
+      })
+      .catch(error => {
+        setSaving(false);
+        setErrors({ onSave: error.message });
+      });
   }
 
   return (

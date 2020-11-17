@@ -1,51 +1,73 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Input } from 'semantic-ui-react';
+import { Button, Form, Input, Message } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
 const BookForm = ({ book, onSave, onChange, saving = false, errors = {} }) => {
   return (
     <>
       <h2>{book.id ? 'Editar' : 'Añadir'} libro</h2>
-      <form onSubmit={onSave} className='bookForm'>
+      <Form onSubmit={onSave} className='bookForm'>
         {errors.onSave && (
-          <div className='alert alert-danger' role='alert'>
-            {errors.onSave}
-          </div>
+          <Message error>
+            <p>{errors.onSave}</p>
+          </Message>
         )}
         <div className='bookForm-fields'>
-          <Input
+          <Form.Field
+            control={Input}
             name='title'
             label='Título'
+            required
+            placeholder='Escribe el título'
             value={book.title || ''}
             onChange={onChange}
-            error={errors.title}
-          />
-          <br />
-          <Input
+            fluid
+            error={
+              errors.title
+                ? { content: errors.title, pointing: 'below' }
+                : false
+            }
+          ></Form.Field>
+          <Form.Field
+            control={Input}
             name='author'
             label='Autor'
+            required
+            placeholder='Escribe el autor'
             value={book.author || ''}
             onChange={onChange}
-            error={errors.author}
+            fluid
+            error={
+              errors.author
+                ? { content: errors.author, pointing: 'below' }
+                : false
+            }
           />
-          <br />
-          <Input
+          <Form.Field
+            control={Input}
             name='category'
             label='Categoría'
+            required
+            placeholder='Escribe la categoría'
             value={book.category || ''}
             onChange={onChange}
-            error={errors.category}
+            fluid
+            error={
+              errors.category
+                ? { content: errors.category, pointing: 'below' }
+                : false
+            }
           />
-          <br />
-          <Input
+          <Form.Field
+            control={Input}
             type='number'
-            min='0'
             name='pages'
             label='Páginas'
+            placeholder='Escribe el número de páginas'
             value={book.pages || ''}
+            min='0'
             onChange={onChange}
-            error={errors.pages}
           />
         </div>
         <div className='buttons'>
@@ -56,7 +78,7 @@ const BookForm = ({ book, onSave, onChange, saving = false, errors = {} }) => {
             {saving ? 'Guardando...' : 'Guardar'}
           </Button>
         </div>
-      </form>
+      </Form>
     </>
   );
 };

@@ -175,11 +175,6 @@ button {
       margin-bottom: 1em;
       max-width: 35em;
       width: 100%;
-      > input {
-        border: none !important;
-        border-bottom: 1px solid var(--light-color) !important;
-        font-family: var(--font-main) !important;
-      }
     }
     &.label {
       background-color: var(--light-color);
