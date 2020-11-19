@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -11,6 +11,8 @@ import Header from '../../components/common/header/Header';
 import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
 
 function BookList({ book, books, loadBooks, deleteBook, ...props }) {
+  const [visibleButtons, setVisibleButtons] = useState('hidden');
+
   useEffect(() => {
     // TODO
     if (books.length === 0) {
@@ -29,6 +31,12 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
         autoClose: false
       });
     }
+  };
+
+  const toggleButtons = () => {
+    visibleButtons === 'hidden'
+      ? setVisibleButtons('show')
+      : setVisibleButtons('hidden');
   };
 
   return (
@@ -69,7 +77,12 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
                     <i className='filter icon'></i> Filtrar
                   </Button>
                 </NavLink>
-                <Button size='tiny' color='black'>
+                <Button
+                  size='tiny'
+                  color='black'
+                  className={'toggleButton ' + visibleButtons}
+                  onClick={toggleButtons}
+                >
                   <i className='trash icon'></i> Borrar
                 </Button>
               </div>
@@ -78,7 +91,11 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
                   <Loader active />
                 </div>
               ) : (
-                <Books onDeleteClick={handleDeleteBook} books={books} />
+                <Books
+                  onDeleteClick={handleDeleteBook}
+                  books={books}
+                  visibleButtons={visibleButtons}
+                />
               )}
             </Grid.Column>
             <Grid.Column computer={1}></Grid.Column>
@@ -106,7 +123,8 @@ const mapStateToProps = state => {
   return {
     book: state.book,
     books: state.books,
-    loading: state.apiCallsInProgress > 0
+    loading: state.apiCallsInProgress > 0,
+    visibleButtons: state.visibleButtons
   };
 };
 

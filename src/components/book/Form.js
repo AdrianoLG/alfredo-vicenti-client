@@ -7,13 +7,13 @@ const BookForm = ({ book, onSave, onChange, saving = false, errors = {} }) => {
   return (
     <>
       <h2>{book.id ? 'Editar' : 'Añadir'} libro</h2>
-      <Form onSubmit={onSave} className='bookForm'>
+      <Form onSubmit={onSave} className='book-form'>
         {errors.onSave && (
           <Message error>
             <p>{errors.onSave}</p>
           </Message>
         )}
-        <div className='bookForm-fields'>
+        <div className='book-form_fields'>
           <Form.Field
             control={Input}
             name='title'

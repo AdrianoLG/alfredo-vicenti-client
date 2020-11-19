@@ -3,10 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card } from 'semantic-ui-react';
 
-const Books = ({ books, onDeleteClick }) => (
-  <React.Fragment>
+const Books = ({ books, onDeleteClick, visibleButtons }) => (
+  <>
     {books.map(book => {
-      console.log(book);
       return (
         <Link key={book.id} to={'/libro/' + book.id} className='card-link'>
           <Card>
@@ -24,6 +23,7 @@ const Books = ({ books, onDeleteClick }) => (
             <Button
               icon='delete'
               color='black'
+              className={visibleButtons}
               onClick={e => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -34,7 +34,7 @@ const Books = ({ books, onDeleteClick }) => (
         </Link>
       );
     })}
-  </React.Fragment>
+  </>
 );
 
 Books.propTypes = {

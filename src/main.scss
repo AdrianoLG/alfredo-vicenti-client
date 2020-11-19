@@ -56,6 +56,9 @@ a {
       color: var(--primary-color-light) !important;
     }
   }
+  .card-button-group {
+    opacity: 1;
+  }
 }
 
 button {
@@ -68,7 +71,7 @@ button {
   background: var(--primary-color-light);
 }
 
-.bookForm-fields {
+.book-form_fields {
   margin: 2em 0;
 }
 
@@ -92,6 +95,26 @@ button {
   display: block;
   margin-bottom: 1em;
   position: relative;
+  .button {
+    &.show {
+      opacity: 1;
+      transition: opacity 0.25s ease-in !important;
+    }
+    &.hidden {
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.25s ease-out !important;
+    }
+  }
+}
+
+.toggleButton {
+  &.show {
+    opacity: 0.8;
+  }
+  &.hidden {
+    opacity: 1;
+  }
 }
 
 .flex-center-between {
@@ -188,6 +211,10 @@ button {
     &.label {
       background-color: var(--light-color);
       font-weight: normal;
+    }
+    &.card-button-group .button:hover {
+      background-color: var(--accent-color);
+      opacity: 1;
     }
     &.loader {
       height: 2rem;
