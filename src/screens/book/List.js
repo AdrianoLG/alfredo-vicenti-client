@@ -1,22 +1,36 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { loadBooks } from '../../redux/actions/booksActions';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Button, Grid, Loader } from 'semantic-ui-react';
+
 import Books from '../../components/book/Books';
 import Header from '../../components/common/header/Header';
-import { Button, Grid, Loader } from 'semantic-ui-react';
-import { useEffect } from 'react';
+import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
 
-function BookList({ book, books, loadBooks, ...props }) {
+function BookList({ book, books, loadBooks, deleteBook, ...props }) {
   useEffect(() => {
     // TODO
-    // if (books.length === 0) {
-    loadBooks().catch(error => {
-      alert('La carga de los libros ha fallado\n' + error);
-    });
-    // }
-  }, [loadBooks]);
+    if (books.length === 0) {
+      loadBooks().catch(error => {
+        alert('La carga de los libros ha fallado\n' + error);
+      });
+    }
+  }, [book, books, loadBooks]);
+
+  const handleDeleteBook = async bookRes => {
+    toast(`"${bookRes.title}" borrado`);
+    try {
+      await deleteBook(bookRes);
+    } catch (error) {
+      toast.error(`"${bookRes.title}" no ha sido eliminado. ${error.message}`, {
+        autoClose: false
+      });
+    }
+  };
+
   return (
     <React.Fragment>
       <Header />
@@ -55,13 +69,16 @@ function BookList({ book, books, loadBooks, ...props }) {
                     <i className='filter icon'></i> Filtrar
                   </Button>
                 </NavLink>
+                <Button size='tiny' color='black'>
+                  <i className='trash icon'></i> Borrar
+                </Button>
               </div>
               {props.loading ? (
                 <div className='hundred'>
                   <Loader active />
                 </div>
               ) : (
-                <Books books={books} />
+                <Books onDeleteClick={handleDeleteBook} books={books} />
               )}
             </Grid.Column>
             <Grid.Column computer={1}></Grid.Column>
@@ -79,6 +96,7 @@ function BookList({ book, books, loadBooks, ...props }) {
     </React.Fragment>
   );
 }
+
 BookList.propTypes = {
   books: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired
@@ -93,7 +111,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  loadBooks
+  loadBooks,
+  deleteBook
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);

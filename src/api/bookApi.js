@@ -13,6 +13,7 @@ export function getBooks() {
 }
 
 export function getBook(bookId) {
+  // TODO
   return fetch(baseUrl + '/book/' + bookId + '/user/1', {
     headers: {
       Authorization: `Bearer ${bearer}`
@@ -36,7 +37,14 @@ export function saveBook(book) {
 }
 
 export function deleteBook(bookId) {
-  return fetch(baseUrl + bookId, { method: 'DELETE' })
+  // TODO
+  return fetch(baseUrl + '/book/' + bookId + '/user/1', {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${bearer}`,
+      'content-type': 'application/json'
+    }
+  })
     .then(handleResponse)
     .catch(handleError);
 }

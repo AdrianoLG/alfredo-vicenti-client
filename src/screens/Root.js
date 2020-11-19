@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import BookDetail from './book/Detail';
-import Login from './user/Login';
-import NotFound from './NotFound';
-import BookList from './book/List';
-import BookManage from './book/Manage';
 import { Slide, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import BookDetail from './book/Detail';
+import BookList from './book/List';
+import BookManage from './book/Manage';
+import NotFound from './NotFound';
+import Login from './user/Login';
 
 const ScreensRoot = () => (
   <>

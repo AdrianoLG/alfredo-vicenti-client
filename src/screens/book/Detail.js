@@ -1,23 +1,31 @@
-import React, { useEffect } from 'react';
-import Header from '../../components/common/header/Header';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { loadBook } from '../../redux/actions/bookActions';
-import Book from '../../components/book/Book';
-import { Button, Loader } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import { Button, Loader } from 'semantic-ui-react';
 
-function BookDetail({ book, loadBook, history, ...props }) {
+import Book from '../../components/book/Book';
+import Header from '../../components/common/header/Header';
+import { loadBook } from '../../redux/actions/bookActions';
+
+function BookDetail({ loadBook, history, ...props }) {
+  const [book, setBook] = useState({ ...props.book });
   useEffect(() => {
-    loadBook(props.match.params.id).catch(error => {
-      alert('La carga del libro ha fallado\n' + error);
-    });
+    const paramId = props.match.params.id;
+    if (paramId) {
+      loadBook(paramId)
+        .then(book => {
+          setBook(book.data);
+        })
+        .catch(error => {
+          alert('La carga del libro ha fallado\n' + error);
+        });
+    }
   }, [loadBook, props.match.params.id]);
 
   return (
     <React.Fragment>
       <Header />
       <div className='main-container height-pad'>
-        <h2>Libro {props.match.params.id}</h2>
         {props.loading ? (
           <Loader active />
         ) : (
@@ -39,6 +47,7 @@ function BookDetail({ book, loadBook, history, ...props }) {
 const mapStateToProps = state => {
   return {
     book: state.book,
+    books: state.books,
     loading: state.apiCallsInProgress > 0
   };
 };

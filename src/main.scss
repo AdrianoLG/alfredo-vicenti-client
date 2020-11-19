@@ -79,10 +79,19 @@ button {
   }
 }
 
+.card-button-group {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-30%, -50%);
+  z-index: 188;
+}
+
 .card-link {
   color: inherit;
   display: block;
   margin-bottom: 1em;
+  position: relative;
 }
 
 .flex-center-between {
@@ -217,11 +226,22 @@ body {
   .Toastify__close-button {
     opacity: 1;
     & > svg {
-      fill: var(--primary-color) !important;
+      fill: var(--primary-color-light) !important;
+    }
+  }
+  .Toastify__close-button--error {
+    & > svg {
+      fill: white !important;
     }
   }
   .Toastify__toast {
-    color: var(--primary-color);
-    box-shadow: 0 0 3px var(--primary-color-light);
+    background: var(--primary-color) !important;
+    color: var(--primary-color-light);
+    font-weight: 700;
+  }
+  .Toastify__toast--error {
+    background: var(--accent-color) !important;
+    color: white;
+    font-weight: 700;
   }
 }

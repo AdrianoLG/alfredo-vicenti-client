@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { loadBook, saveBook } from '../../redux/actions/bookActions';
-import Header from '../../components/common/header/Header';
-import BookForm from '../../components/book/Form';
-import { newBook } from '../../tools/mockData';
 import { toast } from 'react-toastify';
+
+import BookForm from '../../components/book/Form';
+import Header from '../../components/common/header/Header';
+import { loadBook, saveBook } from '../../redux/actions/bookActions';
+import { newBook } from '../../tools/mockData';
 
 function BookManage({ books, loadBook, saveBook, history, ...props }) {
   const [book, setBook] = useState({ ...props.book });
@@ -75,6 +76,7 @@ function BookManage({ books, loadBook, saveBook, history, ...props }) {
     </React.Fragment>
   );
 }
+
 BookManage.propTypes = {
   loadBook: PropTypes.func.isRequired,
   saveBook: PropTypes.func.isRequired,

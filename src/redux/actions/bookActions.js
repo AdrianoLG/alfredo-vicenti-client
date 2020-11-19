@@ -2,6 +2,10 @@ import * as types from './actionTypes';
 import * as bookApi from '../../api/bookApi';
 import { beginApiCall, apiCallError } from './apiStatusActions';
 
+export function loadBooksSuccess(books) {
+  return { type: types.LOAD_BOOKS_SUCCESS, books };
+}
+
 export function createBookSuccess(book) {
   return { type: types.CREATE_BOOK_SUCCESS, book };
 }
@@ -14,6 +18,25 @@ export function updateBookSuccess(book) {
   return { type: types.UPDATE_BOOK_SUCCESS, book };
 }
 
+export function deleteBookOptimistic(book) {
+  return { type: types.DELETE_BOOK_OPTIMISTIC, book };
+}
+
+export function loadBooks() {
+  return function (dispatch) {
+    dispatch(beginApiCall());
+    return bookApi
+      .getBooks()
+      .then(books => {
+        dispatch(loadBooksSuccess(books.data));
+      })
+      .catch(error => {
+        dispatch(apiCallError(error));
+        throw error;
+      });
+  };
+}
+
 export function loadBook(bookId) {
   return function (dispatch) {
     dispatch(beginApiCall());
@@ -21,6 +44,7 @@ export function loadBook(bookId) {
       .getBook(bookId)
       .then(book => {
         dispatch(loadBookSuccess(book.data));
+        return book;
       })
       .catch(error => {
         dispatch(apiCallError(error));
@@ -43,5 +67,12 @@ export function saveBook(book) {
         dispatch(apiCallError(error));
         throw error;
       });
+  };
+}
+
+export function deleteBook(book) {
+  return function (dispatch) {
+    dispatch(deleteBookOptimistic(book));
+    return bookApi.deleteBook(book.id);
   };
 }
