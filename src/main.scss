@@ -4,6 +4,7 @@
   --primary-color: #{$dark-blue};
   --primary-color-light: #{$light-blue};
   --accent-color: #{$red};
+  --success-color: #{$green};
   --light-color: #{$light-gray};
   --font-main: #{$inter};
   --font-secondary: #{$kelly};
@@ -235,7 +236,7 @@ button {
     }
     &.secondary.button,
     &.secondary.buttons .button {
-      background-color: var(--accent-color) !important;
+      background-color: var(--success-color) !important;
     }
   }
 }
@@ -262,7 +263,7 @@ body {
     }
   }
   .Toastify__toast {
-    background: var(--primary-color) !important;
+    background: var(--success-color) !important;
     color: var(--primary-color-light);
     font-weight: 700;
   }
