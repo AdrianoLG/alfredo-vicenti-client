@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Card } from 'semantic-ui-react';
+import { Button, Card, List, Transition } from 'semantic-ui-react';
 
 const Books = ({ books, onDeleteClick, visibleButtons }) => (
   <>
-    {books.map(book => {
-      return (
+    <Transition.Group as={List} duration={250} divided>
+      {books.map(book => (
         <Link key={book.id} to={'/libro/' + book.id} className='card-link'>
           <Card>
             <Card.Content>
@@ -32,8 +32,8 @@ const Books = ({ books, onDeleteClick, visibleButtons }) => (
             />
           </Button.Group>
         </Link>
-      );
-    })}
+      ))}
+    </Transition.Group>
   </>
 );
 
