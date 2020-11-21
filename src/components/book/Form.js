@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { Button, Form, Input, Message } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 
 const BookForm = ({ book, onSave, onChange, saving = false, errors = {} }) => {
+  const history = useHistory();
   return (
     <>
       <h2>{book.id ? 'Editar' : 'Añadir'} libro</h2>
@@ -71,9 +72,13 @@ const BookForm = ({ book, onSave, onChange, saving = false, errors = {} }) => {
           />
         </div>
         <div className='buttons'>
-          <NavLink to='/'>
-            <Button>Cancelar</Button>
-          </NavLink>
+          <Button
+            onClick={() => {
+              history.push('/');
+            }}
+          >
+            Cancelar
+          </Button>
           <Button type='submit' disabled={saving} secondary>
             {saving ? 'Guardando...' : 'Guardar'}
           </Button>

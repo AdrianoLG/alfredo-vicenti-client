@@ -1,11 +1,21 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-const NotFound = () => (
-  <div>
-    <h1>404</h1>
-    <NavLink to='/'>Volver</NavLink>
-  </div>
-);
+const NotFound = function () {
+  const history = useHistory();
+
+  return (
+    <div>
+      <h1>404</h1>
+      <button
+        onClick={() => {
+          history.push('/');
+        }}
+      >
+        Volver
+      </button>
+    </div>
+  );
+};
 
 export default NotFound;

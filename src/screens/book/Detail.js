@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Button, Loader } from 'semantic-ui-react';
 
 import Book from '../../components/book/Book';
@@ -31,12 +31,21 @@ function BookDetail({ loadBook, history, ...props }) {
         ) : (
           <>
             <Book book={book} />
-            <NavLink to='/'>
-              <Button>Cancelar</Button>
-            </NavLink>
-            <NavLink to={`/libro/editar/${props.match.params.id}`}>
-              <Button secondary>Editar</Button>
-            </NavLink>
+            <Button
+              onClick={() => {
+                history.push('/');
+              }}
+            >
+              Cancelar
+            </Button>
+            <Button
+              secondary
+              onClick={() => {
+                history.push(`/libro/editar/${props.match.params.id}`);
+              }}
+            >
+              Editar
+            </Button>
           </>
         )}
       </div>

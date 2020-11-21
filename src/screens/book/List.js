@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Button, Grid, Loader } from 'semantic-ui-react';
 
@@ -67,16 +66,23 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
                 <i className='search icon'></i>
               </div>
               <div className='button-group'>
-                <NavLink to='/libro/crear'>
-                  <Button size='tiny' secondary>
-                    <i className='plus icon'></i> Añadir
-                  </Button>
-                </NavLink>
-                <NavLink to='/'>
-                  <Button size='tiny'>
-                    <i className='filter icon'></i> Filtrar
-                  </Button>
-                </NavLink>
+                <Button
+                  size='tiny'
+                  secondary
+                  onClick={() => {
+                    props.history.push('/libro/crear');
+                  }}
+                >
+                  <i className='plus icon'></i> Añadir
+                </Button>
+                <Button
+                  size='tiny'
+                  onClick={() => {
+                    props.history.push('/');
+                  }}
+                >
+                  <i className='filter icon'></i> Filtrar
+                </Button>
                 <Button
                   size='tiny'
                   color='black'
