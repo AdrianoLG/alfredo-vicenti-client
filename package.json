@@ -21,8 +21,8 @@
   "scripts": {
     "start": "run-p start:dev start:api",
     "start:dev": "react-scripts start",
-    "prestart:api": "node src/tools/createMockDb.js",
-    "start:api": "node src/tools/apiServer.js",
+    "prestart:api": "node tools/createMockDb.js",
+    "start:api": "node tools/apiServer.js",
     "test": "jest --watch",
     "build": "react-scripts build",
     "eject": "react-scripts eject"

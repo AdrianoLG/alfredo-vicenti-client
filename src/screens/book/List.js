@@ -16,7 +16,9 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
     // TODO
     if (books.length === 0) {
       loadBooks().catch(error => {
-        alert('La carga de los libros ha fallado\n' + error);
+        toast.error(`La carga de los libros ha fallado.\n${error}`, {
+          autoClose: false
+        });
       });
     }
   }, [book, books, loadBooks]);

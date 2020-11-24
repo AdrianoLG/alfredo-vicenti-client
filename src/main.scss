@@ -266,6 +266,8 @@ body {
     background: var(--success-color) !important;
     color: var(--primary-color-light);
     font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: pre-line;
   }
   .Toastify__toast--error {
     background: var(--accent-color) !important;
