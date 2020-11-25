@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Button, Loader } from 'semantic-ui-react';
 
 import Book from '../../components/book/Book';
@@ -17,7 +17,9 @@ function BookDetail({ loadBook, history, ...props }) {
           setBook(book.data);
         })
         .catch(error => {
-          alert('La carga del libro ha fallado\n' + error);
+          toast.error(`La carga del libro ha fallado.\n${error}`, {
+            autoClose: false
+          });
         });
     }
   }, [loadBook, props.match.params.id]);

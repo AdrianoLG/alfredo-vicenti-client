@@ -19,7 +19,6 @@ const BookForm = ({ book, onSave, onChange, saving = false, errors = {} }) => {
             control={Input}
             name='title'
             label='Título'
-            required
             placeholder='Escribe el título'
             value={book.title || ''}
             onChange={onChange}
@@ -34,7 +33,6 @@ const BookForm = ({ book, onSave, onChange, saving = false, errors = {} }) => {
             control={Input}
             name='author'
             label='Autor'
-            required
             placeholder='Escribe el autor'
             value={book.author || ''}
             onChange={onChange}
@@ -49,7 +47,6 @@ const BookForm = ({ book, onSave, onChange, saving = false, errors = {} }) => {
             control={Input}
             name='category'
             label='Categoría'
-            required
             placeholder='Escribe la categoría'
             value={book.category || ''}
             onChange={onChange}
@@ -72,13 +69,23 @@ const BookForm = ({ book, onSave, onChange, saving = false, errors = {} }) => {
           />
         </div>
         <div className='buttons'>
-          <Button
-            onClick={() => {
-              history.push('/');
-            }}
-          >
-            Cancelar
-          </Button>
+          {book.id ? (
+            <Button
+              onClick={() => {
+                history.push(`/libro/${book.id}`);
+              }}
+            >
+              Cancelar
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                history.push('/');
+              }}
+            >
+              Cancelar
+            </Button>
+          )}
           <Button type='submit' disabled={saving} secondary>
             {saving ? 'Guardando...' : 'Guardar'}
           </Button>

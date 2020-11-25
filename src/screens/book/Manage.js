@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
+import { Loader } from 'semantic-ui-react';
 
 import BookForm from '../../components/book/Form';
 import Header from '../../components/common/header/Header';
@@ -17,7 +18,9 @@ function BookManage({ books, loadBook, saveBook, history, ...props }) {
     const paramId = props.match.params.id;
     if (paramId) {
       loadBook(paramId).catch(error => {
-        alert('La carga del libro ha fallado\n' + error);
+        toast.error(`La carga del libro ha fallado.\n${error}`, {
+          autoClose: false
+        });
       });
     } else {
       setBook({ newBook });
@@ -38,7 +41,7 @@ function BookManage({ books, loadBook, saveBook, history, ...props }) {
 
     if (!title) errors.title = 'El título es necesario.';
     if (!author) errors.author = 'El autor es necesario.';
-    if (!category) errors.category = 'El autor es necesario.';
+    if (!category) errors.category = 'La categoría es necesaria.';
 
     setErrors(errors);
     return Object.keys(errors).length === 0;
@@ -65,13 +68,19 @@ function BookManage({ books, loadBook, saveBook, history, ...props }) {
     <React.Fragment>
       <Header />
       <main className='main-container height-pad'>
-        <BookForm
-          book={book}
-          errors={errors}
-          onChange={handleChange}
-          onSave={handleSave}
-          saving={saving}
-        />
+        {props.loading ? (
+          <div className='hundred'>
+            <Loader active />
+          </div>
+        ) : (
+          <BookForm
+            book={book}
+            errors={errors}
+            onChange={handleChange}
+            onSave={handleSave}
+            saving={saving}
+          />
+        )}
       </main>
     </React.Fragment>
   );

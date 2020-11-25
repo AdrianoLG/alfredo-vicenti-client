@@ -1,7 +1,7 @@
 import React from 'react';
-import BookForm from './Form';
+import BookForm from '../Form';
 import renderer from 'react-test-renderer';
-import { books } from '../../../tools/mockData';
+import { books } from '../../../../tools/mockData';
 
 it('sets submit button label "Guardando..." when saving is true', () => {
   const tree = renderer.create(
