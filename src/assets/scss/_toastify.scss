@@ -1,0 +1,25 @@
+body {
+  .Toastify__close-button {
+    opacity: 1;
+    & > svg {
+      fill: var(--primary-color-light) !important;
+    }
+  }
+  .Toastify__close-button--error {
+    & > svg {
+      fill: white !important;
+    }
+  }
+  .Toastify__toast {
+    background: var(--success-color) !important;
+    color: var(--primary-color-light);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: pre-line;
+  }
+  .Toastify__toast--error {
+    background: var(--accent-color) !important;
+    color: white;
+    font-weight: 700;
+  }
+}

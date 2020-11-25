@@ -109,19 +109,19 @@ button {
   }
 }
 
-.toggleButton {
-  &.show {
-    opacity: 0.8;
-  }
-  &.hidden {
-    opacity: 1;
-  }
-}
-
 .flex-center-between {
   align-items: center;
   display: flex;
   justify-content: space-between;
+}
+
+.height-pad {
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  @include tablet {
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
 }
 
 .hundred .loader {
@@ -138,140 +138,13 @@ button {
     padding-left: 1em;
     padding-right: 1em;
   }
-  .ui {
-    &.basic.primary.active.button,
-    &.basic.primary.buttons .active.button {
-      color: var(--primary-color) !important;
-      box-shadow: 0 0 0 1px var(--primary-color) inset !important;
-      &:hover {
-        color: var(--primary-color-light) !important;
-      }
-    }
-    &.buttons {
-      display: inline-block;
-      margin: 1em 0 2em;
-      &.group-users {
-        .button {
-          margin-bottom: 0.5em;
-        }
-      }
-    }
-    &.button {
-      background-color: var(--primary-color);
-      color: var(--primary-color-light);
-      font-family: var(--font-main);
-      font-weight: 300;
-      &:hover {
-        background-color: var(--primary-color);
-        color: var(--primary-color-light);
-        opacity: 0.8;
-      }
-      &:focus {
-        background-color: var(--primary-color);
-        color: var(--primary-color-light);
-      }
-    }
-    &.card {
-      width: 100%;
-      .content {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        .description {
-          font-style: italic;
-        }
-        .header {
-          font-weight: 700;
-          font-size: 1.28571429em;
-          margin-bottom: 0.1em;
-          margin-top: -0.21425em;
-          line-height: 1.28571429em;
-        }
-        .left {
-          width: 70%;
-        }
-        .right {
-          margin-left: 5%;
-          width: 25%;
-          .description {
-            text-align: right;
-          }
-        }
-      }
-    }
-    &.grid {
-      .min-height {
-        min-height: calc(100vh - 109px);
-      }
-    }
-    &.input {
-      margin-bottom: 1em;
-      max-width: 35em;
-      width: 100%;
-    }
-    &.label {
-      background-color: var(--light-color);
-      font-weight: normal;
-    }
-    &.card-button-group .button:hover {
-      background-color: var(--accent-color);
-      opacity: 1;
-    }
-    &.loader {
-      height: 2rem;
-      left: 0;
-      margin: 2em 0;
-      position: relative;
-      top: 0;
-      transform: none;
-      width: 2rem;
-    }
-    &.menu {
-      font-family: $inter !important;
-      margin: 0 !important;
-    }
-    &.primary.button,
-    &.primary.buttons .button {
-      background-color: var(--primary-color) !important;
-    }
-    &.secondary.button,
-    &.secondary.buttons .button {
-      background-color: var(--success-color) !important;
-    }
-  }
 }
 
-.height-pad {
-  padding-top: 0.75em;
-  padding-bottom: 0.75em;
-  @include tablet {
-    padding-top: 1em;
-    padding-bottom: 1em;
+.toggleButton {
+  &.show {
+    opacity: 0.8;
   }
-}
-
-body {
-  .Toastify__close-button {
+  &.hidden {
     opacity: 1;
-    & > svg {
-      fill: var(--primary-color-light) !important;
-    }
-  }
-  .Toastify__close-button--error {
-    & > svg {
-      fill: white !important;
-    }
-  }
-  .Toastify__toast {
-    background: var(--success-color) !important;
-    color: var(--primary-color-light);
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    white-space: pre-line;
-  }
-  .Toastify__toast--error {
-    background: var(--accent-color) !important;
-    color: white;
-    font-weight: 700;
   }
 }
