@@ -22,14 +22,11 @@
       color: var(--primary-color-light);
       font-family: var(--font-main);
       font-weight: 300;
-      &:hover {
-        background-color: var(--primary-color);
-        color: var(--primary-color-light);
-        opacity: 0.8;
-      }
+      &:hover,
       &:focus {
         background-color: var(--primary-color);
         color: var(--primary-color-light);
+        opacity: 0.8;
       }
     }
     &.card {

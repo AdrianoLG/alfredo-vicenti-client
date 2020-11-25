@@ -64,7 +64,7 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
               </div>
               <h2>Libros de Adriano</h2>
               <div className='ui icon input'>
-                <input type='text' placeholder='Buscar...' />
+                <input type='search' placeholder='Buscar...' />
                 <i className='search icon'></i>
               </div>
               <div className='button-group'>
@@ -108,12 +108,105 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
             </Grid.Column>
             <Grid.Column computer={1}></Grid.Column>
             <Grid.Column
+              as='aside'
               mobile={16}
               tablet={16}
               computer={6}
               className='aside height-pad min-height'
             >
-              <h2>Últimos libros leídos</h2>
+              <section>
+                <h2>Últimos libros leídos</h2>
+                <ul>
+                  <li>
+                    <a href='#'>Cristianismo primitivo y paideia griega</a>
+                  </li>
+                  <li>
+                    <a href='#'>El animal cultural</a>
+                  </li>
+                  <li>
+                    <a href='#'>La selva de los símbolos</a>
+                  </li>
+                  <li>
+                    <a href='#'>A Project Guide To UX Design</a>
+                  </li>
+                </ul>
+              </section>
+              <section>
+                <h2>Categorías destacadas</h2>
+                <ul>
+                  <li>
+                    <a href='#'>Novela (76)</a>
+                  </li>
+                  <li>
+                    <a href='#'>Filosofía (34)</a>
+                  </li>
+                  <li>
+                    <a href='#'>Antropología (12)</a>
+                  </li>
+                  <li>
+                    <a href='#'>Historia (8)</a>
+                  </li>
+                </ul>
+              </section>
+              <section>
+                <h2>Autores destacados</h2>
+                <ul>
+                  <li>
+                    <a href='#'>Platón (5)</a>
+                  </li>
+                  <li>
+                    <a href='#'>Arturo Pérez Reverte (4)</a>
+                  </li>
+                  <li>
+                    <a href='#'>Juan José Millás (3)</a>
+                  </li>
+                  <li>
+                    <a href='#'>Slavoj Zizek (2)</a>
+                  </li>
+                </ul>
+              </section>
+              <section>
+                <h2>Mejor valorados</h2>
+                <ul>
+                  <li>
+                    <a href='#'>El Anticristo (10)</a>
+                  </li>
+                  <li>
+                    <a href='#'>El mundo actual (10)</a>
+                  </li>
+                  <li>
+                    <a href='#'>Los abusos de la memoria (10)</a>
+                  </li>
+                  <li>
+                    <a href='#'>Vigilar y castigar (10)</a>
+                  </li>
+                </ul>
+              </section>
+              <section>
+                <h2>Libros prestados</h2>
+                <ul>
+                  <li>
+                    <a href='#'>Photoshop CS6 (08/14 - Mathews)</a>
+                  </li>
+                </ul>
+              </section>
+              <section>
+                <h2>Editoriales destacadas</h2>
+                <ul>
+                  <li>
+                    <a href='#'>Anagrama (6)</a>
+                  </li>
+                  <li>
+                    <a href='#'>Planeta (5)</a>
+                  </li>
+                  <li>
+                    <a href='#'>Siglo XXI (4)</a>
+                  </li>
+                  <li>
+                    <a href='#'>SM (3)</a>
+                  </li>
+                </ul>
+              </section>
             </Grid.Column>
           </Grid.Row>
         </Grid>

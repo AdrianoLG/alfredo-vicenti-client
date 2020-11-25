@@ -29,6 +29,7 @@ const Books = ({ books, onDeleteClick, visibleButtons }) => (
                 e.stopPropagation();
                 onDeleteClick(book);
               }}
+              tabindex={visibleButtons === 'show' ? '0' : '-1'}
             />
           </Button.Group>
         </Link>
