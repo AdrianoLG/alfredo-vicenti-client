@@ -92,6 +92,10 @@ aside {
   }
 }
 
+form span {
+  margin-left: 1em;
+}
+
 .aside {
   background: var(--primary-color-light);
 }
@@ -136,6 +140,11 @@ aside {
   }
 }
 
+.centered {
+  display: flex;
+  align-items: center;
+}
+
 .flex-center-between {
   align-items: center;
   display: flex;
@@ -149,6 +158,16 @@ aside {
     padding-top: 0.25em;
     padding-bottom: 0.25em;
   }
+}
+
+.hidden {
+  display: none;
+}
+
+.book-image {
+  float: left;
+  max-width: 35em;
+  width: 100%;
 }
 
 .hundred .loader {

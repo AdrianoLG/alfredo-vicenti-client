@@ -31,7 +31,8 @@ function BookManage({ books, loadBook, saveBook, history, ...props }) {
     const { name, value } = event.target;
     setBook(prevBook => ({
       ...prevBook,
-      [name]: name === 'pages' ? parseInt(value, 10) : value
+      [name]:
+        name === 'pages' || name === 'rating' ? parseInt(value, 10) : value
     }));
   }
 
@@ -95,7 +96,8 @@ BookManage.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   return {
     book: state.book,
-    books: state.books
+    books: state.books,
+    read: state.read
   };
 };
 
