@@ -33,21 +33,23 @@ function BookDetail({ loadBook, history, ...props }) {
         ) : (
           <>
             <Book book={book} />
-            <Button
-              onClick={() => {
-                history.push('/');
-              }}
-            >
-              Cancelar
-            </Button>
-            <Button
-              secondary
-              onClick={() => {
-                history.push(`/libro/editar/${props.match.params.id}`);
-              }}
-            >
-              Editar
-            </Button>
+            <div className='buttons'>
+              <Button
+                onClick={() => {
+                  history.push('/');
+                }}
+              >
+                Cancelar
+              </Button>
+              <Button
+                secondary
+                onClick={() => {
+                  history.push(`/libro/editar/${props.match.params.id}`);
+                }}
+              >
+                Editar
+              </Button>
+            </div>
           </>
         )}
       </div>

@@ -42,7 +42,10 @@ h6 {
 }
 
 h2 {
-  margin: calc(2rem - 0.14285714em) 0 calc(1rem - 0.14285714em) !important;
+  margin: 0 0 var(--size1) 0 !important;
+  &:first-child {
+    margin-top: var(--size4) !important;
+  }
 }
 
 a {
@@ -69,6 +72,7 @@ button {
 aside {
   ul {
     li {
+      margin: 0;
       position: relative;
       &:hover,
       &:focus {
@@ -87,7 +91,6 @@ aside {
           transition: all 0.25s ease-in;
         }
       }
-      margin: 0;
     }
   }
 }
@@ -100,8 +103,9 @@ form span {
   background: var(--primary-color-light);
 }
 
+.book,
 .book-form_fields {
-  margin: 2em 0;
+  margin: var(--size4) 0;
 }
 
 .button-group {
@@ -111,12 +115,16 @@ form span {
   }
 }
 
+.buttons {
+  margin-bottom: var(--size4);
+}
+
 .card-button-group {
   position: absolute;
   right: 0;
   top: 50%;
   transform: translate(-30%, -50%);
-  z-index: 188;
+  z-index: 2;
 }
 
 .card-link {
@@ -141,8 +149,8 @@ form span {
 }
 
 .centered {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .flex-center-between {
@@ -152,11 +160,11 @@ form span {
 }
 
 .height-pad {
-  padding-top: 0.75em;
   padding-bottom: 0.75em;
+  padding-top: 0.75em;
   @include tablet {
-    padding-top: 0.25em;
     padding-bottom: 0.25em;
+    padding-top: 0.25em;
   }
 }
 
@@ -177,12 +185,12 @@ form span {
 .main-container {
   margin: 0 auto;
   max-width: 90em;
-  padding-left: 0.75em;
-  padding-right: 0.75em;
+  padding-left: var(--size1);
+  padding-right: var(--size1);
   width: 100%;
   @include tablet {
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: var(--size0);
+    padding-right: var(--size0);
   }
 }
 

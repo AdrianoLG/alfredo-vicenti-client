@@ -121,7 +121,15 @@ const newBook = {
   title: '',
   author: '',
   category: '',
-  pages: null
+  pages: null,
+  editorial: '',
+  synopsis: '',
+  image: '',
+  read_date: '',
+  comments: '',
+  rating: null,
+  lent_to: '',
+  lent_date: ''
 };
 
 const newGroup = {

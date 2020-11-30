@@ -5,18 +5,45 @@ import { useHistory } from 'react-router-dom';
 
 function BookForm({ book, onSave, onChange, saving = false, errors = {} }) {
   const [read, setRead] = useState(false);
+  const [lent, setLent] = useState(false);
   const [rating, setRating] = useState(0);
   const history = useHistory();
 
   useEffect(() => {
-    if (book.read_date !== undefined) {
-      setRead(true);
+    if (book.id) {
+      if (book.read_date !== null) {
+        setRead(true);
+      }
+      if (book.lent_date !== null) {
+        setLent(true);
+      }
+      if (book.rating !== null) {
+        setRating(book.rating);
+      }
+    } else {
+      setRead(false);
+      setLent(false);
+      setRating(null);
     }
-  });
+  }, [book.id, book.read_date, book.lent_date, book.rating]);
 
   function handleRate(e, { rating }) {
     setRating(rating);
     book.rating = rating;
+  }
+
+  function handleReadRadio(type) {
+    setRead(!read);
+    if (read) {
+      book.read_date = null;
+    }
+  }
+
+  function handleLentRadio() {
+    setLent(!lent);
+    if (lent) {
+      book.lent_date = null;
+    }
   }
 
   return (
@@ -116,15 +143,10 @@ function BookForm({ book, onSave, onChange, saving = false, errors = {} }) {
             <Form.Field></Form.Field>
           </Form.Group>
           <Form.Group>
-            <Radio
-              defaultChecked={book.read_date !== undefined}
-              toggle
-              onClick={() => {
-                setRead(!read);
-                book.read_date = undefined;
-              }}
-            />
-            <span>{read ? 'Leído' : 'No leído'}</span>
+            <Form.Field>
+              <Radio checked={read} toggle onClick={handleReadRadio} />
+              <span>{read ? 'Leído' : 'No leído'}</span>
+            </Form.Field>
           </Form.Group>
           {read ? (
             <Form.Group widths='equal'>
@@ -151,7 +173,7 @@ function BookForm({ book, onSave, onChange, saving = false, errors = {} }) {
                 min='0'
                 max='10'
                 name='rating'
-                value={book.rating}
+                value={book.rating || ''}
                 onChange={onChange}
                 fluid
               />
@@ -160,13 +182,46 @@ function BookForm({ book, onSave, onChange, saving = false, errors = {} }) {
                 <div className='ui fluid input centered'>
                   <Rating
                     icon='star'
-                    rating={book.rating}
+                    rating={rating}
+                    value={rating}
                     maxRating={10}
                     onRate={handleRate}
+                    clearable
                   />
-                  <span>{book.rating || '-'}</span>
+                  <span>{rating || '-'}</span>
                 </div>
               </div>
+            </Form.Group>
+          ) : (
+            ''
+          )}
+          <Form.Group>
+            <Form.Field>
+              <Radio checked={lent} toggle onClick={handleLentRadio} />
+              <span>{lent ? 'Prestado' : 'No prestado'}</span>
+            </Form.Field>
+          </Form.Group>
+          {lent ? (
+            <Form.Group widths='equal'>
+              <Form.Field
+                control={Input}
+                name='lent_to'
+                label='Prestado a'
+                placeholder='Escribe a quién se prestó el libro'
+                value={book.lent_to || ''}
+                onChange={onChange}
+                fluid
+              />
+              <Form.Field
+                control={Input}
+                type='date'
+                name='lent_date'
+                label='Fecha de préstamo'
+                value={book.lent_date || ''}
+                onChange={onChange}
+                fluid
+              />
+              <Form.Field />
             </Form.Group>
           ) : (
             ''
