@@ -13,6 +13,10 @@ export default function booksReducer(state = initialState.books, action) {
       );
     case types.DELETE_BOOK_OPTIMISTIC:
       return state.filter(book => book.id !== action.book.id);
+    case types.FILTER_BOOKS_BY_CATEGORY:
+      return state.filter(book => book.category === action.category);
+    case types.RESET_BOOKS_FILTERS:
+      return action.books;
     default:
       return state;
   }

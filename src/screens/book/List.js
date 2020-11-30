@@ -8,6 +8,7 @@ import { Button, Grid, Loader } from 'semantic-ui-react';
 import Books from '../../components/book/Books';
 import Header from '../../components/common/header/Header';
 import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
+import HighlightedCategories from './sections/HighlightedCategories';
 
 function BookList({ book, books, loadBooks, deleteBook, ...props }) {
   const [visibleButtons, setVisibleButtons] = useState('hidden');
@@ -132,21 +133,7 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
                 </ul>
               </section>
               <section>
-                <h2>Categorías destacadas</h2>
-                <ul>
-                  <li>
-                    <a href='#'>Novela (76)</a>
-                  </li>
-                  <li>
-                    <a href='#'>Filosofía (34)</a>
-                  </li>
-                  <li>
-                    <a href='#'>Antropología (12)</a>
-                  </li>
-                  <li>
-                    <a href='#'>Historia (8)</a>
-                  </li>
-                </ul>
+                <HighlightedCategories books={books} />
               </section>
               <section>
                 <h2>Autores destacados</h2>

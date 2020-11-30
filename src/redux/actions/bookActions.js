@@ -22,6 +22,14 @@ export function deleteBookOptimistic(book) {
   return { type: types.DELETE_BOOK_OPTIMISTIC, book };
 }
 
+export function filterBooksCategory(category) {
+  return { type: types.FILTER_BOOKS_BY_CATEGORY, category };
+}
+
+export function resetBooksFilters(books) {
+  return { type: types.RESET_BOOKS_FILTERS, books };
+}
+
 export function loadBooks() {
   return function (dispatch) {
     dispatch(beginApiCall());
@@ -74,5 +82,17 @@ export function deleteBook(book) {
   return function (dispatch) {
     dispatch(deleteBookOptimistic(book));
     return bookApi.deleteBook(book.id);
+  };
+}
+
+export function filterBooksByCategory(category) {
+  return function (dispatch) {
+    dispatch(filterBooksCategory(category));
+  };
+}
+
+export function resetFilters(books) {
+  return function (dispatch) {
+    dispatch(resetBooksFilters(books));
   };
 }

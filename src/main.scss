@@ -101,6 +101,9 @@ form span {
 
 .aside {
   background: var(--primary-color-light);
+  .active {
+    color: var(--accent-color) !important;
+  }
 }
 
 .book,
