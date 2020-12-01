@@ -26,6 +26,26 @@ export function filterBooksCategory(category) {
   return { type: types.FILTER_BOOKS_BY_CATEGORY, category };
 }
 
+export function filterBooksAuthor(author) {
+  return { type: types.FILTER_BOOKS_BY_AUTHOR, author };
+}
+
+export function filterBooksRating(rating) {
+  return { type: types.FILTER_BOOKS_BY_RATING, rating };
+}
+
+export function filterBooksReadDate(date) {
+  return { type: types.FILTER_BOOKS_BY_READ_DATE, date };
+}
+
+export function filterBooksLentDate(lent) {
+  return { type: types.FILTER_BOOKS_BY_LENT, lent };
+}
+
+export function filterBooksEditorial(editorial) {
+  return { type: types.FILTER_BOOKS_BY_EDITORIAL, editorial };
+}
+
 export function resetBooksFilters(books) {
   return { type: types.RESET_BOOKS_FILTERS, books };
 }
@@ -88,6 +108,36 @@ export function deleteBook(book) {
 export function filterBooksByCategory(category) {
   return function (dispatch) {
     dispatch(filterBooksCategory(category));
+  };
+}
+
+export function filterBooksByAuthor(author) {
+  return function (dispatch) {
+    dispatch(filterBooksAuthor(author));
+  };
+}
+
+export function filterBooksByRating(rating) {
+  return function (dispatch) {
+    dispatch(filterBooksRating(rating));
+  };
+}
+
+export function filterBooksByReadDate(date) {
+  return function (dispatch) {
+    dispatch(filterBooksReadDate(date));
+  };
+}
+
+export function filterBooksByLent(date) {
+  return function (dispatch) {
+    dispatch(filterBooksLentDate(date));
+  };
+}
+
+export function filterBooksByEditorial(editorial) {
+  return function (dispatch) {
+    dispatch(filterBooksEditorial(editorial));
   };
 }
 

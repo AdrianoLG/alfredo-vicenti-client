@@ -15,6 +15,16 @@ export default function booksReducer(state = initialState.books, action) {
       return state.filter(book => book.id !== action.book.id);
     case types.FILTER_BOOKS_BY_CATEGORY:
       return state.filter(book => book.category === action.category);
+    case types.FILTER_BOOKS_BY_AUTHOR:
+      return state.filter(book => book.author === action.author);
+    case types.FILTER_BOOKS_BY_RATING:
+      return state.filter(book => book.rating === action.rating);
+    case types.FILTER_BOOKS_BY_READ_DATE:
+      return state.filter(book => book.read_date === action.read_date);
+    case types.FILTER_BOOKS_BY_READ_DATE:
+      return state.filter(book => book.lent_date === action.lent_date);
+    case types.FILTER_BOOKS_BY_EDITORIAL:
+      return state.filter(book => book.editorial === action.editorial);
     case types.RESET_BOOKS_FILTERS:
       return action.books;
     default:

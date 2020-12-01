@@ -1,43 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { Icon } from 'semantic-ui-react';
+
 import {
   filterBooksByCategory,
   resetFilters
 } from '../../../redux/actions/bookActions';
+import { getTimesRepeated, sorts } from '../../../utils/filterCollections';
 
 function HighlightedCategories({ books, resetFilters, filterBooksByCategory }) {
   const [categories, setCategories] = useState([]);
   const [filtered, setFiltered] = useState(false);
   const [originalList, setOriginalList] = useState([]);
+
   useEffect(() => {
-    const categories = books.map(book => book.category);
-    const repeatedCategories = getTimesRepeated(categories);
+    const bookCategories = books
+      .filter(book => {
+        if (book.category !== null) return book;
+      })
+      .map(book => book.category);
+    const repeatedCategories = getTimesRepeated(bookCategories);
     const sortedRepeatedCategories = sorts(repeatedCategories);
     setCategories(sortedRepeatedCategories);
   }, [books, resetFilters, filterBooksByCategory]);
-
-  function getTimesRepeated(array) {
-    if (array.length === 0) return null;
-    var items = {};
-    for (var i = 0; i < array.length; i++) {
-      var el = array[i];
-      if (items[el] == null) items[el] = 1;
-      else items[el]++;
-    }
-    return items;
-  }
-
-  function sorts(array) {
-    let sortable = [];
-    for (let item in array) {
-      sortable.push([item, array[item]]);
-    }
-
-    sortable.sort(function (a, b) {
-      return b[1] - a[1];
-    });
-    return sortable;
-  }
 
   function handleClick(e, category) {
     e.preventDefault();
@@ -45,9 +30,11 @@ function HighlightedCategories({ books, resetFilters, filterBooksByCategory }) {
       setOriginalList(books);
       filterBooksByCategory(category);
       setFiltered(true);
+      e.currentTarget.parentNode.className = 'active';
     } else {
       resetFilters(originalList);
       setFiltered(false);
+      e.currentTarget.parentNode.className = '';
     }
   }
 
@@ -56,16 +43,13 @@ function HighlightedCategories({ books, resetFilters, filterBooksByCategory }) {
       {categories.length > 0 ? (
         <>
           <h2>Categorías destacadas</h2>
-          <ul>
+          <ul className='book-filter category'>
             {categories.slice(0, 4).map(category => (
               <li key={category[0]}>
-                <a
-                  href='#'
-                  onClick={e => handleClick(e, category[0])}
-                  className={filtered ? 'active' : ''}
-                >
+                <a href='#' onClick={e => handleClick(e, category[0])}>
                   {category[0]} ({category[1]})
                 </a>
+                <Icon name='close' />
               </li>
             ))}
           </ul>

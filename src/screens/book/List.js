@@ -8,7 +8,12 @@ import { Button, Grid, Loader } from 'semantic-ui-react';
 import Books from '../../components/book/Books';
 import Header from '../../components/common/header/Header';
 import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
+import BestRated from './sections/BestRated';
+import HighlightedAuthors from './sections/HighlightedAuthors';
 import HighlightedCategories from './sections/HighlightedCategories';
+import HighlightedEditorial from './sections/HighlightedEditorial';
+import LastRead from './sections/LastRead';
+import Lent from './sections/Lent';
 
 function BookList({ book, books, loadBooks, deleteBook, ...props }) {
   const [visibleButtons, setVisibleButtons] = useState('hidden');
@@ -84,7 +89,7 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
                     props.history.push('/');
                   }}
                 >
-                  <i className='filter icon'></i> Filtrar
+                  <i className='ordered list icon'></i> Ordenar
                 </Button>
                 <Button
                   size='tiny'
@@ -116,83 +121,22 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
               className='aside height-pad min-height'
             >
               <section>
-                <h2>Últimos libros leídos</h2>
-                <ul>
-                  <li>
-                    <a href='#'>Cristianismo primitivo y paideia griega</a>
-                  </li>
-                  <li>
-                    <a href='#'>El animal cultural</a>
-                  </li>
-                  <li>
-                    <a href='#'>La selva de los símbolos</a>
-                  </li>
-                  <li>
-                    <a href='#'>A Project Guide To UX Design</a>
-                  </li>
-                </ul>
+                <LastRead books={books} />
               </section>
               <section>
                 <HighlightedCategories books={books} />
               </section>
               <section>
-                <h2>Autores destacados</h2>
-                <ul>
-                  <li>
-                    <a href='#'>Platón (5)</a>
-                  </li>
-                  <li>
-                    <a href='#'>Arturo Pérez Reverte (4)</a>
-                  </li>
-                  <li>
-                    <a href='#'>Juan José Millás (3)</a>
-                  </li>
-                  <li>
-                    <a href='#'>Slavoj Zizek (2)</a>
-                  </li>
-                </ul>
+                <HighlightedAuthors books={books} />
               </section>
               <section>
-                <h2>Mejor valorados</h2>
-                <ul>
-                  <li>
-                    <a href='#'>El Anticristo (10)</a>
-                  </li>
-                  <li>
-                    <a href='#'>El mundo actual (10)</a>
-                  </li>
-                  <li>
-                    <a href='#'>Los abusos de la memoria (10)</a>
-                  </li>
-                  <li>
-                    <a href='#'>Vigilar y castigar (10)</a>
-                  </li>
-                </ul>
+                <BestRated books={books} />
               </section>
               <section>
-                <h2>Libros prestados</h2>
-                <ul>
-                  <li>
-                    <a href='#'>Photoshop CS6 (08/14 - Mathews)</a>
-                  </li>
-                </ul>
+                <HighlightedEditorial books={books} />
               </section>
               <section>
-                <h2>Editoriales destacadas</h2>
-                <ul>
-                  <li>
-                    <a href='#'>Anagrama (6)</a>
-                  </li>
-                  <li>
-                    <a href='#'>Planeta (5)</a>
-                  </li>
-                  <li>
-                    <a href='#'>Siglo XXI (4)</a>
-                  </li>
-                  <li>
-                    <a href='#'>SM (3)</a>
-                  </li>
-                </ul>
+                <Lent books={books} />
               </section>
             </Grid.Column>
           </Grid.Row>
