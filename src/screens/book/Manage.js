@@ -57,7 +57,6 @@ function BookManage({ books, loadBook, saveBook, history, ...props }) {
     saveBook(book)
       .then(() => {
         toast('Libro guardado');
-        props.book = [];
         history.push('/');
       })
       .catch(error => {

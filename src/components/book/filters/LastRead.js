@@ -3,35 +3,21 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Icon } from 'semantic-ui-react';
 
-import {
-  filterBooksByReadDate,
-  resetFilters
-} from '../../../redux/actions/bookActions';
+import { sortDesc } from '../../../utils/filterCollections';
 
-function LastRead({ books, resetFilters, filterBooksByReadDate }) {
+function LastRead({ books, resetFilters }) {
   const [read, setRead] = useState([]);
 
   useEffect(() => {
+    const sortsRead = objectArray => {
+      return sortDesc(objectArray, 'read_date');
+    };
     const readBooks = books.filter(book => {
-      if (book.read_date !== null) return book;
+      return book.read_date !== null;
     });
     const sortedReadBooks = sortsRead(readBooks);
     setRead(sortedReadBooks);
-  }, [books, resetFilters, filterBooksByReadDate]);
-
-  function orderReadDesc(a, b) {
-    if (a.read_date < b.read_date) {
-      return 1;
-    }
-    if (a.read_date > b.read_date) {
-      return -1;
-    }
-    return 0;
-  }
-
-  function sortsRead(objectArray) {
-    return objectArray.sort(orderReadDesc);
-  }
+  }, [books, resetFilters]);
 
   return (
     <>
@@ -66,9 +52,6 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = {
-  filterBooksByReadDate,
-  resetFilters
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LastRead);

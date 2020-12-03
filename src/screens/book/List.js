@@ -8,12 +8,14 @@ import { Button, Grid, Loader } from 'semantic-ui-react';
 import Books from '../../components/book/Books';
 import Header from '../../components/common/header/Header';
 import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
-import BestRated from './sections/BestRated';
-import HighlightedAuthors from './sections/HighlightedAuthors';
-import HighlightedCategories from './sections/HighlightedCategories';
-import HighlightedEditorial from './sections/HighlightedEditorial';
-import LastRead from './sections/LastRead';
-import Lent from './sections/Lent';
+import BestRated from '../../components/book/filters/BestRated';
+import HighlightedAuthors from '../../components/book/filters/HighlightedAuthors';
+import HighlightedCategories from '../../components/book/filters/HighlightedCategories';
+import HighlightedEditorial from '../../components/book/filters/HighlightedEditorial';
+import LastRead from '../../components/book/filters/LastRead';
+import Lent from '../../components/book/filters/Lent';
+import SearchBook from '../../components/book/filters/Search';
+import OrderDropdown from '../../components/book/OrderDropdown';
 
 function BookList({ book, books, loadBooks, deleteBook, ...props }) {
   const [visibleButtons, setVisibleButtons] = useState('hidden');
@@ -69,10 +71,7 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
                 <button className='ui button'>Rosalía</button>
               </div>
               <h2>Libros de Adriano</h2>
-              <div className='ui icon input'>
-                <input type='search' placeholder='Buscar...' />
-                <i className='search icon'></i>
-              </div>
+              <SearchBook books={books} />
               <div className='button-group'>
                 <Button
                   size='tiny'
@@ -83,14 +82,7 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
                 >
                   <i className='plus icon'></i> Añadir
                 </Button>
-                <Button
-                  size='tiny'
-                  onClick={() => {
-                    props.history.push('/');
-                  }}
-                >
-                  <i className='ordered list icon'></i> Ordenar
-                </Button>
+                <OrderDropdown />
                 <Button
                   size='tiny'
                   color='black'

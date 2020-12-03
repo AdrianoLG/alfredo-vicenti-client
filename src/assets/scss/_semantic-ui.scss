@@ -28,6 +28,9 @@
         color: var(--primary-color-light);
         opacity: 0.8;
       }
+      &.dropdown {
+        opacity: 1;
+      }
     }
     &.card {
       width: 100%;
@@ -70,6 +73,9 @@
       background-color: var(--light-color);
       font-weight: normal;
     }
+    .labeled.icon.button {
+      padding-left: var(--size7) !important;
+    }
     &.card-button-group .button:hover {
       background-color: var(--accent-color);
       opacity: 1;
@@ -90,6 +96,9 @@
     &.primary.button,
     &.primary.buttons .button {
       background-color: var(--primary-color) !important;
+    }
+    &.search .prompt {
+      border-radius: 0.28571429rem;
     }
     &.secondary.button,
     &.secondary.buttons .button {

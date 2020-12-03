@@ -16,13 +16,13 @@ function HighlightedEditorial({ books, resetFilters, filterBooksByEditorial }) {
   useEffect(() => {
     const editorial = books
       .filter(book => {
-        if (book.editorial !== null) return book;
+        return book.editorial !== null;
       })
       .map(book => book.editorial);
     const repeatedEditorial = getTimesRepeated(editorial);
     const sortedRepeatedEditorial = sorts(repeatedEditorial);
     setEditorial(sortedRepeatedEditorial);
-  }, [books, resetFilters, filterBooksByEditorial]);
+  }, [books, resetFilters]);
 
   function handleClick(e, editorial) {
     e.preventDefault();
@@ -51,7 +51,7 @@ function HighlightedEditorial({ books, resetFilters, filterBooksByEditorial }) {
                   tabIndex='0'
                   onClick={e => handleClick(e, editorial[0])}
                   onKeyDown={e => {
-                    if (e.keyCode == 13) {
+                    if (e.keyCode === 13) {
                       handleClick(e, editorial[0]);
                     }
                   }}

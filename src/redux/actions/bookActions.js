@@ -30,20 +30,36 @@ export function filterBooksAuthor(author) {
   return { type: types.FILTER_BOOKS_BY_AUTHOR, author };
 }
 
-export function filterBooksRating(rating) {
-  return { type: types.FILTER_BOOKS_BY_RATING, rating };
-}
-
-export function filterBooksReadDate(date) {
-  return { type: types.FILTER_BOOKS_BY_READ_DATE, date };
-}
-
-export function filterBooksLentDate(lent) {
-  return { type: types.FILTER_BOOKS_BY_LENT, lent };
-}
-
 export function filterBooksEditorial(editorial) {
   return { type: types.FILTER_BOOKS_BY_EDITORIAL, editorial };
+}
+
+export function filterBooksValue(value, books) {
+  return { type: types.FILTER_BOOKS_BY_VALUE, value, books };
+}
+
+export function orderBooksTitleAsc(books) {
+  return { type: types.ORDER_BOOKS_BY_TITLE_ASC, books };
+}
+
+export function orderBooksTitleDesc(books) {
+  return { type: types.ORDER_BOOKS_BY_TITLE_DESC, books };
+}
+
+export function orderBooksAuthorAsc(books) {
+  return { type: types.ORDER_BOOKS_BY_AUTHOR_ASC, books };
+}
+
+export function orderBooksAuthorDesc() {
+  return { type: types.ORDER_BOOKS_BY_AUTHOR_DESC };
+}
+
+export function orderBooksCategoryAsc(books) {
+  return { type: types.ORDER_BOOKS_BY_CATEGORY_ASC, books };
+}
+
+export function orderBooksCategoryDesc(books) {
+  return { type: types.ORDER_BOOKS_BY_CATEGORY_DESC, books };
 }
 
 export function resetBooksFilters(books) {
@@ -117,32 +133,56 @@ export function filterBooksByAuthor(author) {
   };
 }
 
-export function filterBooksByRating(rating) {
-  return function (dispatch) {
-    dispatch(filterBooksRating(rating));
-  };
-}
-
-export function filterBooksByReadDate(date) {
-  return function (dispatch) {
-    dispatch(filterBooksReadDate(date));
-  };
-}
-
-export function filterBooksByLent(date) {
-  return function (dispatch) {
-    dispatch(filterBooksLentDate(date));
-  };
-}
-
 export function filterBooksByEditorial(editorial) {
   return function (dispatch) {
     dispatch(filterBooksEditorial(editorial));
   };
 }
 
+export function filterBooksByValue(value, books) {
+  return function (dispatch) {
+    dispatch(filterBooksValue(value, books));
+  };
+}
+
 export function resetFilters(books) {
   return function (dispatch) {
     dispatch(resetBooksFilters(books));
+  };
+}
+
+export function orderBooksByTitleAsc(books) {
+  return function (dispatch) {
+    dispatch(orderBooksTitleAsc(books));
+  };
+}
+
+export function orderBooksByTitleDesc(books) {
+  return function (dispatch) {
+    dispatch(orderBooksTitleDesc(books));
+  };
+}
+
+export function orderBooksByAuthorAsc(books) {
+  return function (dispatch) {
+    dispatch(orderBooksAuthorAsc(books));
+  };
+}
+
+export function orderBooksByAuthorDesc() {
+  return function (dispatch) {
+    dispatch(orderBooksAuthorDesc());
+  };
+}
+
+export function orderBooksByCategoryAsc(books) {
+  return function (dispatch) {
+    dispatch(orderBooksCategoryAsc(books));
+  };
+}
+
+export function orderBooksByCategoryDesc(books) {
+  return function (dispatch) {
+    dispatch(orderBooksCategoryDesc(books));
   };
 }

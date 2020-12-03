@@ -16,7 +16,7 @@ function HighlightedAuthors({ books, resetFilters, filterBooksByAuthor }) {
   useEffect(() => {
     const authors = books
       .filter(book => {
-        if (book.author !== null) return book;
+        return book.author !== null;
       })
       .map(book => book.author);
     const repeatedAuthors = getTimesRepeated(authors);
@@ -51,7 +51,7 @@ function HighlightedAuthors({ books, resetFilters, filterBooksByAuthor }) {
                   tabIndex='0'
                   onClick={e => handleClick(e, author[0])}
                   onKeyDown={e => {
-                    if (e.keyCode == 13) {
+                    if (e.keyCode === 13) {
                       handleClick(e, author[0]);
                     }
                   }}

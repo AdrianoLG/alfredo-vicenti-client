@@ -16,7 +16,7 @@ function HighlightedCategories({ books, resetFilters, filterBooksByCategory }) {
   useEffect(() => {
     const bookCategories = books
       .filter(book => {
-        if (book.category !== null) return book;
+        return book.category !== null;
       })
       .map(book => book.category);
     const repeatedCategories = getTimesRepeated(bookCategories);
@@ -46,9 +46,18 @@ function HighlightedCategories({ books, resetFilters, filterBooksByCategory }) {
           <ul className='book-filter category'>
             {categories.slice(0, 4).map(category => (
               <li key={category[0]}>
-                <a href='#' onClick={e => handleClick(e, category[0])}>
+                <span
+                  className='link'
+                  tabIndex='0'
+                  onClick={e => handleClick(e, category[0])}
+                  onKeyDown={e => {
+                    if (e.keyCode === 13) {
+                      handleClick(e, category[0]);
+                    }
+                  }}
+                >
                   {category[0]} ({category[1]})
-                </a>
+                </span>
                 <Icon name='close' />
               </li>
             ))}
