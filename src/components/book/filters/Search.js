@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Input } from 'semantic-ui-react';
+
 import { filterBooksByValue } from '../../../redux/actions/bookActions';
 
 function SearchBook({ filterBooksByValue, books, resetFilters }) {

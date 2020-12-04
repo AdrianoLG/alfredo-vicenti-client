@@ -1,25 +1,21 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
-import { Button, Grid, Loader } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
-import Books from '../../components/book/Books';
-import Header from '../../components/common/header/Header';
-import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
+import BooksSection from '../../components/book/BooksSection';
 import BestRated from '../../components/book/filters/BestRated';
 import HighlightedAuthors from '../../components/book/filters/HighlightedAuthors';
 import HighlightedCategories from '../../components/book/filters/HighlightedCategories';
 import HighlightedEditorial from '../../components/book/filters/HighlightedEditorial';
 import LastRead from '../../components/book/filters/LastRead';
 import Lent from '../../components/book/filters/Lent';
-import SearchBook from '../../components/book/filters/Search';
-import OrderDropdown from '../../components/book/OrderDropdown';
+import Header from '../../components/common/header/Header';
+import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
 
-function BookList({ book, books, loadBooks, deleteBook, ...props }) {
-  const [visibleButtons, setVisibleButtons] = useState('hidden');
-
+function BookList({ book, books, loadBooks, deleteBook, loading, ...props }) {
   useEffect(() => {
     // TODO
     if (books.length === 0) {
@@ -29,24 +25,7 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
         });
       });
     }
-  }, [book, books, loadBooks]);
-
-  const handleDeleteBook = async bookRes => {
-    toast(`"${bookRes.title}" borrado`);
-    try {
-      await deleteBook(bookRes);
-    } catch (error) {
-      toast.error(`"${bookRes.title}" no ha sido eliminado. ${error.message}`, {
-        autoClose: false
-      });
-    }
-  };
-
-  const toggleButtons = () => {
-    visibleButtons === 'hidden'
-      ? setVisibleButtons('show')
-      : setVisibleButtons('hidden');
-  };
+  }, [book, books, loadBooks, loading]);
 
   return (
     <React.Fragment>
@@ -70,39 +49,7 @@ function BookList({ book, books, loadBooks, deleteBook, ...props }) {
                 <button className='ui button'>Rosa</button>
                 <button className='ui button'>Rosalía</button>
               </div>
-              <h2>Libros de Adriano</h2>
-              <SearchBook books={books} />
-              <div className='button-group'>
-                <Button
-                  size='tiny'
-                  secondary
-                  onClick={() => {
-                    props.history.push('/libro/crear');
-                  }}
-                >
-                  <i className='plus icon'></i> Añadir
-                </Button>
-                <OrderDropdown />
-                <Button
-                  size='tiny'
-                  color='black'
-                  className={'toggleButton ' + visibleButtons}
-                  onClick={toggleButtons}
-                >
-                  <i className='trash icon'></i> Borrar
-                </Button>
-              </div>
-              {props.loading ? (
-                <div className='hundred'>
-                  <Loader active />
-                </div>
-              ) : (
-                <Books
-                  onDeleteClick={handleDeleteBook}
-                  books={books}
-                  visibleButtons={visibleButtons}
-                />
-              )}
+              <BooksSection books={books} loading={loading} />
             </Grid.Column>
             <Grid.Column computer={1}></Grid.Column>
             <Grid.Column
