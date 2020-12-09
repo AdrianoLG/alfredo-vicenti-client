@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Button, Loader } from 'semantic-ui-react';
 
-import { deleteBook } from '../../api/bookApi';
+import { deleteBook } from '../../redux/actions/bookActions';
 import Books from './Books';
 import SearchBook from './filters/Search';
 import OrderDropdown from './OrderDropdown';
 
-function BooksSection({ books, loading, ...props }) {
+function BooksSection({ books, loading, deleteBook }) {
   const [visibleButtons, setVisibleButtons] = useState('hidden');
   const history = useHistory();
 
@@ -68,4 +69,14 @@ function BooksSection({ books, loading, ...props }) {
   );
 }
 
-export default BooksSection;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    books: state.books
+  };
+};
+
+const mapDispatchToProps = {
+  deleteBook
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BooksSection);

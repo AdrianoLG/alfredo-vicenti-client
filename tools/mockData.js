@@ -121,7 +121,12 @@ const newBook = {
   title: '',
   author: '',
   category: '',
-  pages: null
+  pages: null,
+  editorial: '',
+  lent_date: null,
+  lent_to: '',
+  rating: null,
+  read_date: null
 };
 
 const newGroup = {
