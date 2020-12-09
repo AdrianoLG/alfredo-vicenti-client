@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Input } from 'semantic-ui-react';
 
 import { filterBooksByValue } from '../../../redux/actions/bookActions';
 
-function SearchBook({ filterBooksByValue, books, resetFilters }) {
-  const [booksConst, setBooksConst] = useState([]);
-  useEffect(() => {
-    if (booksConst.length === 0) {
-      setBooksConst(books);
-    }
-  }, [filterBooksByValue, books, resetFilters, booksConst]);
+function SearchBook({ filterBooksByValue, books }) {
+  const [booksConst, setBooksConst] = useState(books);
+  const [start, setStart] = useState(true);
 
   const handleChange = e => {
-    filterBooksByValue(e.target.value, booksConst);
+    if (start) {
+      setBooksConst(books);
+      setStart(false);
+      filterBooksByValue(e.target.value, books);
+    } else {
+      filterBooksByValue(e.target.value, booksConst);
+    }
   };
 
   return (

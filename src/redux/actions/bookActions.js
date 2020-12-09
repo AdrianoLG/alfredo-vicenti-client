@@ -38,6 +38,10 @@ export function filterBooksValue(value, books) {
   return { type: types.FILTER_BOOKS_BY_VALUE, value, books };
 }
 
+export function filterBooksNoValue() {
+  return { type: types.FILTER_BOOKS_NO_VALUE };
+}
+
 export function orderBooksTitleAsc(books) {
   return { type: types.ORDER_BOOKS_BY_TITLE_ASC, books };
 }
@@ -141,7 +145,9 @@ export function filterBooksByEditorial(editorial) {
 
 export function filterBooksByValue(value, books) {
   return function (dispatch) {
-    dispatch(filterBooksValue(value, books));
+    books.length === 0
+      ? dispatch(filterBooksNoValue())
+      : dispatch(filterBooksValue(value, books));
   };
 }
 

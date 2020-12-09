@@ -27,6 +27,8 @@ export default function booksReducer(state = initialState.books, action) {
           book.author.toLowerCase().includes(action.value) ||
           book.category.toLowerCase().includes(action.value)
       );
+    case types.FILTER_BOOKS_NO_VALUE:
+      return state;
     case types.RESET_BOOKS_FILTERS:
       return action.books;
     case types.ORDER_BOOKS_BY_TITLE_ASC:

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -16,16 +16,22 @@ import Header from '../../components/common/header/Header';
 import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
 
 function BookList({ book, books, loadBooks, deleteBook, loading, ...props }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     // TODO
-    if (books.length === 0) {
-      loadBooks().catch(error => {
-        toast.error(`La carga de los libros ha fallado.\n${error}`, {
-          autoClose: false
+    if (books.length === 0 && !isLoaded) {
+      loadBooks()
+        .then(() => {
+          setIsLoaded(true);
+        })
+        .catch(error => {
+          toast.error(`La carga de los libros ha fallado.\n${error}`, {
+            autoClose: false
+          });
         });
-      });
     }
-  }, [book, books, loadBooks, loading]);
+  }, [book, books, loadBooks, loading, isLoaded]);
 
   return (
     <React.Fragment>

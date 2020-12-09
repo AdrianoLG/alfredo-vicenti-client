@@ -58,12 +58,14 @@ function BooksSection({ books, loading, deleteBook }) {
         <div className='hundred'>
           <Loader active />
         </div>
-      ) : (
+      ) : books.length > 0 ? (
         <Books
           onDeleteClick={handleDeleteBook}
           books={books}
           visibleButtons={visibleButtons}
         />
+      ) : (
+        'No hay coincidencias'
       )}
     </>
   );
