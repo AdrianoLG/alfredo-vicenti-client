@@ -15,9 +15,7 @@ function HighlightedAuthors({ books, resetFilters, filterBooksByAuthor }) {
 
   useEffect(() => {
     const authors = books
-      .filter(book => {
-        return book.author !== null;
-      })
+      .filter(book => book.author !== null)
       .map(book => book.author);
     const repeatedAuthors = getTimesRepeated(authors);
     const sortedRepeatedAuthors = sorts(repeatedAuthors);

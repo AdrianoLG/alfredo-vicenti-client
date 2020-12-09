@@ -15,9 +15,7 @@ function HighlightedCategories({ books, resetFilters, filterBooksByCategory }) {
 
   useEffect(() => {
     const bookCategories = books
-      .filter(book => {
-        return book.category !== null;
-      })
+      .filter(book => book.category !== null)
       .map(book => book.category);
     const repeatedCategories = getTimesRepeated(bookCategories);
     const sortedRepeatedCategories = sorts(repeatedCategories);

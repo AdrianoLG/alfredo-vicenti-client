@@ -15,9 +15,7 @@ function HighlightedEditorial({ books, resetFilters, filterBooksByEditorial }) {
 
   useEffect(() => {
     const editorial = books
-      .filter(book => {
-        return book.editorial !== null;
-      })
+      .filter(book => book.editorial !== null)
       .map(book => book.editorial);
     const repeatedEditorial = getTimesRepeated(editorial);
     const sortedRepeatedEditorial = sorts(repeatedEditorial);

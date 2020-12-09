@@ -11,9 +11,7 @@ function Lent({ books, resetFilters }) {
     const sortsLent = objectArray => {
       return sortDesc(objectArray, 'lent_date');
     };
-    const lentBooks = books.filter(book => {
-      return book.lent_date !== null;
-    });
+    const lentBooks = books.filter(book => book.lent_date !== null);
     const sortedLentBooks = sortsLent(lentBooks);
     setLent(sortedLentBooks);
   }, [books, resetFilters]);

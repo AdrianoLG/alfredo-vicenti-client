@@ -12,9 +12,9 @@ function LastRead({ books, resetFilters }) {
     const sortsRead = objectArray => {
       return sortDesc(objectArray, 'read_date');
     };
-    const readBooks = books.filter(book => {
-      return book.read_date !== null && read.read_date !== undefined;
-    });
+    const readBooks = books.filter(
+      book => book.read_date !== null && book.read_date !== undefined
+    );
     const sortedReadBooks = sortsRead(readBooks);
     setRead(sortedReadBooks);
   }, [books, resetFilters]);

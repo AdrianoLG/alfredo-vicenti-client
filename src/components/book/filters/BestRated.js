@@ -11,9 +11,7 @@ function BestRated({ books }) {
     const sortsRated = objectArray => {
       return sortDesc(objectArray, 'rating');
     };
-    const ratedBooks = books.filter(book => {
-      return book.rating !== null;
-    });
+    const ratedBooks = books.filter(book => book.rating !== null);
     const sortedRatedBooks = sortsRated(ratedBooks);
     setRated(sortedRatedBooks);
   }, [books]);
