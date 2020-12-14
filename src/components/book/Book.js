@@ -5,15 +5,22 @@ const Book = ({ book }) => (
   <div className='book'>
     <Grid>
       <Grid.Column mobile={16} tablet={5} computer={5} className='height-pad'>
-        <img
-          className='book-image'
-          src={
-            book.image !== null
-              ? book.image
-              : 'https://placeimg.com/640/850/people'
-          }
-          alt=''
-        />
+        <div className='coverImg'>
+          <img
+            className='book-image'
+            src={
+              book.image !== null && book.image !== ''
+                ? book.image
+                : process.env.PUBLIC_URL + '/img/old-book-cover.jpg'
+            }
+            alt=''
+          />
+          {book.image !== null && book.image !== '' ? (
+            ''
+          ) : (
+            <p className='cover-title'>{book.title}</p>
+          )}
+        </div>
       </Grid.Column>
       <Grid.Column mobile={16} tablet={5} computer={5} className='height-pad'>
         <p>Autor: {book.author}</p>

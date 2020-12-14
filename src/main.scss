@@ -115,7 +115,7 @@ form span {
 }
 
 .book,
-.book-form_fields {
+.addBook {
   margin: var(--size4) 0;
 }
 
@@ -128,6 +128,10 @@ form span {
 
 .buttons {
   margin-bottom: var(--size4);
+  margin-top: var(--size4);
+  @include tablet {
+    margin-top: 0;
+  }
 }
 
 .card-button-group {
@@ -185,6 +189,59 @@ form span {
 .centered {
   align-items: center;
   display: flex;
+}
+
+.addBook {
+  display: flex;
+  flex-wrap: wrap;
+  @include tablet {
+    flex-wrap: nowrap;
+  }
+  .book-form_fields {
+    width: 100%;
+  }
+  .cover {
+    margin-right: 1em;
+    max-width: 16.5em;
+    .coverImg {
+      position: relative;
+      img {
+        width: 100%;
+      }
+      .closeIcon {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+      }
+    }
+    label {
+      display: block;
+      margin: 0 0 0.28571429rem 0;
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 0.92857143em;
+      font-weight: 700;
+      text-transform: none;
+    }
+    input {
+      width: 100%;
+    }
+  }
+}
+
+.book {
+  .cover-title {
+    font-size: var(--size1);
+  }
+}
+
+.cover-title {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--size-1);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .flex-center-between {
