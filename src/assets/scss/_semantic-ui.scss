@@ -93,6 +93,9 @@
       font-family: $inter !important;
       margin: 0 !important;
     }
+    &.pagination.menu {
+      width: 100%;
+    }
     &.primary.button,
     &.primary.buttons .button {
       background-color: var(--primary-color) !important;

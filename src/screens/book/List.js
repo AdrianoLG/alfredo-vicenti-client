@@ -26,9 +26,7 @@ function BookList({ book, books, loadBooks, deleteBook, loading, ...props }) {
           setIsLoaded(true);
         })
         .catch(error => {
-          toast.error(`La carga de los libros ha fallado.\n${error}`, {
-            autoClose: false
-          });
+          toast.error(`La carga de los libros ha fallado.\n${error}`);
         });
     }
   }, [book, books, loadBooks, loading, isLoaded]);
