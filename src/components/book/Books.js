@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
 import { Button, Card, List, Transition } from 'semantic-ui-react';
-import ReactPaginate from 'react-paginate';
-import { filterBooksByPages } from '../../redux/actions/bookActions';
-import { connect } from 'react-redux';
-import { Pagination } from 'semantic-ui-react';
 
 function Books({ books, onDeleteClick, visibleButtons }) {
   const [pageCount, setPageCount] = useState(0);
@@ -96,14 +93,4 @@ Books.propTypes = {
   onDeleteClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => {
-  return {
-    books: state.books
-  };
-};
-
-const mapDispatchToProps = {
-  filterBooksByPages
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Books);
+export default Books;
