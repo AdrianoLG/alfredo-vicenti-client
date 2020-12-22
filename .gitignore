@@ -25,3 +25,4 @@ yarn-error.log*
 tempVariables.js
 db.json
 __snapshots__
+.eslintcache
