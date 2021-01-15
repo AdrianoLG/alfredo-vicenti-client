@@ -9,7 +9,7 @@ import Header from '../../components/common/header/Header';
 import { loadBook, saveBook } from '../../redux/actions/bookActions';
 import { newBook } from '../../utils/mockData';
 
-function BookManage({ books, loadBook, saveBook, history, ...props }) {
+function BookManage({ user, books, loadBook, saveBook, history, ...props }) {
   const [book, setBook] = useState({ ...props.book });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
@@ -52,8 +52,7 @@ function BookManage({ books, loadBook, saveBook, history, ...props }) {
     event.preventDefault();
     if (!formIsValid()) return;
     setSaving(true);
-    // TODO
-    book.user_id = 1;
+    book.user_id = user.user_id;
     saveBook(book)
       .then(() => {
         toast('Libro guardado');
@@ -93,11 +92,12 @@ BookManage.propTypes = {
   history: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
     book: state.book,
     books: state.books,
-    read: state.read
+    read: state.read,
+    user: state.user
   };
 };
 

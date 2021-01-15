@@ -7,12 +7,12 @@ import Book from '../../components/book/Book';
 import Header from '../../components/common/header/Header';
 import { loadBook } from '../../redux/actions/bookActions';
 
-function BookDetail({ loadBook, history, ...props }) {
+function BookDetail({ user, loadBook, history, ...props }) {
   const [book, setBook] = useState({ ...props.book });
   useEffect(() => {
     const paramId = props.match.params.id;
     if (paramId) {
-      loadBook(paramId)
+      loadBook(paramId, user.user_id)
         .then(book => {
           setBook(book.data);
         })
@@ -22,7 +22,7 @@ function BookDetail({ loadBook, history, ...props }) {
           });
         });
     }
-  }, [loadBook, props.match.params.id]);
+  }, [user, loadBook, props.match.params.id]);
 
   return (
     <React.Fragment>
@@ -61,7 +61,8 @@ const mapStateToProps = state => {
   return {
     book: state.book,
     books: state.books,
-    loading: state.apiCallsInProgress > 0
+    loading: state.apiCallsInProgress > 0,
+    user: state.user
   };
 };
 

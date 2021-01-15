@@ -107,6 +107,48 @@ form span {
   margin-left: 1em;
 }
 
+.addBook,
+.book {
+  margin: var(--size4) 0;
+}
+
+.addBook {
+  display: flex;
+  flex-wrap: wrap;
+  @include tablet {
+    flex-wrap: nowrap;
+  }
+  .book-form_fields {
+    width: 100%;
+  }
+  .cover {
+    margin-right: 1em;
+    max-width: 16.5em;
+    .coverImg {
+      position: relative;
+      img {
+        width: 100%;
+      }
+      .closeIcon {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+      }
+    }
+    label {
+      display: block;
+      margin: 0 0 0.28571429rem 0;
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 0.92857143em;
+      font-weight: 700;
+      text-transform: none;
+    }
+    input {
+      width: 100%;
+    }
+  }
+}
+
 .aside {
   background: var(--primary-color-light);
   .active {
@@ -114,9 +156,39 @@ form span {
   }
 }
 
-.book,
-.addBook {
-  margin: var(--size4) 0;
+.book {
+  .cover-title {
+    font-size: var(--size1);
+  }
+}
+
+.book-filter {
+  li {
+    position: relative;
+    .icon {
+      color: var(--accent-color);
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: none;
+      visibility: hidden;
+    }
+    &.active {
+      .icon {
+        top: 40%;
+        visibility: visible;
+        transition: 0.1s all ease-in;
+      }
+    }
+  }
+}
+
+.book-image {
+  float: left;
+  max-width: 35em;
+  width: 100%;
 }
 
 .button-group {
@@ -163,75 +235,9 @@ form span {
   }
 }
 
-.book-filter {
-  li {
-    position: relative;
-    .icon {
-      color: var(--accent-color);
-      pointer-events: none;
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: none;
-      visibility: hidden;
-    }
-    &.active {
-      .icon {
-        top: 40%;
-        visibility: visible;
-        transition: 0.1s all ease-in;
-      }
-    }
-  }
-}
-
 .centered {
   align-items: center;
   display: flex;
-}
-
-.addBook {
-  display: flex;
-  flex-wrap: wrap;
-  @include tablet {
-    flex-wrap: nowrap;
-  }
-  .book-form_fields {
-    width: 100%;
-  }
-  .cover {
-    margin-right: 1em;
-    max-width: 16.5em;
-    .coverImg {
-      position: relative;
-      img {
-        width: 100%;
-      }
-      .closeIcon {
-        position: absolute;
-        top: 1em;
-        right: 1em;
-      }
-    }
-    label {
-      display: block;
-      margin: 0 0 0.28571429rem 0;
-      color: rgba(0, 0, 0, 0.87);
-      font-size: 0.92857143em;
-      font-weight: 700;
-      text-transform: none;
-    }
-    input {
-      width: 100%;
-    }
-  }
-}
-
-.book {
-  .cover-title {
-    font-size: var(--size1);
-  }
 }
 
 .cover-title {
@@ -250,6 +256,27 @@ form span {
   justify-content: space-between;
 }
 
+.form-background {
+  background: lightblue;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100vw;
+  .login-form {
+    left: 50%;
+    max-width: 25em !important;
+    position: relative;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    .user-form_fields {
+      width: 100%;
+    }
+  }
+}
+
 .height-pad {
   padding-bottom: 0.75em;
   padding-top: 0.75em;
@@ -261,12 +288,6 @@ form span {
 
 .hidden {
   display: none;
-}
-
-.book-image {
-  float: left;
-  max-width: 35em;
-  width: 100%;
 }
 
 .hundred .loader {

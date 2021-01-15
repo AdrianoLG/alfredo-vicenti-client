@@ -90,7 +90,6 @@ function BookForm({ book, onSave, onChange, saving = false, errors = {} }) {
                 }
                 alt='Portada'
               />
-              {console.log(cover)}
               {cover !== '' ? (
                 <Icon
                   className='closeIcon'

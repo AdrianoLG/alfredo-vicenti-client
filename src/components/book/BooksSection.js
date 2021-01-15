@@ -9,14 +9,14 @@ import Books from './Books';
 import SearchBook from './filters/Search';
 import OrderDropdown from './OrderDropdown';
 
-function BooksSection({ books, loading, deleteBook }) {
+function BooksSection({ user, books, loading, deleteBook }) {
   const [visibleButtons, setVisibleButtons] = useState('hidden');
   const history = useHistory();
 
   const handleDeleteBook = async bookRes => {
     toast(`"${bookRes.title}" borrado`);
     try {
-      await deleteBook(bookRes);
+      await deleteBook(bookRes, user.user_id);
     } catch (error) {
       toast.error(`"${bookRes.title}" no ha sido eliminado. ${error.message}`, {
         autoClose: false
@@ -32,7 +32,7 @@ function BooksSection({ books, loading, deleteBook }) {
 
   return (
     <>
-      <h2>Libros de Adriano</h2>
+      <h2>Libros de {user.name}</h2>
       <SearchBook books={books} />
       <div className='button-group'>
         <Button
@@ -73,7 +73,8 @@ function BooksSection({ books, loading, deleteBook }) {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    books: state.books
+    books: state.books,
+    user: state.user
   };
 };
 

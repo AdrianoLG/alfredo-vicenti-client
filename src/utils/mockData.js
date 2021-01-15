@@ -75,24 +75,26 @@ const groups = [
   }
 ];
 
-const user = [
-  {
-    id: 1,
-    name: 'Adri',
-    email: 'adri@adri.info',
-    password: '12345',
-    shared_comments: 1,
-    shared_ratings: 1
-  },
-  {
-    id: 1,
-    name: 'Manolo',
-    email: 'manolo@gmail.com',
-    password: '12345',
-    shared_comments: 0,
-    shared_ratings: 0
-  }
-];
+const user = {
+  id: 1,
+  name: 'Adri',
+  email: 'adri@adri.info',
+  password: '12345',
+  shared_comments: 1,
+  shared_ratings: 1,
+  password_update_token: 1234,
+  created_at: '2020-07-01T10:00:00.000000Z',
+  updated_at: '2020-07-10T12:30:00.000000Z',
+  groups: [
+    {
+      id: 1,
+      name: 'Amigos',
+      admin: 1,
+      created_at: '2020-07-11T10:00:00.000000Z',
+      updated_at: '2020-07-12T10:00:00.000000Z'
+    }
+  ]
+};
 
 const groupsUser = [
   {
@@ -117,7 +119,7 @@ const groupsUser = [
 
 const newBook = {
   id: null,
-  user_id: 1, // TODO
+  user_id: 1,
   title: '',
   author: '',
   category: '',
@@ -140,11 +142,15 @@ const newGroup = {
 
 const newUser = {
   id: 0,
-  name: null,
-  email: null,
-  password: null,
-  shared_comments: 1,
-  shared_ratings: 1
+  name: '',
+  email: '',
+  password: '',
+  shared_comments: 0,
+  shared_ratings: 0,
+  password_update_token: null,
+  created_at: '',
+  updated_at: '',
+  groups: []
 };
 
 const newGroupUser = {

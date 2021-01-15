@@ -70,11 +70,11 @@ export function resetBooksFilters(books) {
   return { type: types.RESET_BOOKS_FILTERS, books };
 }
 
-export function loadBooks() {
+export function loadBooks(userId) {
   return function (dispatch) {
     dispatch(beginApiCall());
     return bookApi
-      .getBooks()
+      .getBooks(userId)
       .then(books => {
         dispatch(loadBooksSuccess(books.data));
       })
@@ -85,11 +85,11 @@ export function loadBooks() {
   };
 }
 
-export function loadBook(bookId) {
+export function loadBook(bookId, userId) {
   return function (dispatch) {
     dispatch(beginApiCall());
     return bookApi
-      .getBook(bookId)
+      .getBook(bookId, userId)
       .then(book => {
         dispatch(loadBookSuccess(book.data));
         return book;
@@ -118,10 +118,10 @@ export function saveBook(book) {
   };
 }
 
-export function deleteBook(book) {
+export function deleteBook(book, userId) {
   return function (dispatch) {
     dispatch(deleteBookOptimistic(book));
-    return bookApi.deleteBook(book.id);
+    return bookApi.deleteBook(book.id, userId);
   };
 }
 

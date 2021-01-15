@@ -1,9 +1,9 @@
-import { bearer } from './tempVariables';
 import { handleResponse, handleError } from './apiUtils';
 const baseUrl = process.env.REACT_APP_API_URL;
+const bearer = localStorage.getItem('access_token');
 
-export function getBooks() {
-  return fetch(baseUrl + '/books/user/1', {
+export function getBooks(userId) {
+  return fetch(baseUrl + '/books/user/' + userId, {
     headers: {
       Authorization: `Bearer ${bearer}`
     }
@@ -12,9 +12,8 @@ export function getBooks() {
     .catch(handleError);
 }
 
-export function getBook(bookId) {
-  // TODO
-  return fetch(baseUrl + '/book/' + bookId + '/user/1', {
+export function getBook(bookId, userId) {
+  return fetch(baseUrl + '/book/' + bookId + '/user/' + userId, {
     headers: {
       Authorization: `Bearer ${bearer}`
     }
@@ -36,9 +35,8 @@ export function saveBook(book) {
     .catch(handleError);
 }
 
-export function deleteBook(bookId) {
-  // TODO
-  return fetch(baseUrl + '/book/' + bookId + '/user/1', {
+export function deleteBook(bookId, userId) {
+  return fetch(baseUrl + '/book/' + bookId + '/user/' + userId, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${bearer}`,

@@ -117,7 +117,7 @@ const groupsUser = [
 
 const newBook = {
   id: null,
-  user_id: 1, // TODO
+  user_id: 1,
   title: '',
   author: '',
   category: '',
