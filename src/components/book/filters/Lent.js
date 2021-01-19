@@ -8,12 +8,16 @@ function Lent({ books, resetFilters }) {
   const [lent, setLent] = useState([]);
 
   useEffect(() => {
-    const sortsLent = objectArray => {
-      return sortDesc(objectArray, 'lent_date');
-    };
-    const lentBooks = books.filter(book => book.lent_date !== null);
-    const sortedLentBooks = sortsLent(lentBooks);
-    setLent(sortedLentBooks);
+    const lentBooks = books.filter(
+      book => book.lent_date !== undefined && book.lent_date !== null
+    );
+    if (lentBooks.length > 0) {
+      const sortsLent = objectArray => {
+        return sortDesc(objectArray, 'lent_date');
+      };
+      const sortedLentBooks = sortsLent(lentBooks);
+      setLent(sortedLentBooks);
+    }
   }, [books, resetFilters]);
 
   return (

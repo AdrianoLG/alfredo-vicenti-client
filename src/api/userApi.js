@@ -43,6 +43,8 @@ export function loginUser(user) {
 }
 
 export function getToken(userData) {
+  localStorage.setItem('access_token', '');
+  localStorage.setItem('refresh_token', '');
   return fetch(baseUrlNoApi + '/oauth/token', {
     method: 'POST',
     headers: {

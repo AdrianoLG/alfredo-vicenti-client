@@ -1,10 +1,14 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Button, Form, Input, Message } from 'semantic-ui-react';
+import FormHeader from './FormHeader';
 
-function LoginForm({ user, onSave, onChange, saving = false, errors = {} }) {
+function RegisterForm({ user, onSave, onChange, saving = false, errors = {} }) {
+  const history = useHistory();
   return (
     <div className='form-background'>
-      <Form onSubmit={onSave} className='login-form'>
+      <Form onSubmit={onSave} className='login-form' autoComplete='off'>
+        <FormHeader />
         {errors.onSave && (
           <Message error>
             <p>{errors.onSave}</p>
@@ -12,6 +16,20 @@ function LoginForm({ user, onSave, onChange, saving = false, errors = {} }) {
         )}
         <div className='addUser'>
           <div className='user-form_fields'>
+            <Form.Field
+              control={Input}
+              name='name'
+              label='Nombre'
+              placeholder='Escribe el nombre'
+              value={user.name || ''}
+              onChange={onChange}
+              fluid
+              error={
+                errors.name
+                  ? { content: errors.name, pointing: 'below' }
+                  : false
+              }
+            ></Form.Field>
             <Form.Field
               control={Input}
               name='email'
@@ -37,21 +55,21 @@ function LoginForm({ user, onSave, onChange, saving = false, errors = {} }) {
               fluid
               error={
                 errors.password
-                  ? { content: errors.email, pointing: 'below' }
+                  ? { content: errors.password, pointing: 'below' }
                   : false
               }
             ></Form.Field>
             <div className='buttons'>
-              <Button type='submit' disabled={saving} secondary>
-                {saving ? 'Entrando...' : 'Entrar'}
-              </Button>
-              {/* <Button
+              <Button
                 onClick={() => {
-                  console.log('Form click');
+                  history.push('/login');
                 }}
               >
-                Entrar
-              </Button> */}
+                Login
+              </Button>
+              <Button type='submit' disabled={saving} secondary>
+                {saving ? 'Registrando...' : 'Registrarse'}
+              </Button>
             </div>
           </div>
         </div>
@@ -60,4 +78,4 @@ function LoginForm({ user, onSave, onChange, saving = false, errors = {} }) {
   );
 }
 
-export default LoginForm;
+export default RegisterForm;

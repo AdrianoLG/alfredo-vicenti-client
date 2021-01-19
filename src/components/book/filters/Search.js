@@ -4,11 +4,12 @@ import { Input } from 'semantic-ui-react';
 
 import { filterBooksByValue } from '../../../redux/actions/bookActions';
 
-function SearchBook({ filterBooksByValue, books }) {
+function SearchBook({ filterBooksByValue, books, ...props }) {
   const [booksConst, setBooksConst] = useState(books);
   const [start, setStart] = useState(true);
 
   const handleChange = e => {
+    props.getSearchText(e.target.value);
     if (start) {
       setBooksConst(books);
       setStart(false);

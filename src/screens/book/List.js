@@ -70,24 +70,30 @@ function BookList({ user, books, loadBooks, loading, history }) {
                 computer={6}
                 className='aside height-pad min-height'
               >
-                <section>
-                  <LastRead books={books} />
-                </section>
-                <section>
-                  <HighlightedCategories books={books} />
-                </section>
-                <section>
-                  <HighlightedAuthors books={books} />
-                </section>
-                <section>
-                  <BestRated books={books} />
-                </section>
-                <section>
-                  <HighlightedEditorial books={books} />
-                </section>
-                <section>
-                  <Lent books={books} />
-                </section>
+                {loading ? (
+                  ''
+                ) : (
+                  <>
+                    <section>
+                      <LastRead books={books} />
+                    </section>
+                    <section>
+                      <HighlightedCategories books={books} />
+                    </section>
+                    <section>
+                      <HighlightedAuthors books={books} />
+                    </section>
+                    <section>
+                      <BestRated books={books} />
+                    </section>
+                    <section>
+                      <HighlightedEditorial books={books} />
+                    </section>
+                    <section>
+                      <Lent books={books} />
+                    </section>
+                  </>
+                )}
               </Grid.Column>
             </Grid.Row>
           </Grid>

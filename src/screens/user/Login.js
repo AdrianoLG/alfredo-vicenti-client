@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Loader } from 'semantic-ui-react';
-import LoginForm from '../../components/user/Form';
+import LoginForm from '../../components/user/LoginForm';
 import { userLogin } from '../../redux/actions/userActions';
 
 function UserLogin({ userLogin, history, ...props }) {

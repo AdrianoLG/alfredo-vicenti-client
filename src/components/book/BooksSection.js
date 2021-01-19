@@ -11,6 +11,7 @@ import OrderDropdown from './OrderDropdown';
 
 function BooksSection({ user, books, loading, deleteBook }) {
   const [visibleButtons, setVisibleButtons] = useState('hidden');
+  const [searchText, setSearchText] = useState('');
   const history = useHistory();
 
   const handleDeleteBook = async bookRes => {
@@ -33,7 +34,7 @@ function BooksSection({ user, books, loading, deleteBook }) {
   return (
     <>
       <h2>Libros de {user.name}</h2>
-      <SearchBook books={books} />
+      <SearchBook books={books} getSearchText={setSearchText} />
       <div className='button-group'>
         <Button
           size='tiny'
@@ -64,8 +65,10 @@ function BooksSection({ user, books, loading, deleteBook }) {
           books={books}
           visibleButtons={visibleButtons}
         />
-      ) : (
+      ) : searchText !== '' ? (
         'No hay coincidencias'
+      ) : (
+        '¡Crea un libro!'
       )}
     </>
   );

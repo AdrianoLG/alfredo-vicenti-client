@@ -20,7 +20,6 @@ function Books({ books, onDeleteClick, visibleButtons }) {
   }, [books]);
 
   function handlePageClick(data) {
-    console.log(pagedBooks);
     let selected = data.selected;
     let from = Math.ceil(selected * itemsPerPage);
     let to = Math.ceil((selected + 1) * itemsPerPage);

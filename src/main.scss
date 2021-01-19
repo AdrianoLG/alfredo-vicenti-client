@@ -257,7 +257,21 @@ form span {
 }
 
 .form-background {
-  background: lightblue;
+  background: radial-gradient(
+    circle,
+    var(--primary-color-light),
+    var(--primary-color)
+  );
+  background: -moz-radial-gradient(
+    circle,
+    var(--primary-color-light),
+    var(--primary-color)
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    var(--primary-color-light),
+    var(--primary-color)
+  );
   bottom: 0;
   left: 0;
   height: 100vh;
@@ -266,14 +280,44 @@ form span {
   top: 0;
   width: 100vw;
   .login-form {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
     left: 50%;
     max-width: 25em !important;
+    padding: var(--size1);
     position: relative;
     top: 50%;
     transform: translate(-50%, -50%);
+    @include tablet {
+      padding: var(--size2);
+    }
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 0;
+      margin-top: 3em;
+      button {
+        margin-left: var(--size-2);
+        margin-right: 0;
+      }
+    }
     .user-form_fields {
       width: 100%;
     }
+  }
+}
+
+.form-header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  h1 {
+    margin: 0;
+  }
+  #logo {
+    margin-right: 1em;
+    width: 5rem;
   }
 }
 
