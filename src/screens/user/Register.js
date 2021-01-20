@@ -1,9 +1,11 @@
+import CryptoJS from 'crypto-js';
+import emailjs from 'emailjs-com';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Loader } from 'semantic-ui-react';
+
 import RegisterForm from '../../components/user/RegisterForm';
-import CryptoJS from 'crypto-js';
-import emailjs from 'emailjs-com';
+
 const {
   REACT_APP_SECRET,
   REACT_APP_SERVICE_ID,

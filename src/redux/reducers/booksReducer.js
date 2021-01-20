@@ -1,6 +1,6 @@
-import { sortAsc, sortDesc } from '../../utils/filterCollections';
 import * as types from '../actions/actionTypes';
 import initialState from './initialState';
+import { sortAsc, sortDesc } from '../../utils/filterCollections';
 
 export default function booksReducer(state = initialState.books, action) {
   switch (action.type) {

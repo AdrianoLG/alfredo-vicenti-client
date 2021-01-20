@@ -7,6 +7,7 @@ import BookDetail from './book/Detail';
 import BookList from './book/List';
 import BookManage from './book/Manage';
 import NotFound from './NotFound';
+import FinishRegistration from './user/FinishRegistration';
 import Login from './user/Login';
 import Register from './user/Register';
 
@@ -19,6 +20,7 @@ const ScreensRoot = () => (
       <Route path='/libro/:id' component={BookDetail} />
       <Route path='/login' component={Login} />
       <Route path='/registro' component={Register} />
+      <Route path='/finalizar-registro' component={FinishRegistration} />
       <Route component={NotFound} />
     </Switch>
     <ToastContainer

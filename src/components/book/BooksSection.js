@@ -4,10 +4,10 @@ import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Button, Loader } from 'semantic-ui-react';
 
-import { deleteBook } from '../../redux/actions/bookActions';
 import Books from './Books';
 import SearchBook from './filters/Search';
 import OrderDropdown from './OrderDropdown';
+import { deleteBook } from '../../redux/actions/bookActions';
 
 function BooksSection({ user, books, loading, deleteBook }) {
   const [visibleButtons, setVisibleButtons] = useState('hidden');

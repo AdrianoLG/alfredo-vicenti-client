@@ -22,17 +22,32 @@ function BookList({ user, books, loadBooks, loading, history }) {
     if (!user.name) {
       history.push('/login');
     } else {
-      if (books.length === 0 && !isLoaded) {
-        loadBooks(user.user_id)
-          .then(() => {
-            setIsLoaded(true);
-          })
-          .catch(error => {
-            toast.error(`La carga de los libros ha fallado.\n${error}`);
-          });
+      if (!isLoaded) {
+        if (localStorage.getItem('access_token') === '') {
+          setTimeout(() => {
+            if (localStorage.getItem('access_token') !== '') {
+              getBooks();
+            }
+          }, 500);
+        } else {
+          getBooks();
+        }
       }
     }
-  });
+  }, []);
+
+  function getBooks() {
+    if (!isLoaded) {
+      loadBooks(user.user_id)
+        .then(() => {
+          setIsLoaded(true);
+        })
+        .catch(error => {
+          toast.error(`La carga de los libros ha fallado.\n${error}`);
+        });
+    }
+  }
+
   if (user.name) {
     return (
       <React.Fragment>

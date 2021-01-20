@@ -1,4 +1,5 @@
 import { handleResponse, handleError } from './apiUtils';
+
 const baseUrl = process.env.REACT_APP_API_URL;
 const baseUrlNoApi = process.env.REACT_APP_URL;
 const bearer = localStorage.getItem('access_token');
