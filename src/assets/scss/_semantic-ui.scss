@@ -11,8 +11,10 @@
     &.buttons {
       display: inline-block;
       &.group-users {
+        margin-bottom: var(--size4);
         .button {
-          margin-bottom: 0.5em;
+          margin-bottom: var(--size-2);
+          margin-right: 0;
         }
       }
     }

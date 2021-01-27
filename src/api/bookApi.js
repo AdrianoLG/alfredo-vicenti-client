@@ -3,10 +3,10 @@ import { handleResponse, handleError } from './apiUtils';
 const baseUrl = process.env.REACT_APP_API_URL;
 const bearer = localStorage.getItem('access_token');
 
-export function getBooks(userId) {
+export function getBooks(userId, bear) {
   return fetch(baseUrl + '/books/user/' + userId, {
     headers: {
-      Authorization: `Bearer ${bearer}`
+      Authorization: `Bearer ${bear}`
     }
   })
     .then(handleResponse)

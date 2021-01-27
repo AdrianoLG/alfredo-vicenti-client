@@ -35,9 +35,13 @@ body {
 h1,
 h2 {
   font-family: var(--font-secondary) !important;
+  font-size: var(--size5);
+  font-weight: 600;
+  letter-spacing: -1px;
 }
 
 h2 {
+  font-size: var(--size4);
   margin: 0 0 var(--size1) 0 !important;
   &:first-child {
     margin-top: var(--size4) !important;

@@ -19,13 +19,28 @@ function BookList({ user, books, loadBooks, loading, history }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    const getBooks = () => {
+      if (user.user_id) {
+        let bearer = localStorage.getItem('access_token');
+        loadBooks(user.user_id, bearer)
+          .then(() => {
+            setIsLoaded(true);
+          })
+          .catch(error => {
+            toast.error(`La carga de los libros ha fallado.\n${error}`);
+          });
+      }
+    };
+
     if (!user.name) {
       history.push('/login');
     } else {
       if (!isLoaded) {
-        if (localStorage.getItem('access_token') === '') {
+        let ls = localStorage.getItem('access_token');
+        if (ls === '' || ls === undefined) {
           setTimeout(() => {
-            if (localStorage.getItem('access_token') !== '') {
+            ls = localStorage.getItem('access_token');
+            if (ls !== '' && ls !== undefined) {
               getBooks();
             }
           }, 500);
@@ -34,19 +49,7 @@ function BookList({ user, books, loadBooks, loading, history }) {
         }
       }
     }
-  }, []);
-
-  function getBooks() {
-    if (!isLoaded) {
-      loadBooks(user.user_id)
-        .then(() => {
-          setIsLoaded(true);
-        })
-        .catch(error => {
-          toast.error(`La carga de los libros ha fallado.\n${error}`);
-        });
-    }
-  }
+  });
 
   if (user.name) {
     return (

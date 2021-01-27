@@ -70,11 +70,11 @@ export function resetBooksFilters(books) {
   return { type: types.RESET_BOOKS_FILTERS, books };
 }
 
-export function loadBooks(userId) {
+export function loadBooks(userId, bearer) {
   return function (dispatch) {
     dispatch(beginApiCall());
     return bookApi
-      .getBooks(userId)
+      .getBooks(userId, bearer)
       .then(books => {
         dispatch(loadBooksSuccess(books.data));
       })
