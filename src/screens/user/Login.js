@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Loader } from 'semantic-ui-react';
 
 import LoginForm from '../../components/user/LoginForm';
-import { userLogin } from '../../redux/actions/userActions';
+import { retrieveUser } from '../../redux/actions/userActions';
+import { getFormData } from '../../redux/actions/userFormActions';
 
-function UserLogin({ userLogin, history, ...props }) {
+function UserLogin({ user, retrieveUser, getFormData, ...props }) {
   const [userForm, setUserForm] = useState({});
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
+  const history = useHistory();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -34,7 +37,7 @@ function UserLogin({ userLogin, history, ...props }) {
     event.preventDefault();
     if (!formIsValid()) return;
     setSaving(true);
-    userLogin(userForm)
+    getFormData(userForm)
       .then(() => {
         toast('Usuario identificado');
         history.push('/');
@@ -71,7 +74,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  userLogin
+  retrieveUser,
+  getFormData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserLogin);

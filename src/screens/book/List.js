@@ -14,25 +14,41 @@ import LastRead from '../../components/book/filters/LastRead';
 import Lent from '../../components/book/filters/Lent';
 import Header from '../../components/common/header/Header';
 import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
+import { retrieveUser } from '../../redux/actions/userActions';
 
-function BookList({ user, books, loadBooks, loading, history }) {
+function BookList({
+  userForm,
+  books,
+  retrieveUser,
+  loadBooks,
+  loading,
+  history
+}) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded2, setIsLoaded2] = useState(false);
 
   useEffect(() => {
+    if (userForm.user_id !== undefined) {
+      let bearer = localStorage.getItem('access_token');
+      if (bearer !== undefined && bearer !== '') {
+        retrieveUser(userForm.user_id, bearer)
+          .then(() => setIsLoaded2(true))
+          .catch(error => {
+            toast.error(`La carga del usuario ha fallado.\n${error}`);
+          });
+      }
+    }
     const getBooks = () => {
-      if (user.user_id) {
+      if (userForm.user_id) {
         let bearer = localStorage.getItem('access_token');
-        loadBooks(user.user_id, bearer)
-          .then(() => {
-            setIsLoaded(true);
-          })
+        loadBooks(userForm.user_id, bearer)
+          .then(() => setIsLoaded(true))
           .catch(error => {
             toast.error(`La carga de los libros ha fallado.\n${error}`);
           });
       }
     };
-
-    if (!user.name) {
+    if (!userForm.name) {
       history.push('/login');
     } else {
       if (!isLoaded) {
@@ -49,9 +65,9 @@ function BookList({ user, books, loadBooks, loading, history }) {
         }
       }
     }
-  });
+  }, [history, isLoaded, loadBooks, userForm]);
 
-  if (user.name) {
+  if (userForm.name) {
     return (
       <React.Fragment>
         <Header />
@@ -77,7 +93,7 @@ function BookList({ user, books, loadBooks, loading, history }) {
                 <BooksSection
                   books={books}
                   loading={loading}
-                  name={user.name}
+                  name={userForm.name}
                 />
               </Grid.Column>
               <Grid.Column computer={1}></Grid.Column>
@@ -134,13 +150,14 @@ const mapStateToProps = state => {
     books: state.books,
     loading: state.apiCallsInProgress > 0,
     visibleButtons: state.visibleButtons,
-    user: state.user
+    userForm: state.userForm
   };
 };
 
 const mapDispatchToProps = {
   loadBooks,
-  deleteBook
+  deleteBook,
+  retrieveUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);

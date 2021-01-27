@@ -2,9 +2,11 @@ import { handleResponse, handleError } from './apiUtils';
 
 const baseUrl = process.env.REACT_APP_API_URL;
 const baseUrlNoApi = process.env.REACT_APP_URL;
-const bearer = localStorage.getItem('access_token');
+let bearer = localStorage.getItem('access_token');
 
-export function getUser(userId) {
+export function getUser(userId, bear) {
+  bearer = bear;
+
   return fetch(baseUrl + '/user/' + userId, {
     headers: {
       Authorization: `Bearer ${bearer}`
@@ -27,7 +29,7 @@ export function saveUser(user) {
     .catch(handleError);
 }
 
-export function loginUser(user) {
+export function userDataToRetrieveToken(user) {
   return fetch(baseUrl + '/user/login', {
     method: 'POST',
     headers: {
@@ -37,8 +39,8 @@ export function loginUser(user) {
   })
     .then(handleResponse)
     .then(response => {
-      getToken(response);
-      return response;
+      getToken(response.data);
+      return response.data;
     })
     .catch(handleError);
 }
@@ -52,17 +54,18 @@ export function getToken(userData) {
       'content-type': 'application/json'
     },
     body: JSON.stringify({
-      grant_type: userData.data.grant_type,
-      client_id: userData.data.client_id,
-      client_secret: userData.data.client_secret,
-      username: userData.data.email,
-      password: userData.data.password
+      grant_type: userData.grant_type,
+      client_id: userData.client_id,
+      client_secret: userData.client_secret,
+      username: userData.email,
+      password: userData.password
     })
   })
     .then(handleResponse)
     .then(response => {
       localStorage.setItem('access_token', response.access_token);
       localStorage.setItem('refresh_token', response.refresh_token);
+      bearer = response.access_token;
     })
     .catch(handleError);
 }

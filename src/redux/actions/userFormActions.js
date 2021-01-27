@@ -2,19 +2,17 @@ import * as types from './actionTypes';
 import * as userApi from '../../api/userApi';
 import { beginApiCall, apiCallError } from './apiStatusActions';
 
-export function getUserSuccess(user) {
-  return { type: types.GET_USER_SUCCESS, user };
+export function userFormSuccess(data) {
+  return { type: types.FORM_USER_SUCCESS, data };
 }
 
-export function retrieveUser(userId, bearer) {
+export function getFormData(userData) {
   return function (dispatch) {
     dispatch(beginApiCall());
     return userApi
-      .getUser(userId, bearer)
-      .then(user => {
-        console.log('hey');
-        console.log(user);
-        dispatch(getUserSuccess(user));
+      .userDataToRetrieveToken(userData)
+      .then(data => {
+        dispatch(userFormSuccess(data));
       })
       .catch(error => {
         dispatch(apiCallError(error));
