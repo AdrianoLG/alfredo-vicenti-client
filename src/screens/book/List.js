@@ -17,6 +17,7 @@ import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
 import { retrieveUser } from '../../redux/actions/userActions';
 
 function BookList({
+  user,
   userForm,
   books,
   retrieveUser,
@@ -80,7 +81,9 @@ function BookList({
                 computer={9}
                 className='height-pad'
               >
-                <h2>Grupo: Familia</h2>
+                <h2>
+                  Grupo: {user.groups !== undefined ? user.groups[0].name : ''}
+                </h2>
                 <div className='ui buttons group-users'>
                   <button className='ui button'>Todos</button>
                   <button className='ui button'>Adriano</button>
@@ -150,7 +153,8 @@ const mapStateToProps = state => {
     books: state.books,
     loading: state.apiCallsInProgress > 0,
     visibleButtons: state.visibleButtons,
-    userForm: state.userForm
+    userForm: state.userForm,
+    user: state.user
   };
 };
 
