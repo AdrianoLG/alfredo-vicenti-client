@@ -12,8 +12,6 @@ export function retrieveUser(userId, bearer) {
     return userApi
       .getUser(userId, bearer)
       .then(user => {
-        console.log('hey');
-        console.log(user);
         dispatch(getUserSuccess(user));
       })
       .catch(error => {

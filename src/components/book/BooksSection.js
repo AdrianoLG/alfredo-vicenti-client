@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -9,7 +9,7 @@ import SearchBook from './filters/Search';
 import OrderDropdown from './OrderDropdown';
 import { deleteBook } from '../../redux/actions/bookActions';
 
-function BooksSection({ user, books, loading, deleteBook }) {
+function BooksSection({ user, books, loading, deleteBook, name }) {
   const [visibleButtons, setVisibleButtons] = useState('hidden');
   const [searchText, setSearchText] = useState('');
   const history = useHistory();
@@ -33,7 +33,7 @@ function BooksSection({ user, books, loading, deleteBook }) {
 
   return (
     <>
-      <h2>Libros de {user.name}</h2>
+      <h2>Libros de {name !== '' ? name : user.name}</h2>
       <SearchBook books={books} getSearchText={setSearchText} />
       <div className='button-group'>
         <Button
@@ -77,7 +77,8 @@ function BooksSection({ user, books, loading, deleteBook }) {
 const mapStateToProps = (state, ownProps) => {
   return {
     books: state.books,
-    user: state.user
+    user: state.user,
+    name: state.name
   };
 };
 

@@ -3,9 +3,21 @@ import { handleResponse, handleError } from './apiUtils';
 const baseUrl = process.env.REACT_APP_API_URL;
 let bearer = localStorage.getItem('access_token');
 
-export function getBooks(userId, bear) {
-  bearer = bear;
+export function getBooks(userId, bear = null) {
+  if (bear) {
+    bearer = bear;
+  }
   return fetch(baseUrl + '/books/user/' + userId, {
+    headers: {
+      Authorization: `Bearer ${bearer}`
+    }
+  })
+    .then(handleResponse)
+    .catch(handleError);
+}
+
+export function getGroupBooks(userId, groupId) {
+  return fetch(baseUrl + '/books/group/' + groupId + '/user/' + userId, {
     headers: {
       Authorization: `Bearer ${bearer}`
     }

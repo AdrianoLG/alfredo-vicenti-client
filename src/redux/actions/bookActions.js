@@ -6,6 +6,10 @@ export function loadBooksSuccess(books) {
   return { type: types.LOAD_BOOKS_SUCCESS, books };
 }
 
+export function loadGroupBooksSuccess(books) {
+  return { type: types.LOAD_GROUP_BOOKS_SUCCESS, books };
+}
+
 export function createBookSuccess(book) {
   return { type: types.CREATE_BOOK_SUCCESS, book };
 }
@@ -73,10 +77,43 @@ export function resetBooksFilters(books) {
 export function loadBooks(userId, bearer) {
   return function (dispatch) {
     dispatch(beginApiCall());
+    if (bearer) {
+      return bookApi
+        .getBooks(userId, bearer)
+        .then(books => {
+          dispatch(loadBooksSuccess(books.data));
+        })
+        .catch(error => {
+          dispatch(apiCallError(error));
+          throw error;
+        });
+    } else {
+      return bookApi
+        .getBooks(userId)
+        .then(books => {
+          dispatch(loadBooksSuccess(books.data));
+        })
+        .catch(error => {
+          dispatch(apiCallError(error));
+          throw error;
+        });
+    }
+  };
+}
+
+export function loadGroupBooks(userId, groupId) {
+  return function (dispatch) {
+    dispatch(beginApiCall());
     return bookApi
-      .getBooks(userId, bearer)
+      .getGroupBooks(userId, groupId)
       .then(books => {
-        dispatch(loadBooksSuccess(books.data));
+        let tempBooks = [];
+        books.data.forEach(userBooks => {
+          userBooks.forEach(book => {
+            tempBooks.push(book);
+          });
+        });
+        dispatch(loadGroupBooksSuccess(tempBooks));
       })
       .catch(error => {
         dispatch(apiCallError(error));

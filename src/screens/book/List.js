@@ -13,6 +13,7 @@ import HighlightedEditorial from '../../components/book/filters/HighlightedEdito
 import LastRead from '../../components/book/filters/LastRead';
 import Lent from '../../components/book/filters/Lent';
 import Header from '../../components/common/header/Header';
+import Groups from '../../components/group/Groups';
 import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
 import { retrieveUser } from '../../redux/actions/userActions';
 
@@ -26,17 +27,14 @@ function BookList({
   history
 }) {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isLoaded2, setIsLoaded2] = useState(false);
 
   useEffect(() => {
     if (userForm.user_id !== undefined) {
       let bearer = localStorage.getItem('access_token');
       if (bearer !== undefined && bearer !== '') {
-        retrieveUser(userForm.user_id, bearer)
-          .then(() => setIsLoaded2(true))
-          .catch(error => {
-            toast.error(`La carga del usuario ha fallado.\n${error}`);
-          });
+        retrieveUser(userForm.user_id, bearer).catch(error => {
+          toast.error(`La carga del usuario ha fallado.\n${error}`);
+        });
       }
     }
     const getBooks = () => {
@@ -66,7 +64,7 @@ function BookList({
         }
       }
     }
-  }, [history, isLoaded, loadBooks, userForm]);
+  }, [history, isLoaded, loadBooks, userForm, retrieveUser]);
 
   if (userForm.name) {
     return (
@@ -81,18 +79,7 @@ function BookList({
                 computer={9}
                 className='height-pad'
               >
-                <h2>
-                  Grupo: {user.groups !== undefined ? user.groups[0].name : ''}
-                </h2>
-                <div className='ui buttons group-users'>
-                  <button className='ui button'>Todos</button>
-                  <button className='ui button'>Adriano</button>
-                  <button className='ui button'>Greta</button>
-                  <button className='ui button'>Lola</button>
-                  <button className='ui button'>José Antonio</button>
-                  <button className='ui button'>Rosa</button>
-                  <button className='ui button'>Rosalía</button>
-                </div>
+                <Groups user={user} />
                 <BooksSection
                   books={books}
                   loading={loading}
