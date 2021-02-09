@@ -4,7 +4,7 @@ import { Icon } from 'semantic-ui-react';
 
 import { sortDesc } from '../../../utils/filterCollections';
 
-function Lent({ books, resetFilters }) {
+function Lent({ books, user, resetFilters }) {
   const [lent, setLent] = useState([]);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function Lent({ books, resetFilters }) {
           <ul className='book-filter lent'>
             {lent.map(lent => (
               <li key={lent.id}>
-                <NavLink to={`libro/${lent.id}`}>
+                <NavLink to={`libro/${lent.id}/usuario/${user.id}`}>
                   <p>{lent.title}</p>
                   <p className='small'>
                     {lent.lent_date

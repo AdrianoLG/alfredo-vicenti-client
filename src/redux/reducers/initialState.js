@@ -5,7 +5,8 @@ const initialState = {
   user: {},
   tokens: {},
   apiCallsInProgress: 0,
-  name: ''
+  name: '',
+  chosenGroup: {}
 };
 
 export default initialState;

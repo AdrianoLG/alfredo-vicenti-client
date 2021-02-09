@@ -99,7 +99,7 @@ function BookList({
                 ) : (
                   <>
                     <section>
-                      <LastRead books={books} />
+                      <LastRead books={books} user={user} />
                     </section>
                     <section>
                       <HighlightedCategories books={books} />
@@ -108,13 +108,13 @@ function BookList({
                       <HighlightedAuthors books={books} />
                     </section>
                     <section>
-                      <BestRated books={books} />
+                      <BestRated books={books} user={user} />
                     </section>
                     <section>
                       <HighlightedEditorial books={books} />
                     </section>
                     <section>
-                      <Lent books={books} />
+                      <Lent books={books} user={user} />
                     </section>
                   </>
                 )}

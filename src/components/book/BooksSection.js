@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -17,7 +17,7 @@ function BooksSection({ user, books, loading, deleteBook, name }) {
   const handleDeleteBook = async bookRes => {
     toast(`"${bookRes.title}" borrado`);
     try {
-      await deleteBook(bookRes, user.user_id);
+      await deleteBook(bookRes, user.id);
     } catch (error) {
       toast.error(`"${bookRes.title}" no ha sido eliminado. ${error.message}`, {
         autoClose: false
@@ -33,7 +33,11 @@ function BooksSection({ user, books, loading, deleteBook, name }) {
 
   return (
     <>
-      <h2>Libros de {name !== '' ? name : user.name}</h2>
+      {user.name ? (
+        <h2>Libros {name !== '' ? name : `de ${user.name}`}</h2>
+      ) : (
+        ''
+      )}
       <SearchBook books={books} getSearchText={setSearchText} />
       <div className='button-group'>
         <Button
@@ -63,6 +67,9 @@ function BooksSection({ user, books, loading, deleteBook, name }) {
         <Books
           onDeleteClick={handleDeleteBook}
           books={books}
+          groups={user.groups}
+          name={name || user.name}
+          user={user}
           visibleButtons={visibleButtons}
         />
       ) : searchText !== '' ? (

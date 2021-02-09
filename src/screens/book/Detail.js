@@ -9,10 +9,12 @@ import { loadBook } from '../../redux/actions/bookActions';
 
 function BookDetail({ user, loadBook, history, ...props }) {
   const [book, setBook] = useState({ ...props.book });
+  const paramId = props.match.params.id;
+  const paramUserId = props.match.params.userId;
+
   useEffect(() => {
-    const paramId = props.match.params.id;
     if (paramId) {
-      loadBook(paramId, user.user_id)
+      loadBook(paramId, paramUserId)
         .then(book => {
           setBook(book.data);
         })
@@ -22,7 +24,7 @@ function BookDetail({ user, loadBook, history, ...props }) {
           });
         });
     }
-  }, [user, loadBook, props.match.params.id]);
+  }, [user, loadBook, paramId, paramUserId]);
 
   return (
     <React.Fragment>
@@ -39,16 +41,20 @@ function BookDetail({ user, loadBook, history, ...props }) {
                   history.push('/');
                 }}
               >
-                Cancelar
+                Volver
               </Button>
-              <Button
-                secondary
-                onClick={() => {
-                  history.push(`/libro/editar/${props.match.params.id}`);
-                }}
-              >
-                Editar
-              </Button>
+              {user.id === parseInt(paramUserId) ? (
+                <Button
+                  secondary
+                  onClick={() => {
+                    history.push(`/libro/editar/${props.match.params.id}`);
+                  }}
+                >
+                  Editar
+                </Button>
+              ) : (
+                ''
+              )}
             </div>
           </>
         )}

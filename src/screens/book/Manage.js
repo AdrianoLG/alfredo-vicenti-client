@@ -16,16 +16,10 @@ function BookManage({ user, books, loadBook, saveBook, history, ...props }) {
 
   useEffect(() => {
     const paramId = props.match.params.id;
-    if (paramId) {
-      loadBook(paramId).catch(error => {
-        toast.error(`La carga del libro ha fallado.\n${error}`, {
-          autoClose: false
-        });
-      });
-    } else {
+    if (!paramId) {
       setBook({ newBook });
     }
-  }, [props.match.params.id, loadBook]);
+  }, [props.match.params.id]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -52,7 +46,7 @@ function BookManage({ user, books, loadBook, saveBook, history, ...props }) {
     event.preventDefault();
     if (!formIsValid()) return;
     setSaving(true);
-    book.user_id = user.user_id;
+    book.user_id = user.id;
     saveBook(book)
       .then(() => {
         toast('Libro guardado');
@@ -79,6 +73,7 @@ function BookManage({ user, books, loadBook, saveBook, history, ...props }) {
             onChange={handleChange}
             onSave={handleSave}
             saving={saving}
+            user={user}
           />
         )}
       </main>

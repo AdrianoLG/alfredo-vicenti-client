@@ -4,7 +4,7 @@ import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
 import { Button, Card, List, Transition } from 'semantic-ui-react';
 
-function Books({ books, onDeleteClick, visibleButtons }) {
+function Books({ books, groups, name, user, onDeleteClick, visibleButtons }) {
   const [pageCount, setPageCount] = useState(0);
   const [pagedBooks, setPagedBooks] = useState([]);
   const itemsPerPage = 20;
@@ -17,13 +17,27 @@ function Books({ books, onDeleteClick, visibleButtons }) {
     }
     setPageCount(pages);
     setPagedBooks(books.slice(0, itemsPerPage));
-  }, [books]);
+  }, [books, groups, name, user]);
 
   function handlePageClick(data) {
     let selected = data.selected;
     let from = Math.ceil(selected * itemsPerPage);
     let to = Math.ceil((selected + 1) * itemsPerPage);
     setPagedBooks(books.slice(from, to));
+  }
+
+  function boxShadow(book) {
+    let color = '';
+    user.groups.forEach(group => {
+      if (`del grupo ${group.name}` === name) {
+        group.users.forEach(user => {
+          if (user.pivot.user_id === book.user_id) {
+            color = '#' + user.pivot.color;
+          }
+        });
+      }
+    });
+    return { boxShadow: `0 1px 3px 0 ${color}` };
   }
 
   return (
@@ -34,20 +48,37 @@ function Books({ books, onDeleteClick, visibleButtons }) {
             {pagedBooks.map(book => (
               <Link
                 key={book.id}
-                to={'/libro/' + book.id}
+                to={'/libro/' + book.id + '/usuario/' + book.user_id}
                 className='card-link'
               >
-                <Card>
-                  <Card.Content>
-                    <div className='left'>
-                      <Card.Header>{book.title}</Card.Header>
-                      <Card.Meta>{book.author}</Card.Meta>
-                    </div>
-                    <div className='right'>
-                      <Card.Description>{book.category}</Card.Description>
-                    </div>
-                  </Card.Content>
-                </Card>
+                {user.groups?.length > 0 &&
+                user.groups?.filter !== undefined &&
+                book.user_id !== user.id ? (
+                  <Card style={boxShadow(book)}>
+                    <Card.Content>
+                      <div className='left'>
+                        <Card.Header>{book.title}</Card.Header>
+                        <Card.Meta>{book.author}</Card.Meta>
+                      </div>
+                      <div className='right'>
+                        <Card.Description>{book.category}</Card.Description>
+                      </div>
+                    </Card.Content>
+                  </Card>
+                ) : (
+                  <Card>
+                    <Card.Content>
+                      <div className='left'>
+                        <Card.Header>{book.title}</Card.Header>
+                        <Card.Meta>{book.author}</Card.Meta>
+                      </div>
+                      <div className='right'>
+                        <Card.Description>{book.category}</Card.Description>
+                      </div>
+                    </Card.Content>
+                  </Card>
+                )}
+
                 <Button.Group size='large' className='card-button-group'>
                   <Button
                     icon='delete'

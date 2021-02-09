@@ -12,7 +12,14 @@ import {
   Rating
 } from 'semantic-ui-react';
 
-function BookForm({ book, onSave, onChange, saving = false, errors = {} }) {
+function BookForm({
+  book,
+  user,
+  onSave,
+  onChange,
+  saving = false,
+  errors = {}
+}) {
   const [read, setRead] = useState(false);
   const [lent, setLent] = useState(false);
   const [rating, setRating] = useState(0);
@@ -273,15 +280,15 @@ function BookForm({ book, onSave, onChange, saving = false, errors = {} }) {
               {book.id ? (
                 <Button
                   onClick={() => {
-                    history.push(`/libro/${book.id}`);
+                    history.push(`/libro/${book.id}/usuario/${user.id}`);
                   }}
                 >
-                  Cancelar
+                  Volver
                 </Button>
               ) : (
                 <Button
                   onClick={() => {
-                    history.push('/');
+                    history.goBack();
                   }}
                 >
                   Cancelar

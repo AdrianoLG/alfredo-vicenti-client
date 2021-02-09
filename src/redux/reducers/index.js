@@ -6,6 +6,7 @@ import books from './booksReducer';
 import user from './userReducer';
 import userForm from './userFormReducer';
 import name from './nameReducer';
+import chosenGroup from './groupReducer';
 
 const rootReducer = combineReducers({
   apiCallsInProgress,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   books,
   user,
   userForm,
-  name
+  name,
+  chosenGroup
 });
 
 export default rootReducer;

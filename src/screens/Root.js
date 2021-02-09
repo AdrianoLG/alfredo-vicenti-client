@@ -17,7 +17,7 @@ const ScreensRoot = () => (
       <Route exact path='/' component={BookList} />
       <Route path='/libro/crear' component={BookManage} />
       <Route path='/libro/editar/:id' component={BookManage} />
-      <Route path='/libro/:id' component={BookDetail} />
+      <Route path='/libro/:id/usuario/:userId' component={BookDetail} />
       <Route path='/login' component={Login} />
       <Route path='/registro' component={Register} />
       <Route path='/finalizar-registro' component={FinishRegistration} />

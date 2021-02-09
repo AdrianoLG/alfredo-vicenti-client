@@ -4,7 +4,7 @@ import { Icon } from 'semantic-ui-react';
 
 import { sortDesc } from '../../../utils/filterCollections';
 
-function BestRated({ books }) {
+function BestRated({ books, user }) {
   const [rated, setRated] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function BestRated({ books }) {
           <ul className='book-filter rating'>
             {rated.slice(0, 4).map(rating => (
               <li key={rating.id}>
-                <NavLink to={`libro/${rating.id}`}>
+                <NavLink to={`libro/${rating.id}/usuario/${user.id}`}>
                   {rating.title} ({rating.rating})
                 </NavLink>
                 <Icon name='close' />

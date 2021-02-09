@@ -5,7 +5,7 @@ import { Icon } from 'semantic-ui-react';
 
 import { sortDesc } from '../../../utils/filterCollections';
 
-function LastRead({ books, resetFilters }) {
+function LastRead({ books, user, resetFilters }) {
   const [read, setRead] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function LastRead({ books, resetFilters }) {
           <ul className='book-filter read'>
             {read.slice(0, 4).map(read => (
               <li key={read.id}>
-                <NavLink to={`libro/${read.id}`}>
+                <NavLink to={`libro/${read.id}/usuario/${user.id}`}>
                   {read.title} (
                   {new Intl.DateTimeFormat('es-ES').format(
                     new Date(read.read_date)
