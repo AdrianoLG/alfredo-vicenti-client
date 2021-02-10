@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import BookDetail from './book/Detail';
 import BookList from './book/List';
 import BookManage from './book/Manage';
+import GroupManage from './group/Manage';
 import NotFound from './NotFound';
 import FinishRegistration from './user/FinishRegistration';
 import Login from './user/Login';
@@ -21,6 +22,7 @@ const ScreensRoot = () => (
       <Route path='/login' component={Login} />
       <Route path='/registro' component={Register} />
       <Route path='/finalizar-registro' component={FinishRegistration} />
+      <Route path='/usuario/grupos' component={GroupManage} />
       <Route component={NotFound} />
     </Switch>
     <ToastContainer

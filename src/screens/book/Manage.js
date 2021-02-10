@@ -9,7 +9,7 @@ import Header from '../../components/common/header/Header';
 import { loadBook, saveBook } from '../../redux/actions/bookActions';
 import { newBook } from '../../utils/mockData';
 
-function BookManage({ user, books, loadBook, saveBook, history, ...props }) {
+function BookManage({ user, loadBook, saveBook, history, ...props }) {
   const [book, setBook] = useState({ ...props.book });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
@@ -90,8 +90,6 @@ BookManage.propTypes = {
 const mapStateToProps = state => {
   return {
     book: state.book,
-    books: state.books,
-    read: state.read,
     user: state.user
   };
 };
