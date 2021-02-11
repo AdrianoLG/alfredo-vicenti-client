@@ -58,6 +58,11 @@ h2 {
   }
 }
 
+h3 {
+  font-size: var(--size2);
+  margin: 0 0 var(--size1) 0 !important;
+}
+
 a,
 span.link {
   cursor: pointer;
@@ -113,6 +118,7 @@ aside {
     }
     .small {
       font-size: var(--size-2);
+      margin-top: 0.25em;
     }
   }
 }
@@ -123,7 +129,8 @@ form span {
 
 .addBook,
 .addGroup,
-.book {
+.book,
+.group div {
   margin: var(--size4) 0;
 }
 
@@ -317,6 +324,12 @@ form span {
   transform: translate(-50%, -50%);
 }
 
+.deleteButton {
+  margin-right: 0 !important;
+  position: absolute;
+  right: 0;
+}
+
 .flex-center-between {
   align-items: center;
   display: flex;
@@ -328,6 +341,14 @@ form span {
   justify-content: flex-end;
   button.ui.button {
     margin-right: 0;
+  }
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: column;
+  .ui.button {
+    margin: 0.25em 0;
   }
 }
 
@@ -401,6 +422,26 @@ form span {
   }
 }
 
+.groupUsers {
+  margin: 1em 0 0 1em;
+  li {
+    align-items: center;
+    display: flex;
+    padding: 0.75em 0;
+    position: relative;
+  }
+  .icon {
+    margin-left: 0.5em;
+  }
+}
+
+.groupUser-color {
+  display: inline-block;
+  height: 1em;
+  margin-right: 0.5em;
+  width: 1em;
+}
+
 .height-pad {
   padding-bottom: 0.75em;
   padding-top: 0.75em;
@@ -428,6 +469,10 @@ form span {
     padding-left: var(--size0);
     padding-right: var(--size0);
   }
+}
+
+.mr0 {
+  margin-right: 0 !important;
 }
 
 .toggleButton {

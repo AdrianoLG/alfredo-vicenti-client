@@ -69,7 +69,7 @@ function GroupForm({ group, onSave, onChange, saving = false, errors = {} }) {
               </Form.Field>
             </Form.Group>
             <div className='buttons flex-end'>
-              <Button type='submit' disabled={saving}>
+              <Button type='submit' disabled={saving} secondary>
                 {saving ? 'Guardando...' : 'Guardar'}
               </Button>
             </div>

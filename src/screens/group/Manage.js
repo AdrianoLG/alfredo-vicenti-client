@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Loader } from 'semantic-ui-react';
+import { Button, Loader } from 'semantic-ui-react';
 import Header from '../../components/common/header/Header';
 import GroupForm from '../../components/group/GroupForm';
 import GroupList from '../../components/group/GroupList';
@@ -60,6 +60,15 @@ function GroupManage({ history, userForm, user, ...props }) {
           />
         )}
         <GroupList user={user} />
+        <div className='buttons'>
+          <Button
+            onClick={() => {
+              history.goBack();
+            }}
+          >
+            Volver
+          </Button>
+        </div>
       </main>
     </>
   );
