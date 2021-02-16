@@ -4,10 +4,10 @@ const baseUrl = process.env.REACT_APP_API_URL;
 const baseUrlNoApi = process.env.REACT_APP_URL;
 let bearer = localStorage.getItem('access_token');
 
-export function getUser(userId, bear) {
-  bearer = bear;
+export function getUser(userId, bear = null) {
+  bearer = bear || bearer;
 
-  return fetch(baseUrl + '/user/' + userId, {
+  return fetch(`${baseUrl}/user/${userId}`, {
     headers: {
       Authorization: `Bearer ${bearer}`
     }
@@ -17,7 +17,7 @@ export function getUser(userId, bear) {
 }
 
 export function saveUser(user) {
-  return fetch(baseUrl + '/user/', {
+  return fetch(`${baseUrl}/user/`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${bearer}`,
@@ -30,7 +30,7 @@ export function saveUser(user) {
 }
 
 export function userDataToRetrieveToken(user) {
-  return fetch(baseUrl + '/user/login', {
+  return fetch(`${baseUrl}/user/login`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
@@ -48,7 +48,7 @@ export function userDataToRetrieveToken(user) {
 export function getToken(userData) {
   localStorage.setItem('access_token', '');
   localStorage.setItem('refresh_token', '');
-  return fetch(baseUrlNoApi + '/oauth/token', {
+  return fetch(`${baseUrlNoApi}/oauth/token`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
@@ -72,7 +72,7 @@ export function getToken(userData) {
 
 export function deleteUser(userId) {
   // TODO
-  return fetch(baseUrl + '/user/', {
+  return fetch(`${baseUrl}/user/`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${bearer}`,

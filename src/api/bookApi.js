@@ -7,7 +7,7 @@ export function getBooks(userId, bear = null) {
   if (bear) {
     bearer = bear;
   }
-  return fetch(baseUrl + '/books/user/' + userId, {
+  return fetch(`${baseUrl}/books/user/${userId}`, {
     headers: {
       Authorization: `Bearer ${bearer}`
     }
@@ -17,7 +17,7 @@ export function getBooks(userId, bear = null) {
 }
 
 export function getGroupBooks(userId, groupId) {
-  return fetch(baseUrl + '/books/group/' + groupId + '/user/' + userId, {
+  return fetch(`${baseUrl}/books/group/${groupId}/user/${userId}`, {
     headers: {
       Authorization: `Bearer ${bearer}`
     }
@@ -27,7 +27,7 @@ export function getGroupBooks(userId, groupId) {
 }
 
 export function getBook(bookId, userId) {
-  return fetch(baseUrl + '/book/' + bookId + '/user/' + userId, {
+  return fetch(`${baseUrl}/book/${bookId}/user/${userId}`, {
     headers: {
       Authorization: `Bearer ${bearer}`
     }
@@ -37,7 +37,7 @@ export function getBook(bookId, userId) {
 }
 
 export function saveBook(book) {
-  return fetch(baseUrl + '/book/' + (book.id || ''), {
+  return fetch(`${baseUrl}/book/${book.id || ''}`, {
     method: book.id ? 'PUT' : 'POST',
     headers: {
       Authorization: `Bearer ${bearer}`,
@@ -50,7 +50,7 @@ export function saveBook(book) {
 }
 
 export function deleteBook(bookId, userId) {
-  return fetch(baseUrl + '/book/' + bookId + '/user/' + userId, {
+  return fetch(`${baseUrl}/book/${bookId}/user/${userId}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${bearer}`,

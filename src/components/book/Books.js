@@ -48,7 +48,7 @@ function Books({ books, groups, name, user, onDeleteClick, visibleButtons }) {
             {pagedBooks.map(book => (
               <Link
                 key={book.id}
-                to={'/libro/' + book.id + '/usuario/' + book.user_id}
+                to={`/libro/${book.id}/usuario/${book.user_id}`}
                 className='card-link'
               >
                 {user.groups?.length > 0 &&

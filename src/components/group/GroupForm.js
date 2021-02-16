@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Form, Input, Message } from 'semantic-ui-react';
+
 import { colors } from './groupColors';
 
 function GroupForm({ group, onSave, onChange, saving = false, errors = {} }) {
   function handleClick(e) {
     group.color = e.target.dataset.color;
     if (document.querySelectorAll('.selected').length > 0) {
-      console.log(document.querySelectorAll('.selected'));
       document.querySelectorAll('.selected')[0].classList.remove('selected');
     }
     e.target.classList.add('selected');

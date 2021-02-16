@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 import { Button, Loader } from 'semantic-ui-react';
+
 import Header from '../../components/common/header/Header';
 import GroupForm from '../../components/group/GroupForm';
 import GroupList from '../../components/group/GroupList';
+import { deleteGroup, saveGroup } from '../../redux/actions/groupFormActions';
 
-function GroupManage({ history, userForm, user, ...props }) {
+function GroupManage({
+  history,
+  userForm,
+  user,
+  saveGroup,
+  deleteGroup,
+  ...props
+}) {
   const [group, setGroup] = useState({ ...props.group });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
@@ -14,7 +24,7 @@ function GroupManage({ history, userForm, user, ...props }) {
     if (!userForm.name) {
       history.push('/login');
     }
-  });
+  }, [user]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -39,7 +49,34 @@ function GroupManage({ history, userForm, user, ...props }) {
     event.preventDefault();
     if (!formIsValid()) return;
     setSaving(true);
-    console.log(group);
+    let groupData = {
+      name: group.name,
+      admin: user.id
+    };
+    let color = group.color.substr(1, group.color.length);
+    setGroup({ ...props.group });
+    saveGroup(groupData, color, user.name)
+      .then(() => {
+        toast('Grupo guardado');
+        setSaving(false);
+      })
+      .catch(error => {
+        setSaving(false);
+        setErrors({ onSave: error.message });
+      });
+  }
+
+  function handleClick(event, action, data) {
+    event.preventDefault();
+    switch (action) {
+      case 'delete':
+        deleteGroup(data.groupId, user.id).then(() => {
+          toast(`Grupo ${data.groupId} borrado`);
+        });
+        break;
+      default:
+        console.log('Error');
+    }
   }
 
   return (
@@ -59,7 +96,7 @@ function GroupManage({ history, userForm, user, ...props }) {
             saving={saving}
           />
         )}
-        <GroupList user={user} />
+        <GroupList onClick={handleClick} user={user} />
         <div className='buttons'>
           <Button
             onClick={() => {
@@ -82,7 +119,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  // saveGroup
+  saveGroup,
+  deleteGroup
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupManage);

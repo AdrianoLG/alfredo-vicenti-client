@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Button, Modal, Radio } from 'semantic-ui-react';
+
 import { loadBooks, loadGroupBooks } from '../../redux/actions/bookActions';
 import { chooseGroup } from '../../redux/actions/groupActions';
 import { getName } from '../../redux/actions/nameActions';
@@ -18,12 +19,20 @@ function Groups({
   const [start, setStart] = useState(true);
   const handleChange = (event, { value }) => setValue(value);
 
+  function handleClick(e) {
+    setStart(false);
+    document.querySelectorAll('.group-users button').forEach(button => {
+      button.disabled = false;
+    });
+    e.target.disabled = true;
+  }
+
   if (user.groups !== undefined) {
     return (
       <>
         <h2>
           Grupo:{' '}
-          {user.groups.length > 1 ? (
+          {user.groups.length > 0 ? (
             <>
               <Modal
                 onClose={() => setOpen(false)}
@@ -144,14 +153,6 @@ function Groups({
     );
   } else {
     return null;
-  }
-
-  function handleClick(e) {
-    setStart(false);
-    document.querySelectorAll('.group-users button').forEach(button => {
-      button.disabled = false;
-    });
-    e.target.disabled = true;
   }
 }
 

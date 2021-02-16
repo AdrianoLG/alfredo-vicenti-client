@@ -79,7 +79,11 @@ function BookList({
                 computer={9}
                 className='height-pad'
               >
-                <Groups user={user} />
+                {user.groups !== undefined && user.groups.length > 0 ? (
+                  <Groups user={user} />
+                ) : (
+                  ''
+                )}
                 <BooksSection
                   books={books}
                   loading={loading}

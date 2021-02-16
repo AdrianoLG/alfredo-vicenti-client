@@ -93,7 +93,7 @@ function BookForm({
                 src={
                   cover !== ''
                     ? cover
-                    : process.env.PUBLIC_URL + '/img/old-book-cover.jpg'
+                    : `${process.env.PUBLIC_URL}/img/old-book-cover.jpg`
                 }
                 alt='Portada'
               />
