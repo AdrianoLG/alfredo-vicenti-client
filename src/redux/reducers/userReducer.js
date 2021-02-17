@@ -10,6 +10,27 @@ export default function userReducer(state = initialState.user, action) {
         ...state,
         groups: state.groups.concat(action.savedGroup)
       };
+    case types.CHANGE_GROUP_COLOR_SUCCESS:
+      return {
+        ...state,
+        groups: state.groups.map(group =>
+          group.id === action.groupId
+            ? group.users.map(user =>
+                user.pivot.user_id === action.userId
+                  ? {
+                      ...group,
+                      users: [
+                        {
+                          ...user,
+                          pivot: { ...user.pivot, color: action.color }
+                        }
+                      ]
+                    }
+                  : group
+              )[0]
+            : group
+        )
+      };
     case types.DELETE_GROUP_SUCCESS:
       return {
         ...state,

@@ -59,6 +59,21 @@ export function saveGroup(group, groupUserColor, userName) {
     .catch(handleError);
 }
 
+export function changeGroupColor(groupId, userId, color) {
+  return fetch(`${baseUrl}/group/user/color`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${bearer}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      group_id: groupId,
+      user_id: userId,
+      color: color
+    })
+  }).then(handleResponse);
+}
+
 export function deleteGroup(groupId, adminId) {
   return fetch(`${baseUrl}/group/${groupId}/admin/${adminId}`, {
     method: 'DELETE',

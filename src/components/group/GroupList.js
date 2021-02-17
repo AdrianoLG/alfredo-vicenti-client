@@ -1,18 +1,12 @@
 import React, { useEffect } from 'react';
 import { Button, Grid, Icon } from 'semantic-ui-react';
 
-function GroupList({ user, onClick }) {
+import ChangeColor from './ChangeColor';
+
+function GroupList({ user, onClick, handleColor }) {
   useEffect(() => {}, [user]);
 
   function addUser(groupId) {
-    console.log(`groupId: ${groupId}`);
-  }
-
-  function chooseColor(groupId, userId) {
-    console.log(`groupId: ${groupId}, userId: ${userId}`);
-  }
-
-  function deleteGroup(groupId) {
     console.log(`groupId: ${groupId}`);
   }
 
@@ -41,46 +35,48 @@ function GroupList({ user, onClick }) {
                   <div>
                     <h3>{group.name}</h3>
                     <ul className='groupUsers'>
-                      {group.users.map(groupUser => (
-                        <>
-                          <li data-group={groupUser.pivot.group_id}>
-                            <span
-                              className='groupUser-color'
-                              style={{
-                                backgroundColor: '#' + groupUser.pivot.color
-                              }}
-                            ></span>
-                            <span>{groupUser.name}</span>
-                            {group.admin === groupUser.pivot.user_id ? (
-                              <Icon name='key' />
-                            ) : (
-                              ''
-                            )}{' '}
-                            {group.admin === user.id &&
-                            group.admin !== groupUser.pivot.user_id ? (
-                              <Button
-                                icon
-                                size='mini'
-                                className='deleteButton'
-                                color='black'
-                                onClick={() =>
-                                  deleteUser(
-                                    groupUser.pivot.group_id,
-                                    groupUser.pivot.user_id
-                                  )
-                                }
-                              >
-                                <Icon name='close' />
-                              </Button>
-                            ) : (
-                              ''
-                            )}
-                          </li>
-                        </>
-                      ))}
+                      {group.users.length > 0
+                        ? group.users.map(groupUser => (
+                            <>
+                              <li data-group={groupUser.pivot.group_id}>
+                                <span
+                                  className='groupUser-color'
+                                  style={{
+                                    backgroundColor: '#' + groupUser.pivot.color
+                                  }}
+                                ></span>
+                                <span>{groupUser.name}</span>
+                                {group.admin === groupUser.pivot.user_id ? (
+                                  <Icon name='key' />
+                                ) : (
+                                  ''
+                                )}{' '}
+                                {group.admin === user.id &&
+                                group.admin !== groupUser.pivot.user_id ? (
+                                  <Button
+                                    icon
+                                    size='mini'
+                                    className='deleteButton'
+                                    color='black'
+                                    onClick={() =>
+                                      deleteUser(
+                                        groupUser.pivot.group_id,
+                                        groupUser.pivot.user_id
+                                      )
+                                    }
+                                  >
+                                    <Icon name='close' />
+                                  </Button>
+                                ) : (
+                                  ''
+                                )}
+                              </li>
+                            </>
+                          ))
+                        : ''}
                     </ul>
                     {group.admin === user.id ? (
-                      <div className='buttons flex-row'>
+                      <div id={group.id} className='buttons flex-row'>
                         <Button
                           color='black'
                           onClick={e =>
@@ -89,9 +85,11 @@ function GroupList({ user, onClick }) {
                         >
                           Eliminar grupo
                         </Button>
-                        <Button onClick={() => chooseColor(group.id, user.id)}>
-                          Escoger color
-                        </Button>
+                        <ChangeColor
+                          group={group}
+                          user={user}
+                          handleColor={handleColor}
+                        />
                         <Button secondary onClick={() => addUser(group.id)}>
                           Añadir miembro
                         </Button>
@@ -104,9 +102,11 @@ function GroupList({ user, onClick }) {
                         >
                           Salir de grupo
                         </Button>
-                        <Button onClick={() => chooseColor(group.id, user.id)}>
-                          Escoger color
-                        </Button>
+                        <ChangeColor
+                          group={group}
+                          user={user}
+                          handleColor={handleColor}
+                        />
                       </div>
                     )}
                   </div>

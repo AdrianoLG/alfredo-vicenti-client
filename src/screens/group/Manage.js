@@ -6,7 +6,12 @@ import { Button, Loader } from 'semantic-ui-react';
 import Header from '../../components/common/header/Header';
 import GroupForm from '../../components/group/GroupForm';
 import GroupList from '../../components/group/GroupList';
-import { deleteGroup, saveGroup } from '../../redux/actions/groupFormActions';
+
+import {
+  changeGroupColor,
+  deleteGroup,
+  saveGroup
+} from '../../redux/actions/groupActions';
 
 function GroupManage({
   history,
@@ -14,6 +19,7 @@ function GroupManage({
   user,
   saveGroup,
   deleteGroup,
+  changeGroupColor,
   ...props
 }) {
   const [group, setGroup] = useState({ ...props.group });
@@ -79,6 +85,14 @@ function GroupManage({
     }
   }
 
+  function handleColor(color, groupId) {
+    changeGroupColor(groupId, user.id, color.substr(1, color.length)).then(
+      () => {
+        toast('Color cambiado');
+      }
+    );
+  }
+
   return (
     <>
       <Header />
@@ -96,7 +110,11 @@ function GroupManage({
             saving={saving}
           />
         )}
-        <GroupList onClick={handleClick} user={user} />
+        <GroupList
+          onClick={handleClick}
+          user={user}
+          handleColor={handleColor}
+        />
         <div className='buttons'>
           <Button
             onClick={() => {
@@ -120,7 +138,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   saveGroup,
-  deleteGroup
+  deleteGroup,
+  changeGroupColor
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupManage);
