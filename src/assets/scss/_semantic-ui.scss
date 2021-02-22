@@ -114,3 +114,14 @@
     }
   }
 }
+.ui {
+  &.addGroupUser-form .actions {
+    border-top: 1px solid var(--border) !important;
+    left: -1rem;
+    margin-top: 2rem;
+    padding: 1rem 1rem 0 !important;
+    position: relative;
+    text-align: right;
+    width: calc(100% + 2rem);
+  }
+}

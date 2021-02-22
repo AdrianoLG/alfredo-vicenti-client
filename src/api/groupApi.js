@@ -1,7 +1,6 @@
 import { handleResponse, handleError } from './apiUtils';
 
 const baseUrl = process.env.REACT_APP_API_URL;
-const baseUrlNoApi = process.env.REACT_APP_URL;
 let bearer = localStorage.getItem('access_token');
 
 export function saveGroup(group, groupUserColor, userName) {
@@ -16,7 +15,6 @@ export function saveGroup(group, groupUserColor, userName) {
   })
     .then(handleResponse)
     .then(createdGroup => {
-      createdGroup = createdGroup;
       let groupUser = {
         user_id: group.admin,
         group_id: createdGroup.data.id,

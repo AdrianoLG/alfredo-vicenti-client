@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Form, Input, Message } from 'semantic-ui-react';
 
 import { colors } from './groupColors';
@@ -48,7 +48,7 @@ function GroupForm({ group, onSave, onChange, saving = false, errors = {} }) {
                 <label>Colores</label>
                 {errors.color ? (
                   <div
-                    class='ui pointing below prompt label'
+                    className='ui pointing below prompt label'
                     role='alert'
                     aria-atomic='true'
                   >
@@ -57,9 +57,10 @@ function GroupForm({ group, onSave, onChange, saving = false, errors = {} }) {
                 ) : (
                   ''
                 )}
-                <div class='colors'>
+                <div className='colors'>
                   {colors.map(color => (
                     <div
+                      key={color.class}
                       className={color.class}
                       data-color={color.color}
                       onClick={handleClick}

@@ -16,6 +16,19 @@ export function getUser(userId, bear = null) {
     .catch(handleError);
 }
 
+export function userExists(userEmail) {
+  return fetch(`${baseUrl}/user/exists`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${bearer}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({ email: userEmail })
+  })
+    .then(handleResponse)
+    .catch(handleError);
+}
+
 export function saveUser(user) {
   return fetch(`${baseUrl}/user/`, {
     method: 'POST',

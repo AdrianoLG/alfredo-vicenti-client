@@ -3,7 +3,7 @@ import { Button, Modal, Radio } from 'semantic-ui-react';
 
 import { colors } from './groupColors';
 
-function ChangeColor({ group, user, handleColor }) {
+function ChangeColor({ group, handleColor }) {
   const [value, setValue] = useState(null);
   const [open, setOpen] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState(null);

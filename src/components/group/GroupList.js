@@ -1,14 +1,23 @@
 import React, { useEffect } from 'react';
 import { Button, Grid, Icon } from 'semantic-ui-react';
+import AddGroupMember from './AddGroupMember';
 
 import ChangeColor from './ChangeColor';
 
-function GroupList({ user, onClick, handleColor }) {
+function GroupList({
+  user,
+  onClick,
+  handleColor,
+  handleEmail,
+  handleMailChange,
+  email,
+  saving,
+  savingUser,
+  errors,
+  open,
+  setModalOpen
+}) {
   useEffect(() => {}, [user]);
-
-  function addUser(groupId) {
-    console.log(`groupId: ${groupId}`);
-  }
 
   function deleteUser(groupId, userId) {
     console.log(`groupId: ${groupId}, userId: ${userId}`);
@@ -38,7 +47,10 @@ function GroupList({ user, onClick, handleColor }) {
                       {group.users.length > 0
                         ? group.users.map(groupUser => (
                             <>
-                              <li data-group={groupUser.pivot.group_id}>
+                              <li
+                                key={groupUser.pivot.group_id}
+                                data-group={groupUser.pivot.group_id}
+                              >
                                 <span
                                   className='groupUser-color'
                                   style={{
@@ -90,9 +102,20 @@ function GroupList({ user, onClick, handleColor }) {
                           user={user}
                           handleColor={handleColor}
                         />
-                        <Button secondary onClick={() => addUser(group.id)}>
+                        <AddGroupMember
+                          handleEmail={handleEmail}
+                          handleMailChange={e => {
+                            handleMailChange(e, group.id);
+                          }}
+                          email={email}
+                          savingUser={savingUser}
+                          errors={errors}
+                          open={open}
+                          setModalOpen={setModalOpen}
+                        />
+                        {/* <Button secondary onClick={() => addUser(group.id)}>
                           Añadir miembro
-                        </Button>
+                        </Button> */}
                       </div>
                     ) : (
                       <div className='buttons flex-row'>

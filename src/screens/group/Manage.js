@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Button, Loader } from 'semantic-ui-react';
+import { userExists } from '../../api/userApi';
 
 import Header from '../../components/common/header/Header';
 import GroupForm from '../../components/group/GroupForm';
@@ -25,6 +26,10 @@ function GroupManage({
   const [group, setGroup] = useState({ ...props.group });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
+  const [savingUser, setSavingUser] = useState(false);
+  const [email, setEmail] = useState('');
+  const [groupId, setGroupId] = useState(0);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (!userForm.name) {
@@ -40,6 +45,12 @@ function GroupManage({
     }));
   }
 
+  function handleMailChange(event, groupId) {
+    const { value } = event.target;
+    setGroupId(groupId);
+    setEmail(value);
+  }
+
   function formIsValid() {
     const { name, color } = group;
     const errors = {};
@@ -49,6 +60,21 @@ function GroupManage({
 
     setErrors(errors);
     return Object.keys(errors).length === 0;
+  }
+
+  function userGroupFormIsValid() {
+    const errors = {};
+
+    if (email.length === 0) errors.email = 'El email es necesario.';
+    else if (!validateEmail(email)) errors.email = 'El email es inválido';
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  }
+
+  function validateEmail(mail) {
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(mail);
   }
 
   function handleSave(event) {
@@ -93,6 +119,28 @@ function GroupManage({
     );
   }
 
+  function handleEmail(event) {
+    console.log('hey');
+    if (!userGroupFormIsValid()) return;
+    setSavingUser(true);
+    userExists(email)
+      .then(() => {
+        // TODO
+        setModalOpen(false);
+        toast('Se ha enviado un email al usuario para que se una al grupo');
+        setSavingUser(false);
+      })
+      .catch(error => {
+        setSavingUser(false);
+        toast.error('No existe ningún usuario con ese email');
+        setErrors({ onSave: error.message });
+      });
+  }
+
+  function setModalOpen(isOpen) {
+    setOpen(isOpen);
+  }
+
   return (
     <>
       <Header />
@@ -113,7 +161,15 @@ function GroupManage({
         <GroupList
           onClick={handleClick}
           user={user}
+          errors={errors}
           handleColor={handleColor}
+          handleMailChange={handleMailChange}
+          handleEmail={handleEmail}
+          email={email}
+          saving={saving}
+          savingUser={savingUser}
+          open={open}
+          setModalOpen={setModalOpen}
         />
         <div className='buttons'>
           <Button
