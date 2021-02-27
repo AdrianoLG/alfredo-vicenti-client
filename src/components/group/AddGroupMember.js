@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Input, Message, Modal } from 'semantic-ui-react';
+import { colors } from './groupColors';
 
 function AddGroupMember({
   handleEmail,
@@ -7,14 +8,16 @@ function AddGroupMember({
   errors = {},
   email,
   savingUser,
-  open,
-  setModalOpen
+  group,
+  name
 }) {
+  const [open, setOpen] = useState(false);
+
   return (
     <Modal
-      onClose={() => setModalOpen(false)}
+      onClose={() => setOpen(false)}
       onOpen={() => {
-        setModalOpen(true);
+        setOpen(true);
       }}
       open={open}
       trigger={<Button secondary>Añadir miembro</Button>}
@@ -22,8 +25,17 @@ function AddGroupMember({
       <Modal.Header>Añadir miembro</Modal.Header>
       <Modal.Content>
         <Form
-          onSubmit={e => {
-            handleEmail(e);
+          onSubmit={() => {
+            let tempColors = colors.map(color =>
+              color.color.substr(1, color.color.length)
+            );
+            const userColors = group.users.map(
+              groupUser => groupUser.pivot.color
+            );
+            tempColors = tempColors.filter(
+              color => !userColors.includes(color)
+            );
+            handleEmail(group.id, group.name, name, tempColors[0]);
           }}
           className='addGroupUser-form'
         >
@@ -51,7 +63,7 @@ function AddGroupMember({
             </div>
           </div>
           <div className='actions'>
-            <Button onClick={() => setModalOpen(false)}>Cancelar</Button>
+            <Button onClick={() => setOpen(false)}>Cancelar</Button>
             <Button type='submit' disabled={savingUser} secondary>
               {savingUser ? 'Comprobando...' : 'Añadir'}
             </Button>

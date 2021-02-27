@@ -8,11 +8,20 @@ import Header from '../../components/common/header/Header';
 import GroupForm from '../../components/group/GroupForm';
 import GroupList from '../../components/group/GroupList';
 
+import CryptoJS from 'crypto-js';
+import emailjs from 'emailjs-com';
 import {
   changeGroupColor,
   deleteGroup,
   saveGroup
 } from '../../redux/actions/groupActions';
+
+const {
+  REACT_APP_SECRET,
+  REACT_APP_SERVICE_ID,
+  REACT_APP_TEMPLATE_ID_JOIN_GROUP,
+  REACT_APP_USER_ID
+} = process.env;
 
 function GroupManage({
   history,
@@ -28,8 +37,6 @@ function GroupManage({
   const [saving, setSaving] = useState(false);
   const [savingUser, setSavingUser] = useState(false);
   const [email, setEmail] = useState('');
-  const [groupId, setGroupId] = useState(0);
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (!userForm.name) {
@@ -45,9 +52,8 @@ function GroupManage({
     }));
   }
 
-  function handleMailChange(event, groupId) {
+  function handleMailChange(event) {
     const { value } = event.target;
-    setGroupId(groupId);
     setEmail(value);
   }
 
@@ -119,26 +125,46 @@ function GroupManage({
     );
   }
 
-  function handleEmail(event) {
-    console.log('hey');
+  function handleEmail(groupId, groupName, name, color) {
     if (!userGroupFormIsValid()) return;
     setSavingUser(true);
-    userExists(email)
-      .then(() => {
-        // TODO
-        setModalOpen(false);
-        toast('Se ha enviado un email al usuario para que se una al grupo');
-        setSavingUser(false);
-      })
-      .catch(error => {
-        setSavingUser(false);
-        toast.error('No existe ningún usuario con ese email');
-        setErrors({ onSave: error.message });
-      });
-  }
+    userExists(email).then(() => {
+      const addToGroup = {
+        email: email,
+        groupId: groupId,
+        groupName: groupName,
+        color: color
+      };
+      var ciphertext = CryptoJS.AES.encrypt(
+        JSON.stringify(addToGroup),
+        REACT_APP_SECRET
+      ).toString();
 
-  function setModalOpen(isOpen) {
-    setOpen(isOpen);
+      const mailData = {
+        ciphertext: ciphertext,
+        email: addToGroup.email,
+        groupName: groupName,
+        name: name
+      };
+      emailjs
+        .send(
+          REACT_APP_SERVICE_ID,
+          REACT_APP_TEMPLATE_ID_JOIN_GROUP,
+          mailData,
+          REACT_APP_USER_ID
+        )
+        .then(() => {
+          toast(
+            `Se ha enviado un email ${email} al usuario para que se una al grupo ${groupId}`
+          );
+          setSavingUser(false);
+        })
+        .catch(error => {
+          setSavingUser(false);
+          toast.error('No existe ningún usuario con ese email');
+          setErrors({ onSave: error.message });
+        });
+    });
   }
 
   return (
@@ -166,10 +192,7 @@ function GroupManage({
           handleMailChange={handleMailChange}
           handleEmail={handleEmail}
           email={email}
-          saving={saving}
           savingUser={savingUser}
-          open={open}
-          setModalOpen={setModalOpen}
         />
         <div className='buttons'>
           <Button

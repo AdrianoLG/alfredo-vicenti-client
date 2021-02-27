@@ -57,6 +57,19 @@ export function saveGroup(group, groupUserColor, userName) {
     .catch(handleError);
 }
 
+export function saveGroupUser(groupUser) {
+  console.log(JSON.stringify(groupUser));
+  let response = {};
+  return fetch(`${baseUrl}/group/user`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${bearer}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(groupUser)
+  }).then(handleResponse);
+}
+
 export function changeGroupColor(groupId, userId, color) {
   return fetch(`${baseUrl}/group/user/color`, {
     method: 'POST',

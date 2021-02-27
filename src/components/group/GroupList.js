@@ -11,11 +11,8 @@ function GroupList({
   handleEmail,
   handleMailChange,
   email,
-  saving,
   savingUser,
-  errors,
-  open,
-  setModalOpen
+  errors
 }) {
   useEffect(() => {}, [user]);
 
@@ -104,14 +101,12 @@ function GroupList({
                         />
                         <AddGroupMember
                           handleEmail={handleEmail}
-                          handleMailChange={e => {
-                            handleMailChange(e, group.id);
-                          }}
+                          handleMailChange={handleMailChange}
                           email={email}
                           savingUser={savingUser}
                           errors={errors}
-                          open={open}
-                          setModalOpen={setModalOpen}
+                          group={group}
+                          name={user.name}
                         />
                         {/* <Button secondary onClick={() => addUser(group.id)}>
                           Añadir miembro
