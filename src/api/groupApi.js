@@ -16,7 +16,7 @@ export function saveGroup(group, groupUserColor, userName) {
     .then(handleResponse)
     .then(createdGroup => {
       let groupUser = {
-        user_id: group.admin,
+        email: group.email,
         group_id: createdGroup.data.id,
         color: groupUserColor
       };
@@ -58,7 +58,6 @@ export function saveGroup(group, groupUserColor, userName) {
 }
 
 export function saveGroupUser(groupUser) {
-  console.log(JSON.stringify(groupUser));
   let response = {};
   return fetch(`${baseUrl}/group/user`, {
     method: 'POST',

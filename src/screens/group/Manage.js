@@ -89,7 +89,8 @@ function GroupManage({
     setSaving(true);
     let groupData = {
       name: group.name,
-      admin: user.id
+      admin: user.id,
+      email: user.email
     };
     let color = group.color.substr(1, group.color.length);
     setGroup({ ...props.group });
