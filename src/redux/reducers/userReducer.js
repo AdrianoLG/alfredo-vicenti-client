@@ -15,19 +15,20 @@ export default function userReducer(state = initialState.user, action) {
         ...state,
         groups: state.groups.map(group =>
           group.id === action.groupId
-            ? group.users.map(user =>
-                user.pivot.user_id === action.userId
-                  ? {
-                      ...group,
-                      users: [
-                        {
-                          ...user,
-                          pivot: { ...user.pivot, color: action.color }
+            ? {
+                ...group,
+                users: group.users.map(user =>
+                  user.pivot.user_id === action.userId
+                    ? {
+                        ...user,
+                        pivot: {
+                          ...user.pivot,
+                          color: action.color
                         }
-                      ]
-                    }
-                  : group
-              )[0]
+                      }
+                    : user
+                )
+              }
             : group
         )
       };

@@ -36,6 +36,7 @@ function AddGroupMember({
               color => !userColors.includes(color)
             );
             handleEmail(group.id, group.name, name, tempColors[0]);
+            setOpen(false);
           }}
           className='addGroupUser-form'
         >
