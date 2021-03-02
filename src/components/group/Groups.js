@@ -33,64 +33,62 @@ function Groups({
         <h2>
           Grupo:{' '}
           {user.groups.length > 0 ? (
-            <>
-              <Modal
-                onClose={() => setOpen(false)}
-                onOpen={() => setOpen(true)}
-                open={open}
-                trigger={
-                  <span className='link'>
-                    {Object.getOwnPropertyNames(chosenGroup).length > 0
-                      ? chosenGroup.group.name
-                      : user.groups[0].name}
-                  </span>
-                }
-              >
-                <Modal.Header>Grupos</Modal.Header>
-                <Modal.Content>
-                  <ul>
-                    {user.groups.map(group => (
-                      <li key={group.id}>
-                        <Radio
-                          key={group.name}
-                          label={group.name}
-                          name='group'
-                          value={group.name}
-                          checked={value === group.name}
-                          onChange={handleChange}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                </Modal.Content>
-                <Modal.Actions>
-                  <Button onClick={() => setOpen(false)}>Volver</Button>
-                  <Button
-                    onClick={() => {
-                      let chosenGroup = user.groups.filter(
-                        group => group.name === value
-                      )[0];
-                      let users = chosenGroup.users.map(user => {
-                        return {
-                          name: user.name,
-                          color: user.pivot.color,
-                          id: user.pivot.user_id
-                        };
-                      });
-                      let group = {
-                        name: chosenGroup.name,
-                        admin: chosenGroup.admin,
-                        users: users
+            <Modal
+              onClose={() => setOpen(false)}
+              onOpen={() => setOpen(true)}
+              open={open}
+              trigger={
+                <span className='link'>
+                  {Object.getOwnPropertyNames(chosenGroup).length > 0
+                    ? chosenGroup.group.name
+                    : user.groups[0].name}
+                </span>
+              }
+            >
+              <Modal.Header>Grupos</Modal.Header>
+              <Modal.Content>
+                <ul>
+                  {user.groups.map(group => (
+                    <li key={group.id}>
+                      <Radio
+                        key={group.name}
+                        label={group.name}
+                        name='group'
+                        value={group.name}
+                        checked={value === group.name}
+                        onChange={handleChange}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button onClick={() => setOpen(false)}>Volver</Button>
+                <Button
+                  onClick={() => {
+                    let chosenGroup = user.groups.filter(
+                      group => group.name === value
+                    )[0];
+                    let users = chosenGroup.users.map(user => {
+                      return {
+                        name: user.name,
+                        color: user.pivot.color,
+                        id: user.pivot.user_id
                       };
-                      chooseGroup(group);
-                      setOpen(false);
-                    }}
-                  >
-                    Cambiar
-                  </Button>
-                </Modal.Actions>
-              </Modal>
-            </>
+                    });
+                    let group = {
+                      name: chosenGroup.name,
+                      admin: chosenGroup.admin,
+                      users: users
+                    };
+                    chooseGroup(group);
+                    setOpen(false);
+                  }}
+                >
+                  Cambiar
+                </Button>
+              </Modal.Actions>
+            </Modal>
           ) : (
             user.groups[0].name
           )}

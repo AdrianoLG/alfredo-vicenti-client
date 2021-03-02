@@ -27,7 +27,7 @@ function BookList({ user, books, loadBooks, loading, history }) {
     } else {
       history.push('/login');
     }
-  }, [isLoaded, loadBooks]);
+  }, [isLoaded, loadBooks]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function getBooks() {
     let bearer = localStorage.getItem('access_token');
@@ -52,7 +52,7 @@ function BookList({ user, books, loadBooks, loading, history }) {
                 className='height-pad'
               >
                 {user.groups !== undefined && user.groups.length > 0 ? (
-                  <Groups user={user} />
+                  <Groups user={user} key={user.name} />
                 ) : (
                   ''
                 )}

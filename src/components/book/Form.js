@@ -108,7 +108,7 @@ function BookForm({
                 <p className='cover-title'>{book.title}</p>
               )}
             </div>
-            <div className='field' className='mb7'>
+            <div className='field mb7'>
               <label>Imagen</label>
               <FileBase64 multiple={false} onDone={e => handleCover(e)} />
             </div>

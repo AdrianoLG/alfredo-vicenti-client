@@ -79,7 +79,7 @@ function BooksSection({ user, books, loading, deleteBook, name, setIsLoaded }) {
       ) : (
         <>
           <Spider id='spider' />
-          <p class='mt7'>
+          <p className='mt7'>
             Tu colección está vacía. ¡Prueba a <a href='/libro/crear'>añadir</a>{' '}
             un libro!
           </p>

@@ -40,7 +40,7 @@ function GroupManage({
     if (!user.name) {
       history.push('/login');
     }
-  }, [user]);
+  }, [user, history]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -77,7 +77,7 @@ function GroupManage({
   }
 
   function validateEmail(mail) {
-    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // eslint-disable-line no-useless-escape
     return re.test(mail);
   }
 

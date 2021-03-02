@@ -58,7 +58,6 @@ export function saveGroup(group, groupUserColor, userName) {
 }
 
 export function saveGroupUser(groupUser) {
-  let response = {};
   return fetch(`${baseUrl}/group/user`, {
     method: 'POST',
     headers: {
