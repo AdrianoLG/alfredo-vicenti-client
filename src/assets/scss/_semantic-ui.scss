@@ -10,12 +10,9 @@
     }
     &.buttons {
       display: inline-block;
-      &.group-users {
-        margin-bottom: var(--size4);
-        .button {
-          margin-bottom: var(--size-2);
-          margin-right: 0;
-        }
+      &.group-users .button {
+        margin-bottom: var(--size-2);
+        margin-right: 0;
       }
     }
     &.button {
@@ -42,32 +39,47 @@
       .content {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
         width: 100%;
         .description {
           font-style: italic;
         }
         .header {
           font-weight: 700;
-          font-size: 1.28571429em;
-          margin-bottom: 0.1em;
-          margin-top: -0.21425em;
-          line-height: 1.28571429em;
+          font-size: var(--size3);
+          margin-bottom: 0.25em;
+          margin-top: -0.25em;
+          line-height: var(--size3);
         }
         .left {
-          width: 70%;
+          width: 100%;
+          @include tablet {
+            width: 70%;
+          }
         }
         .right {
-          margin-left: 5%;
-          width: 25%;
+          width: 100%;
+          @include tablet {
+            margin-left: 5%;
+            width: 25%;
+          }
           .description {
+            background: var(--primary-color-light);
+            margin-top: 1rem;
+            padding-right: 0.5rem;
             text-align: right;
+            @include tablet {
+              background: none;
+              margin-top: 0;
+              padding-right: 0;
+            }
           }
         }
       }
     }
     &.grid {
       .min-height {
-        min-height: calc(100vh - 109px);
+        min-height: calc(100vh - 85px);
       }
     }
     &.input {
@@ -95,10 +107,15 @@
       width: 2rem;
     }
     &.menu {
+      background: none;
       font-family: $inter !important;
       margin: 0 !important;
+      .item > i.icon {
+        margin-right: 0;
+      }
     }
     &.pagination.menu {
+      margin-bottom: var(--size7) !important;
       width: 100%;
     }
     &.primary.button,
@@ -123,5 +140,8 @@
     position: relative;
     text-align: right;
     width: calc(100% + 2rem);
+  }
+  &.form .field > label {
+    font-weight: normal;
   }
 }

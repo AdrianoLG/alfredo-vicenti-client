@@ -4,12 +4,13 @@ import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Button, Loader } from 'semantic-ui-react';
 
+import { ReactComponent as Spider } from '../../assets/images/spider.svg';
 import Books from './Books';
 import SearchBook from './filters/Search';
 import OrderDropdown from './OrderDropdown';
 import { deleteBook } from '../../redux/actions/bookActions';
 
-function BooksSection({ user, books, loading, deleteBook, name }) {
+function BooksSection({ user, books, loading, deleteBook, name, setIsLoaded }) {
   const [visibleButtons, setVisibleButtons] = useState('hidden');
   const [searchText, setSearchText] = useState('');
   const history = useHistory();
@@ -45,6 +46,7 @@ function BooksSection({ user, books, loading, deleteBook, name }) {
           secondary
           onClick={() => {
             history.push('/libro/crear');
+            setIsLoaded(false);
           }}
         >
           <i className='plus icon'></i> Añadir
@@ -75,7 +77,13 @@ function BooksSection({ user, books, loading, deleteBook, name }) {
       ) : searchText !== '' ? (
         'No hay coincidencias'
       ) : (
-        '¡Crea un libro!'
+        <>
+          <Spider id='spider' />
+          <p class='mt7'>
+            Tu colección está vacía. ¡Prueba a <a href='/libro/crear'>añadir</a>{' '}
+            un libro!
+          </p>
+        </>
       )}
     </>
   );

@@ -108,7 +108,7 @@ function BookForm({
                 <p className='cover-title'>{book.title}</p>
               )}
             </div>
-            <div className='field'>
+            <div className='field' className='mb7'>
               <label>Imagen</label>
               <FileBase64 multiple={false} onDone={e => handleCover(e)} />
             </div>
@@ -179,7 +179,7 @@ function BookForm({
                 onChange={onChange}
                 fluid
               />
-              <Form.Field></Form.Field>
+              <Form.Field className='mobile-hidden'></Form.Field>
             </Form.Group>
             <Form.Group widths='equal'>
               <Form.TextArea
@@ -189,12 +189,22 @@ function BookForm({
                 value={book.synopsis || ''}
                 onChange={onChange}
               />
-              <Form.Field></Form.Field>
-              <Form.Field></Form.Field>
+              <Form.Field className='mobile-hidden'></Form.Field>
+              <Form.Field className='mobile-hidden'></Form.Field>
             </Form.Group>
-            <Form.Group>
-              <Form.Field>
-                <Radio checked={read} toggle onClick={handleReadRadio} />
+            <Form.Group className='mmb'>
+              <Form.Field className='flex-center'>
+                <Radio
+                  checked={read}
+                  toggle
+                  onClick={handleReadRadio}
+                  tabindex='0'
+                  onKeyPress={e => {
+                    if (e.key === 'Enter') {
+                      setRead(!read);
+                    }
+                  }}
+                />
                 <span>{read ? 'Leído' : 'No leído'}</span>
               </Form.Field>
             </Form.Group>
@@ -245,9 +255,19 @@ function BookForm({
             ) : (
               ''
             )}
-            <Form.Group>
-              <Form.Field>
-                <Radio checked={lent} toggle onClick={handleLentRadio} />
+            <Form.Group className='mmb'>
+              <Form.Field className='flex-center'>
+                <Radio
+                  checked={lent}
+                  toggle
+                  onClick={handleLentRadio}
+                  tabindex='0'
+                  onKeyPress={e => {
+                    if (e.key === 'Enter') {
+                      setLent(!lent);
+                    }
+                  }}
+                />
                 <span>{lent ? 'Prestado' : 'No prestado'}</span>
               </Form.Field>
             </Form.Group>
@@ -276,7 +296,7 @@ function BookForm({
             ) : (
               ''
             )}
-            <div className='buttons'>
+            <div className='buttons mt7'>
               {book.id ? (
                 <Button
                   onClick={() => {
@@ -288,10 +308,11 @@ function BookForm({
               ) : (
                 <Button
                   onClick={() => {
+                    book = null;
                     history.goBack();
                   }}
                 >
-                  Cancelar
+                  Volver
                 </Button>
               )}
               <Button type='submit' disabled={saving} secondary>

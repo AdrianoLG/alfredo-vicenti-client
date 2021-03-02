@@ -2,14 +2,14 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Form, Input, Message } from 'semantic-ui-react';
 
-import FormHeader from './FormHeader';
+import BoxHeader from './BoxHeader';
 
 function LoginForm({ user, onSave, onChange, saving = false, errors = {} }) {
   const history = useHistory();
   return (
-    <div className='form-background'>
-      <Form onSubmit={onSave} className='login-form'>
-        <FormHeader />
+    <div className='main-background'>
+      <Form onSubmit={onSave} className='centered-box'>
+        <BoxHeader />
         {errors.onSave && (
           <Message error>
             <p>{errors.onSave}</p>

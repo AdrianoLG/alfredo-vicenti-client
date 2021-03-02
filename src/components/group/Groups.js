@@ -64,7 +64,7 @@ function Groups({
                   </ul>
                 </Modal.Content>
                 <Modal.Actions>
-                  <Button onClick={() => setOpen(false)}>Cancelar</Button>
+                  <Button onClick={() => setOpen(false)}>Volver</Button>
                   <Button
                     onClick={() => {
                       let chosenGroup = user.groups.filter(
@@ -86,7 +86,7 @@ function Groups({
                       setOpen(false);
                     }}
                   >
-                    Aceptar
+                    Cambiar
                   </Button>
                 </Modal.Actions>
               </Modal>

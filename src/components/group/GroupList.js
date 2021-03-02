@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Button, Grid, Icon } from 'semantic-ui-react';
-import AddGroupMember from './AddGroupMember';
 
+import AddGroupMember from './AddGroupMember';
 import ChangeColor from './ChangeColor';
 
 function GroupList({
@@ -88,6 +88,7 @@ function GroupList({
                       <div id={group.id} className='buttons flex-row'>
                         <Button
                           color='black'
+                          basic
                           onClick={e =>
                             onClick(e, 'delete', { groupId: group.id })
                           }

@@ -1,15 +1,14 @@
+import CryptoJS from 'crypto-js';
+import emailjs from 'emailjs-com';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Button, Loader } from 'semantic-ui-react';
-import { userExists } from '../../api/userApi';
 
+import { userExists } from '../../api/userApi';
 import Header from '../../components/common/header/Header';
 import GroupForm from '../../components/group/GroupForm';
 import GroupList from '../../components/group/GroupList';
-
-import CryptoJS from 'crypto-js';
-import emailjs from 'emailjs-com';
 import {
   changeGroupColor,
   deleteGroup,
@@ -25,7 +24,6 @@ const {
 
 function GroupManage({
   history,
-  userForm,
   user,
   saveGroup,
   deleteGroup,
@@ -39,7 +37,7 @@ function GroupManage({
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    if (!userForm.name) {
+    if (!user.name) {
       history.push('/login');
     }
   }, [user]);
@@ -211,8 +209,7 @@ function GroupManage({
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
-    userForm: state.userForm
+    user: state.user
   };
 };
 

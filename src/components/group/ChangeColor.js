@@ -26,7 +26,11 @@ function ChangeColor({ group, handleColor }) {
         setOpen(true);
       }}
       open={open}
-      trigger={<Button>Cambiar de color</Button>}
+      trigger={
+        <Button basic color='black'>
+          Cambiar de color
+        </Button>
+      }
     >
       <Modal.Header>Cambiar de color</Modal.Header>
       <Modal.Content>
@@ -76,7 +80,7 @@ function ChangeColor({ group, handleColor }) {
         </ul>
       </Modal.Content>
       <Modal.Actions>
-        <Button onClick={() => setOpen(false)}>Cancelar</Button>
+        <Button onClick={() => setOpen(false)}>Volver</Button>
         <Button
           onClick={() => {
             handleColor(value, selectedGroup.id);

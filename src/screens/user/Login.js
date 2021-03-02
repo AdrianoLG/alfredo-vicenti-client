@@ -5,10 +5,9 @@ import { toast } from 'react-toastify';
 import { Loader } from 'semantic-ui-react';
 
 import LoginForm from '../../components/user/LoginForm';
-import { retrieveUser } from '../../redux/actions/userActions';
 import { getFormData } from '../../redux/actions/userFormActions';
 
-function UserLogin({ user, retrieveUser, getFormData, ...props }) {
+function UserLogin({ user, getFormData, ...props }) {
   const [userForm, setUserForm] = useState({});
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
@@ -39,12 +38,12 @@ function UserLogin({ user, retrieveUser, getFormData, ...props }) {
     setSaving(true);
     getFormData(userForm)
       .then(() => {
-        toast('Usuario identificado');
         history.push('/');
       })
       .catch(error => {
         setSaving(false);
         setErrors({ onSave: error.message });
+        toast.error('El email o la contraseña no son correctos');
       });
   }
 
@@ -74,7 +73,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  retrieveUser,
   getFormData
 };
 

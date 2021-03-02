@@ -13,11 +13,8 @@ function MenuDropdown() {
       case 'options':
         console.log('opciones');
         break;
-      case 'logout':
-        console.log('desconectarse');
-        break;
       default:
-        console.log('fuera');
+        console.log('Error');
     }
   }
 
@@ -32,10 +29,6 @@ function MenuDropdown() {
           <Dropdown.Item name='options' onClick={handleItemClick}>
             <Icon name='cog' size='small' />
             Opciones
-          </Dropdown.Item>
-          <Dropdown.Item name='logout' onClick={handleItemClick}>
-            <Icon name='shutdown' size='small' />
-            Desconectar
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

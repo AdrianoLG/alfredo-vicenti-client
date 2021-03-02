@@ -4,10 +4,8 @@ const baseUrl = process.env.REACT_APP_API_URL;
 const baseUrlNoApi = process.env.REACT_APP_URL;
 let bearer = localStorage.getItem('access_token');
 
-export function getUser(userId, bear = null) {
-  bearer = bear || bearer;
-
-  return fetch(`${baseUrl}/user/${userId}`, {
+export async function getUser(userId) {
+  return await fetch(`${baseUrl}/user/${userId}`, {
     headers: {
       Authorization: `Bearer ${bearer}`
     }
@@ -42,8 +40,8 @@ export function saveUser(user) {
     .catch(handleError);
 }
 
-export function userDataToRetrieveToken(user) {
-  return fetch(`${baseUrl}/user/login`, {
+export async function userDataToRetrieveToken(user) {
+  return await fetch(`${baseUrl}/user/login`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
@@ -52,13 +50,12 @@ export function userDataToRetrieveToken(user) {
   })
     .then(handleResponse)
     .then(response => {
-      getToken(response.data);
-      return response.data;
+      return getToken(response.data).then(() => response.data);
     })
     .catch(handleError);
 }
 
-export function getToken(userData) {
+export async function getToken(userData) {
   localStorage.setItem('access_token', '');
   localStorage.setItem('refresh_token', '');
   return fetch(`${baseUrlNoApi}/oauth/token`, {

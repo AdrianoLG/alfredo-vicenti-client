@@ -35,7 +35,7 @@ function BookDetail({ user, loadBook, history, ...props }) {
         ) : (
           <>
             <Book book={book} />
-            <div className='buttons'>
+            <div className='buttons mt7'>
               <Button
                 onClick={() => {
                   history.push('/');

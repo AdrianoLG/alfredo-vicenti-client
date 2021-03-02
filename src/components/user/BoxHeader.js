@@ -2,7 +2,7 @@ import React from 'react';
 
 import logo from '../../assets/images/logo.svg';
 
-const FormHeader = () => (
+const BoxHeader = () => (
   <div className='form-header'>
     <img id='logo' src={logo} alt='' />
     <h1>
@@ -13,4 +13,4 @@ const FormHeader = () => (
   </div>
 );
 
-export default FormHeader;
+export default BoxHeader;

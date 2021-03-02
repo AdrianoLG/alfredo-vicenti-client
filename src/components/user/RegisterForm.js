@@ -2,14 +2,14 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Form, Input, Message } from 'semantic-ui-react';
 
-import FormHeader from './FormHeader';
+import BoxHeader from './BoxHeader';
 
 function RegisterForm({ user, onSave, onChange, saving = false, errors = {} }) {
   const history = useHistory();
   return (
-    <div className='form-background'>
-      <Form onSubmit={onSave} className='login-form' autoComplete='off'>
-        <FormHeader />
+    <div className='main-background'>
+      <Form onSubmit={onSave} className='centered-box' autoComplete='off'>
+        <BoxHeader />
         {errors.onSave && (
           <Message error>
             <p>{errors.onSave}</p>
@@ -66,10 +66,10 @@ function RegisterForm({ user, onSave, onChange, saving = false, errors = {} }) {
                   history.push('/login');
                 }}
               >
-                Login
+                Volver
               </Button>
               <Button type='submit' disabled={saving} secondary>
-                {saving ? 'Registrando...' : 'Registrarse'}
+                {saving ? 'Registrando...' : 'Aceptar'}
               </Button>
             </div>
           </div>

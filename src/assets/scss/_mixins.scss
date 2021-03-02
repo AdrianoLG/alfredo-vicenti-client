@@ -1,9 +1,22 @@
 // Media queries
 $tablet: 768;
+$sm-desktop: 992;
 $desktop: 1440;
+
+@mixin only-mobile {
+  @media only screen and (max-width: $tablet * 1px) {
+    @content;
+  }
+}
 
 @mixin tablet {
   @media only screen and (min-width: $tablet * 1px) {
+    @content;
+  }
+}
+
+@mixin sm-desktop {
+  @media only screen and (min-width: $sm-desktop * 1px) {
     @content;
   }
 }

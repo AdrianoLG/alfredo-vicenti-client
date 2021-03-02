@@ -35,21 +35,21 @@
     }
   }
   #menu {
-    background: none;
     border: none;
+    background: var(--primary-color-light);
     i {
-      font-size: $size3;
-    }
-    .item {
-      color: var(--primary-color-light);
-      &:hover i {
-        opacity: 0.8;
+      font-size: $size0;
+      @include tablet {
+        font-size: $size1;
       }
     }
     .transition {
       left: auto;
       right: 0;
     }
+  }
+  .bars.icon {
+    color: var(--primary-color);
   }
   .brand {
     align-items: center;
@@ -63,25 +63,27 @@
     align-items: center;
     display: flex;
     justify-content: flex-end;
-  }
-  .user p {
-    display: none;
-    @include tablet {
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-      font-size: var(--size3);
-      justify-content: center;
-    }
-    a {
+    p {
       display: none;
-      opacity: 0.8;
+      margin-right: 1rem;
+      font-weight: 500;
       @include tablet {
-        display: inline-block;
-        font-size: var(--size-1);
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        font-size: var(--size3);
+        justify-content: center;
       }
-      &:hover {
-        opacity: 0.6;
+      a {
+        display: none;
+        opacity: 0.8;
+        @include tablet {
+          display: inline-block;
+          font-size: var(--size-1);
+        }
+        &:hover {
+          opacity: 0.6;
+        }
       }
     }
   }

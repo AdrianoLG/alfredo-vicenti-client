@@ -2,8 +2,8 @@ import * as types from './actionTypes';
 import * as userApi from '../../api/userApi';
 import { beginApiCall, apiCallError } from './apiStatusActions';
 
-export function userFormSuccess(data) {
-  return { type: types.FORM_USER_SUCCESS, data };
+export function getUserSuccess(user) {
+  return { type: types.GET_USER_SUCCESS, user };
 }
 
 export function getFormData(userData) {
@@ -12,7 +12,9 @@ export function getFormData(userData) {
     return userApi
       .userDataToRetrieveToken(userData)
       .then(data => {
-        dispatch(userFormSuccess(data));
+        return userApi.getUser(data.user_id).then(user => {
+          dispatch(getUserSuccess(user));
+        });
       })
       .catch(error => {
         dispatch(apiCallError(error));

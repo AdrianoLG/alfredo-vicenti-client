@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Input, Message, Modal } from 'semantic-ui-react';
+
 import { colors } from './groupColors';
 
 function AddGroupMember({
@@ -20,7 +21,11 @@ function AddGroupMember({
         setOpen(true);
       }}
       open={open}
-      trigger={<Button secondary>Añadir miembro</Button>}
+      trigger={
+        <Button basic color='black'>
+          Añadir miembro
+        </Button>
+      }
     >
       <Modal.Header>Añadir miembro</Modal.Header>
       <Modal.Content>
@@ -64,7 +69,7 @@ function AddGroupMember({
             </div>
           </div>
           <div className='actions'>
-            <Button onClick={() => setOpen(false)}>Cancelar</Button>
+            <Button onClick={() => setOpen(false)}>Volver</Button>
             <Button type='submit' disabled={savingUser} secondary>
               {savingUser ? 'Comprobando...' : 'Añadir'}
             </Button>

@@ -15,64 +15,36 @@ import Lent from '../../components/book/filters/Lent';
 import Header from '../../components/common/header/Header';
 import Groups from '../../components/group/Groups';
 import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
-import { retrieveUser } from '../../redux/actions/userActions';
 
-function BookList({
-  user,
-  userForm,
-  books,
-  retrieveUser,
-  loadBooks,
-  loading,
-  history
-}) {
+function BookList({ user, books, loadBooks, loading, history }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (userForm.user_id !== undefined) {
-      let bearer = localStorage.getItem('access_token');
-      if (bearer !== undefined && bearer !== '') {
-        retrieveUser(userForm.user_id, bearer).catch(error => {
-          toast.error(`La carga del usuario ha fallado.\n${error}`);
-        });
+    if (user.id !== undefined || user.name !== undefined) {
+      if (books.length === 0 && !isLoaded) {
+        getBooks();
       }
-    }
-    const getBooks = () => {
-      if (userForm.user_id) {
-        let bearer = localStorage.getItem('access_token');
-        loadBooks(userForm.user_id, bearer)
-          .then(() => setIsLoaded(true))
-          .catch(error => {
-            toast.error(`La carga de los libros ha fallado.\n${error}`);
-          });
-      }
-    };
-    if (!userForm.name) {
-      history.push('/login');
     } else {
-      if (!isLoaded) {
-        let ls = localStorage.getItem('access_token');
-        if (ls === '' || ls === undefined) {
-          setTimeout(() => {
-            ls = localStorage.getItem('access_token');
-            if (ls !== '' && ls !== undefined) {
-              getBooks();
-            }
-          }, 500);
-        } else {
-          getBooks();
-        }
-      }
+      history.push('/login');
     }
-  }, [history, isLoaded, loadBooks, userForm, retrieveUser]);
+  }, [isLoaded, loadBooks]);
 
-  if (userForm.name) {
+  function getBooks() {
+    let bearer = localStorage.getItem('access_token');
+    loadBooks(user.id, bearer)
+      .then(() => setIsLoaded(true))
+      .catch(error => {
+        toast.error(`La carga de los libros ha fallado.\n${error}`);
+      });
+  }
+
+  if (user.name) {
     return (
       <React.Fragment>
         <Header />
         <main className='main-container'>
           <Grid>
-            <Grid.Row>
+            <Grid.Row className='pb0'>
               <Grid.Column
                 mobile={16}
                 tablet={16}
@@ -87,7 +59,8 @@ function BookList({
                 <BooksSection
                   books={books}
                   loading={loading}
-                  name={userForm.name}
+                  name={user.name}
+                  setIsLoaded={setIsLoaded}
                 />
               </Grid.Column>
               <Grid.Column computer={1}></Grid.Column>
@@ -144,15 +117,13 @@ const mapStateToProps = state => {
     books: state.books,
     loading: state.apiCallsInProgress > 0,
     visibleButtons: state.visibleButtons,
-    userForm: state.userForm,
     user: state.user
   };
 };
 
 const mapDispatchToProps = {
   loadBooks,
-  deleteBook,
-  retrieveUser
+  deleteBook
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);
