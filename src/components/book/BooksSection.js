@@ -6,6 +6,7 @@ import { Button, Loader } from 'semantic-ui-react';
 
 import { ReactComponent as Spider } from '../../assets/images/spider.svg';
 import Books from './Books';
+import './booksSection.scss';
 import SearchBook from './filters/Search';
 import OrderDropdown from './OrderDropdown';
 import { deleteBook } from '../../redux/actions/bookActions';
@@ -78,7 +79,7 @@ function BooksSection({ user, books, loading, deleteBook, name, setIsLoaded }) {
         'No hay coincidencias'
       ) : (
         <>
-          <Spider id='spider' />
+          <Spider class='spider' />
           <p className='mt7'>
             Tu colección está vacía. ¡Prueba a <a href='/libro/crear'>añadir</a>{' '}
             un libro!

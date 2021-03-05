@@ -1,6 +1,7 @@
 import React from 'react';
 
 import logo from '../../assets/images/logo.svg';
+import './boxHeader.scss';
 
 const BoxHeader = () => (
   <div className='form-header'>

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 
 import BoxHeader from '../components/user/BoxHeader';
+import './notFound.scss';
 
 const NotFound = function () {
   const history = useHistory();

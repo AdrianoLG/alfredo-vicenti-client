@@ -1,0 +1,46 @@
+.mb1 {
+  margin-bottom: var(--size1);
+}
+
+.mb2 {
+  margin-bottom: var(--size2);
+}
+
+.mb7 {
+  margin-bottom: var(--size7) !important;
+}
+.mdn {
+  @include only-mobile {
+    display: none !important;
+  }
+}
+
+.ml1 {
+  @include tablet {
+    margin-left: 1rem;
+  }
+}
+
+.mmb {
+  @include only-mobile {
+    margin-bottom: var(--size0) !important;
+  }
+}
+
+.mmt0 {
+  @include only-mobile {
+    margin-top: 0 !important;
+  }
+}
+
+.mr0 {
+  margin-right: 0 !important;
+}
+
+.mt7 {
+  margin-top: var(--size7);
+}
+
+.pb0 {
+  padding-bottom: 0 !important;
+}

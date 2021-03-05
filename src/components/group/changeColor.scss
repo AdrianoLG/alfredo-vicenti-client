@@ -1,0 +1,37 @@
+.colorOption {
+  display: inline-block;
+  margin-left: 0.5em;
+  height: 1.5em;
+  width: 1.5em;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+  &.selected {
+    border: 2px solid rgba(34, 36, 38, 0.15);
+    box-sizing: border-box;
+  }
+  &.disabled {
+    cursor: default;
+    position: relative;
+    opacity: 0.8;
+    &:before,
+    &:after {
+      content: '';
+      background: var(--primary-color);
+      bottom: 0;
+      display: block;
+      height: 0.2em;
+      left: 0;
+      margin: auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: rotate(-45deg);
+      width: 100%;
+    }
+    &:after {
+      transform: rotate(45deg);
+    }
+  }
+}

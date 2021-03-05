@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Radio } from 'semantic-ui-react';
 
+import './changeColor.scss';
 import { colors } from './groupColors';
 
 function ChangeColor({ group, handleColor }) {

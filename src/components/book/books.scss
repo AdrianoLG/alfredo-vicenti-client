@@ -1,0 +1,20 @@
+.card-link {
+  color: inherit;
+  display: block;
+  margin-bottom: 1em;
+  position: relative;
+  &:focus .card {
+    box-shadow: 0 1px 3px 0 var(--primary-color), 0 0 0 1px var(--primary-color);
+  }
+  .button {
+    &.show {
+      opacity: 1;
+      transition: opacity 0.25s ease-in !important;
+    }
+    &.hidden {
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.25s ease-out !important;
+    }
+  }
+}

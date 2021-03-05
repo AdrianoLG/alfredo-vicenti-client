@@ -1,5 +1,7 @@
 import React from 'react';
-import { Grid, Icon, Rating } from 'semantic-ui-react';
+import { Grid, Rating } from 'semantic-ui-react';
+
+import './book.scss';
 
 const Book = ({ book }) => (
   <div className='book'>
@@ -73,7 +75,7 @@ const Book = ({ book }) => (
           ''
         )}
         {book.lent_to ? (
-          <p className='lent'>
+          <p className='lent-warn'>
             Prestado a {book.lent_to} el{' '}
             {new Date(book.lent_date).toLocaleDateString('es-ES')}
           </p>

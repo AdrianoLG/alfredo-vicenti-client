@@ -14,6 +14,7 @@ import LastRead from '../../components/book/filters/LastRead';
 import Lent from '../../components/book/filters/Lent';
 import Header from '../../components/common/header/Header';
 import Groups from '../../components/group/Groups';
+import './list.scss';
 import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
 
 function BookList({ user, books, loadBooks, loading, history }) {

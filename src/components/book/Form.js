@@ -12,6 +12,8 @@ import {
   Rating
 } from 'semantic-ui-react';
 
+import './form.scss';
+
 function BookForm({
   book,
   user,

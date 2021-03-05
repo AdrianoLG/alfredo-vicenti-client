@@ -4,6 +4,8 @@ import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
 import { Button, Card, List, Transition } from 'semantic-ui-react';
 
+import './books.scss';
+
 function Books({ books, groups, name, user, onDeleteClick, visibleButtons }) {
   const [pageCount, setPageCount] = useState(0);
   const [pagedBooks, setPagedBooks] = useState([]);

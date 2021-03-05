@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form, Input, Message } from 'semantic-ui-react';
 
 import { colors } from './groupColors';
+import './groupForm.scss';
 
 const GroupForm = ({
   group,
@@ -10,7 +11,7 @@ const GroupForm = ({
   handleColorClick,
   saving = false,
   errors = {}
-}) => {
+}) => (
   <>
     <h2>Crear grupo</h2>
     <Form onSubmit={onSave} className='group-form'>
@@ -73,7 +74,7 @@ const GroupForm = ({
         </div>
       </div>
     </Form>
-  </>;
-};
+  </>
+);
 
 export default GroupForm;

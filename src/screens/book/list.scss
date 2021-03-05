@@ -1,0 +1,45 @@
+@import '../../assets/scss/mixins';
+aside {
+  background: var(--primary-color-light);
+  margin-top: 2rem !important;
+  @include sm-desktop {
+    margin-top: 0 !important;
+  }
+  ul {
+    li {
+      margin: 0;
+      position: relative;
+      &:hover,
+      &:focus {
+        background: rgba(0, 0, 0, 0.05);
+        a,
+        span.link {
+          padding: var(--size-1) 0.5em;
+          transition: all 0.25s ease-in;
+        }
+      }
+      a,
+      span.link {
+        color: black;
+        display: block;
+        padding: var(--size-1) 0;
+        &:focus {
+          padding: var(--size-1) 0.5em;
+          transition: all 0.25s ease-in;
+        }
+      }
+    }
+  }
+  .active {
+    color: var(--accent-color) !important;
+  }
+  .lent {
+    p {
+      margin-bottom: 0;
+    }
+    .small {
+      font-size: var(--size-2);
+      margin-top: 0.25em;
+    }
+  }
+}
