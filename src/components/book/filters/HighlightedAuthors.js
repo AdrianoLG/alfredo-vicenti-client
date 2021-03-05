@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Icon } from 'semantic-ui-react';
 
+import Filter from './Filter';
 import {
   filterBooksByAuthor,
   resetFilters
@@ -23,7 +23,6 @@ function HighlightedAuthors({ books, resetFilters, filterBooksByAuthor }) {
   }, [books, resetFilters, filterBooksByAuthor]);
 
   function handleClick(e, author) {
-    e.preventDefault();
     if (!filtered) {
       setOriginalList(books);
       filterBooksByAuthor(author);
@@ -36,35 +35,20 @@ function HighlightedAuthors({ books, resetFilters, filterBooksByAuthor }) {
     }
   }
 
+  function handleEnter(e, category) {
+    if (e.keyCode === 13) {
+      handleClick(e, category);
+    }
+  }
+
   return (
-    <>
-      {authors.length > 0 ? (
-        <>
-          <h2>Autores destacados</h2>
-          <ul className='book-filter author'>
-            {authors.slice(0, 4).map(author => (
-              <li key={author[0]}>
-                <span
-                  className='link'
-                  tabIndex='0'
-                  onClick={e => handleClick(e, author[0])}
-                  onKeyDown={e => {
-                    if (e.keyCode === 13) {
-                      handleClick(e, author[0]);
-                    }
-                  }}
-                >
-                  {author[0]} ({author[1]})
-                </span>
-                <Icon name='close' />
-              </li>
-            ))}
-          </ul>
-        </>
-      ) : (
-        ''
-      )}
-    </>
+    <Filter
+      data={authors}
+      name='Autores destacados'
+      handleClick={handleClick}
+      handleEnter={handleEnter}
+      type='highlightedAuthors'
+    />
   );
 }
 

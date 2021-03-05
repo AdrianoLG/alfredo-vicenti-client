@@ -7,7 +7,7 @@ import BookDetail from './book/Detail';
 import BookList from './book/List';
 import BookManage from './book/Manage';
 import AcceptGroup from './group/AcceptGroup';
-import GroupManage from './group/Manage';
+import ManageLogic from './group/ManageLogic';
 import NotFound from './NotFound';
 import FinishRegistration from './user/FinishRegistration';
 import Login from './user/Login';
@@ -24,7 +24,7 @@ const ScreensRoot = () => (
       <Route path='/registro' component={Register} />
       <Route path='/finalizar-registro' component={FinishRegistration} />
       <Route path='/aceptar-grupo' component={AcceptGroup} />
-      <Route path='/usuario/grupos' component={GroupManage} />
+      <Route path='/usuario/grupos' component={ManageLogic} />
       <Route component={NotFound} />
     </Switch>
     <ToastContainer

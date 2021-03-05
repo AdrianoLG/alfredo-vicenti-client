@@ -12,20 +12,13 @@ function Groups({
   loadGroupBooks,
   loadBooks,
   chooseGroup,
-  chosenGroup
+  chosenGroup,
+  handleGroupClick,
+  start
 }) {
   const [value, setValue] = useState(null);
   const [open, setOpen] = useState(false);
-  const [start, setStart] = useState(true);
   const handleChange = (event, { value }) => setValue(value);
-
-  function handleClick(e) {
-    setStart(false);
-    document.querySelectorAll('.group-users button').forEach(button => {
-      button.disabled = false;
-    });
-    e.target.disabled = true;
-  }
 
   if (user.groups !== undefined) {
     return (
@@ -97,7 +90,7 @@ function Groups({
           <button
             className='ui button'
             onClick={e => {
-              handleClick(e);
+              handleGroupClick(e);
               loadGroupBooks(user.id, user.groups[0].id);
               getName(`del grupo ${user.groups[0].name}`);
             }}
@@ -107,7 +100,7 @@ function Groups({
           <button
             className='ui button'
             onClick={e => {
-              handleClick(e);
+              handleGroupClick(e);
               loadBooks(user.id);
               getName(`de ${user.name}`);
             }}
@@ -123,7 +116,7 @@ function Groups({
                     key={user.id}
                     className='ui button'
                     onClick={e => {
-                      handleClick(e);
+                      handleGroupClick(e);
                       loadBooks(user.pivot ? user.pivot.user_id : user.id);
                       getName(`de ${user.name}`);
                     }}
@@ -138,7 +131,7 @@ function Groups({
                     key={user.id}
                     className='ui button'
                     onClick={e => {
-                      handleClick(e);
+                      handleGroupClick(e);
                       loadBooks(user.pivot.user_id);
                       getName(`de ${user.name}`);
                     }}

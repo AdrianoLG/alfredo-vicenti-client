@@ -18,6 +18,7 @@ import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
 
 function BookList({ user, books, loadBooks, loading, history }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [start, setStart] = useState(true);
 
   useEffect(() => {
     if (user.id !== undefined || user.name !== undefined) {
@@ -38,6 +39,14 @@ function BookList({ user, books, loadBooks, loading, history }) {
       });
   }
 
+  function handleGroupClick(e) {
+    setStart(false);
+    document.querySelectorAll('.group-users button').forEach(button => {
+      button.disabled = false;
+    });
+    e.target.disabled = true;
+  }
+
   if (user.name) {
     return (
       <React.Fragment>
@@ -52,7 +61,12 @@ function BookList({ user, books, loadBooks, loading, history }) {
                 className='height-pad'
               >
                 {user.groups !== undefined && user.groups.length > 0 ? (
-                  <Groups user={user} key={user.name} />
+                  <Groups
+                    user={user}
+                    key={user.name}
+                    start={start}
+                    handleGroupClick={handleGroupClick}
+                  />
                 ) : (
                   ''
                 )}

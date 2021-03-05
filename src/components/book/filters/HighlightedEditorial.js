@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Icon } from 'semantic-ui-react';
 
+import Filter from './Filter';
 import {
   filterBooksByEditorial,
   resetFilters
@@ -23,7 +23,6 @@ function HighlightedEditorial({ books, resetFilters, filterBooksByEditorial }) {
   }, [books, resetFilters]);
 
   function handleClick(e, editorial) {
-    e.preventDefault();
     if (!filtered) {
       setOriginalList(books);
       filterBooksByEditorial(editorial);
@@ -36,35 +35,20 @@ function HighlightedEditorial({ books, resetFilters, filterBooksByEditorial }) {
     }
   }
 
+  function handleEnter(e, category) {
+    if (e.keyCode === 13) {
+      handleClick(e, category);
+    }
+  }
+
   return (
-    <>
-      {editorial.length > 0 ? (
-        <>
-          <h2>Editoriales destacadas</h2>
-          <ul className='book-filter editorial'>
-            {editorial.slice(0, 4).map(editorial => (
-              <li key={editorial[0]}>
-                <span
-                  className='link'
-                  tabIndex='0'
-                  onClick={e => handleClick(e, editorial[0])}
-                  onKeyDown={e => {
-                    if (e.keyCode === 13) {
-                      handleClick(e, editorial[0]);
-                    }
-                  }}
-                >
-                  {editorial[0]} ({editorial[1]})
-                </span>
-                <Icon name='close' />
-              </li>
-            ))}
-          </ul>
-        </>
-      ) : (
-        ''
-      )}
-    </>
+    <Filter
+      data={editorial}
+      name='Editoriales destacadas'
+      handleClick={handleClick}
+      handleEnter={handleEnter}
+      type='highlightedEditorial'
+    />
   );
 }
 
