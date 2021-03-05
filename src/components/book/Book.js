@@ -1,10 +1,21 @@
 import React from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Icon, Rating } from 'semantic-ui-react';
 
 const Book = ({ book }) => (
   <div className='book'>
     <Grid>
-      <Grid.Column mobile={16} tablet={5} computer={5} className='height-pad'>
+      <Grid.Column mobile={16} tablet={11} computer={11} className='mt7'>
+        <h2>{book.title}</h2>
+        <h3>{book.author}</h3>
+      </Grid.Column>
+      <Grid.Column mobile={16} tablet={5} computer={5} className='mt7 mmt0'>
+        <p className='right'>
+          {book.editorial ? <span class='italic'>{book.editorial}</span> : ''}
+          {book.pages ? <span className='ml1'>{book.pages} pág.</span> : ''}
+        </p>
+        <p className='category right'>{book.category}</p>
+      </Grid.Column>
+      <Grid.Column mobile={16} tablet={5} computer={5}>
         <div className='coverImg'>
           <img
             className='book-image'
@@ -22,21 +33,49 @@ const Book = ({ book }) => (
           )}
         </div>
       </Grid.Column>
-      <Grid.Column mobile={16} tablet={5} computer={5} className='height-pad'>
-        <p>Autor: {book.author}</p>
-        <p>Título: {book.title}</p>
-        <p>Categoría: {book.category}</p>
-        <p>Páginas: {book.pages}</p>
-        <p>Editorial: {book.editorial}</p>
+      <Grid.Column mobile={16} tablet={5} computer={5}>
+        {book.synopsis ? (
+          <div>
+            <p>Sinopsis:</p>
+            <p className='small'>{book.synopsis}</p>
+          </div>
+        ) : (
+          ''
+        )}
       </Grid.Column>
-      <Grid.Column mobile={16} tablet={5} computer={5} className='height-pad'>
-        <p>Sinopsis: {book.synopsis}</p>
-        <p>Leído en: {book.read_date}</p>
-        <p>Puntuación: {book.rating}</p>
-        <p>Comentarios: {book.comments}</p>
+      <Grid.Column mobile={0} tablet={1} computer={1} className='mdn' />
+      <Grid.Column mobile={16} tablet={5} computer={5}>
+        {book.comments ? (
+          <div className='mb1'>
+            <p>Comentarios:</p>
+            <p className='small'>{book.comments}</p>
+          </div>
+        ) : (
+          ''
+        )}
+        {book.read_date ? (
+          <p className='lh1'>
+            Leído el {new Date(book.read_date).toLocaleDateString('es-ES')}
+          </p>
+        ) : (
+          ''
+        )}
+        {book.rating ? (
+          <Rating
+            className='mb1'
+            icon='star'
+            value={book.rating}
+            rating={book.rating}
+            maxRating={10}
+            disabled
+          />
+        ) : (
+          ''
+        )}
         {book.lent_to ? (
-          <p>
-            Prestado a: {book.lent_to} ({book.lent_date})
+          <p className='lent'>
+            Prestado a {book.lent_to} el{' '}
+            {new Date(book.lent_date).toLocaleDateString('es-ES')}
           </p>
         ) : (
           ''
