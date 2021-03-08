@@ -9,6 +9,7 @@
 .mb7 {
   margin-bottom: var(--size7) !important;
 }
+
 .mdn {
   @include only-mobile {
     display: none !important;
@@ -35,6 +36,10 @@
 
 .mr0 {
   margin-right: 0 !important;
+}
+
+.mt4 {
+  margin-top: var(--size4);
 }
 
 .mt7 {

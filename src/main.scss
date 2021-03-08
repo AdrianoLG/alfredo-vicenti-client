@@ -9,6 +9,7 @@
   --font-main: #{$inter};
   --font-secondary: #{$kelly};
   --border: #{$border};
+  --black: #{$black};
   --size0: #{$size0};
   --size1: #{$size1};
   --size2: #{$size2};
@@ -175,30 +176,39 @@ label {
 .color1 {
   background-color: var(--color1);
 }
+
 .color2 {
   background-color: var(--color2);
 }
+
 .color3 {
   background-color: var(--color3);
 }
+
 .color4 {
   background-color: var(--color4);
 }
+
 .color5 {
   background-color: var(--color5);
 }
+
 .color6 {
   background-color: var(--color6);
 }
+
 .color7 {
   background-color: var(--color7);
 }
+
 .color8 {
   background-color: var(--color8);
 }
+
 .color9 {
   background-color: var(--color9);
 }
+
 .color10 {
   background-color: var(--color10);
 }

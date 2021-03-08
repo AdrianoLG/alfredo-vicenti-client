@@ -16,6 +16,8 @@ import Header from '../../components/common/header/Header';
 import Groups from '../../components/group/Groups';
 import './list.scss';
 import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
+import PrintBooks from '../../components/book/export/Print';
+import SaveBooks from '../../components/book/export/Save';
 
 function BookList({ user, books, loadBooks, loading, history }) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -90,6 +92,10 @@ function BookList({ user, books, loadBooks, loading, history }) {
                   ''
                 ) : (
                   <>
+                    <section className='mt4 mb7'>
+                      <PrintBooks />
+                      <SaveBooks />
+                    </section>
                     <section>
                       <LastRead books={books} user={user} />
                     </section>

@@ -8,6 +8,11 @@
         color: var(--primary-color-light) !important;
       }
     }
+    &.basic.button:hover {
+      &.hov {
+        background-color: rgba(0, 0, 0, 0.05) !important;
+      }
+    }
     &.buttons {
       display: inline-block;
       &.group-users .button {
@@ -21,17 +26,22 @@
       font-family: var(--font-main);
       font-weight: 300;
       margin-right: var(--size0);
-      &:hover,
-      &:focus {
-        background-color: var(--primary-color);
-        color: var(--primary-color-light);
-        opacity: 0.8;
+      &.black {
+        background-color: #111;
       }
       &.dropdown {
         opacity: 1;
+        &:hover,
+        &:focus {
+          opacity: 0.8;
+        }
       }
-      &.black {
-        background-color: #111;
+      &.hov {
+        color: var(--black) !important;
+      }
+      &:hover,
+      &:focus {
+        opacity: 0.8;
       }
     }
     &.card {
@@ -131,6 +141,7 @@
     }
   }
 }
+
 .ui {
   &.addGroupUser-form .actions {
     border-top: 1px solid var(--border) !important;
