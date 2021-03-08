@@ -1,5 +1,8 @@
 .main-container {
   .ui {
+    &.active.button.dropdown:hover {
+      color: white;
+    }
     &.basic.primary.active.button,
     &.basic.primary.buttons .active.button {
       color: var(--primary-color) !important;
@@ -29,15 +32,15 @@
       &.black {
         background-color: #111;
       }
-      &.dropdown {
-        opacity: 1;
-        &:hover,
-        &:focus {
-          opacity: 0.8;
-        }
-      }
       &.hov {
         color: var(--black) !important;
+      }
+      &.dropdown {
+        &:hover,
+        &:focus {
+          background: #37367e;
+          opacity: 1;
+        }
       }
       &:hover,
       &:focus {
@@ -85,6 +88,12 @@
             }
           }
         }
+      }
+    }
+    &.dropdown .menu .selected.item {
+      background-color: inherit;
+      &:hover {
+        background: rgba(0, 0, 0, 0.05);
       }
     }
     &.grid {

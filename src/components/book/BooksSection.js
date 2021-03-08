@@ -79,7 +79,7 @@ function BooksSection({ user, books, loading, deleteBook, name, setIsLoaded }) {
         'No hay coincidencias'
       ) : (
         <>
-          <Spider class='spider' />
+          <Spider className='spider' />
           <p className='mt7'>
             Tu colección está vacía. ¡Prueba a <a href='/libro/crear'>añadir</a>{' '}
             un libro!
