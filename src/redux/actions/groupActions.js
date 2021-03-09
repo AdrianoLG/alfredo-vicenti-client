@@ -18,6 +18,10 @@ export function deleteGroupUserSuccess(groupId, userId) {
   return { type: types.DELETE_GROUP_USER_SUCCESS, groupId, userId };
 }
 
+export function quitGroupSuccess(groupId, userId) {
+  return { type: types.QUIT_GROUP_SUCCESS, groupId, userId };
+}
+
 export function deleteGroupSuccess(groupId) {
   return { type: types.DELETE_GROUP_SUCCESS, groupId };
 }
@@ -64,6 +68,15 @@ export function deleteGroupUser(groupId, userId) {
     dispatch(beginApiCall());
     return groupApi.deleteGroupUser(groupId, userId).then(() => {
       dispatch(deleteGroupUserSuccess(groupId, userId));
+    });
+  };
+}
+
+export function quitGroup(groupId, userId) {
+  return function (dispatch) {
+    dispatch(beginApiCall());
+    return groupApi.deleteGroupUser(groupId, userId).then(() => {
+      dispatch(quitGroupSuccess(groupId, userId));
     });
   };
 }

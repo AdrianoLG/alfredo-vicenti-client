@@ -18,10 +18,6 @@ function GroupList({
 }) {
   useEffect(() => {}, [user]);
 
-  function quitGroup(groupId, userId) {
-    console.log(`groupId: ${groupId}, userId: ${userId}`);
-  }
-
   return (
     <>
       <h2>Grupos</h2>
@@ -79,9 +75,12 @@ function GroupList({
                         <Button
                           color='black'
                           basic
-                          onClick={e =>
-                            onClick(e, 'delete', { groupId: group.id })
-                          }
+                          onClick={e => {
+                            onClick(e, 'delete', {
+                              groupId: group.id,
+                              groupName: group.name
+                            });
+                          }}
                         >
                           Eliminar grupo
                         </Button>
@@ -107,7 +106,13 @@ function GroupList({
                       <div className='buttons flex-row'>
                         <Button
                           color='black'
-                          onClick={() => quitGroup(group.id, user.id)}
+                          onClick={e => {
+                            onClick(e, 'quit', {
+                              groupName: group.name,
+                              groupId: group.id,
+                              userId: user.id
+                            });
+                          }}
                         >
                           Salir de grupo
                         </Button>

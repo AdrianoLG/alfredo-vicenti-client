@@ -9,6 +9,7 @@ import Manage from './Manage';
 import {
   changeGroupColor,
   deleteGroup,
+  quitGroup,
   saveGroup
 } from '../../redux/actions/groupActions';
 
@@ -24,6 +25,7 @@ function GroupManage({
   user,
   saveGroup,
   deleteGroup,
+  quitGroup,
   changeGroupColor,
   loading,
   ...props
@@ -64,7 +66,12 @@ function GroupManage({
     switch (action) {
       case 'delete':
         deleteGroup(data.groupId, user.id).then(() => {
-          toast(`Grupo borrado`);
+          toast(`Grupo ${data.groupName} borrado`);
+        });
+        break;
+      case 'quit':
+        quitGroup(data.groupId, data.userId).then(() => {
+          toast(`Has salido del grupo ${data.groupName}`);
         });
         break;
       default:
@@ -202,6 +209,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   saveGroup,
   deleteGroup,
+  quitGroup,
   changeGroupColor
 };
 
