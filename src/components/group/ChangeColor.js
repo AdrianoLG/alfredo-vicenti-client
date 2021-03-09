@@ -87,6 +87,7 @@ function ChangeColor({ group, handleColor }) {
             handleColor(value, selectedGroup.id);
             setOpen(false);
           }}
+          secondary
         >
           Aceptar
         </Button>

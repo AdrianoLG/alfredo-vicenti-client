@@ -32,6 +32,20 @@ export default function userReducer(state = initialState.user, action) {
             : group
         )
       };
+    case types.DELETE_GROUP_USER_SUCCESS:
+      return {
+        ...state,
+        groups: state.groups.map(group =>
+          group.id === action.groupId
+            ? {
+                ...group,
+                users: group.users.filter(
+                  user => user.pivot.user_id !== action.userId
+                )
+              }
+            : group
+        )
+      };
     case types.DELETE_GROUP_SUCCESS:
       return {
         ...state,

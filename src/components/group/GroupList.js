@@ -3,6 +3,8 @@ import { Button, Grid, Icon } from 'semantic-ui-react';
 
 import AddGroupMember from './AddGroupMember';
 import ChangeColor from './ChangeColor';
+import DeleteGroupMember from './DeleteGroupMember';
+import './groupList.scss';
 
 function GroupList({
   user,
@@ -15,10 +17,6 @@ function GroupList({
   errors
 }) {
   useEffect(() => {}, [user]);
-
-  function deleteUser(groupId, userId) {
-    console.log(`groupId: ${groupId}, userId: ${userId}`);
-  }
 
   function quitGroup(groupId, userId) {
     console.log(`groupId: ${groupId}, userId: ${userId}`);
@@ -62,20 +60,12 @@ function GroupList({
                                 )}{' '}
                                 {group.admin === user.id &&
                                 group.admin !== groupUser.pivot.user_id ? (
-                                  <Button
-                                    icon
-                                    size='mini'
-                                    className='deleteButton'
-                                    color='black'
-                                    onClick={() =>
-                                      deleteUser(
-                                        groupUser.pivot.group_id,
-                                        groupUser.pivot.user_id
-                                      )
-                                    }
-                                  >
-                                    <Icon name='close' />
-                                  </Button>
+                                  <DeleteGroupMember
+                                    groupId={groupUser.pivot.group_id}
+                                    groupName={group.name}
+                                    userId={groupUser.pivot.user_id}
+                                    userName={groupUser.name}
+                                  />
                                 ) : (
                                   ''
                                 )}

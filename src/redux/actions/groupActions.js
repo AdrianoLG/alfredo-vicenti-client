@@ -14,6 +14,10 @@ export function changeGroupColorSuccess(groupId, userId, color) {
   return { type: types.CHANGE_GROUP_COLOR_SUCCESS, groupId, userId, color };
 }
 
+export function deleteGroupUserSuccess(groupId, userId) {
+  return { type: types.DELETE_GROUP_USER_SUCCESS, groupId, userId };
+}
+
 export function deleteGroupSuccess(groupId) {
   return { type: types.DELETE_GROUP_SUCCESS, groupId };
 }
@@ -52,6 +56,15 @@ export function changeGroupColor(groupId, userId, color) {
         dispatch(apiCallError(error));
         throw error;
       });
+  };
+}
+
+export function deleteGroupUser(groupId, userId) {
+  return function (dispatch) {
+    dispatch(beginApiCall());
+    return groupApi.deleteGroupUser(groupId, userId).then(() => {
+      dispatch(deleteGroupUserSuccess(groupId, userId));
+    });
   };
 }
 

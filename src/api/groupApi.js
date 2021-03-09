@@ -83,6 +83,18 @@ export function changeGroupColor(groupId, userId, color) {
   }).then(handleResponse);
 }
 
+export function deleteGroupUser(groupId, userId) {
+  return fetch(`${baseUrl}/group/${groupId}/user/${userId}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${bearer}`,
+      'content-type': 'application/json'
+    }
+  })
+    .then(handleResponse)
+    .catch(handleError);
+}
+
 export function deleteGroup(groupId, adminId) {
   return fetch(`${baseUrl}/group/${groupId}/admin/${adminId}`, {
     method: 'DELETE',

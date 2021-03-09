@@ -118,7 +118,7 @@ function GroupManage({
         )
         .then(() => {
           toast(
-            `Se ha enviado un email ${email} al usuario para que se una al grupo ${groupId}`
+            `Se ha enviado un email ${email} al usuario para que se una al grupo ${groupName}`
           );
           setSavingUser(false);
         })

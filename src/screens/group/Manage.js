@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import { Button, Loader } from 'semantic-ui-react';
 
 import Header from '../../components/common/header/Header';
@@ -19,9 +20,9 @@ function Manage({
   handleEmail,
   email,
   savingUser,
-  history,
   loading
 }) {
+  const history = useHistory();
   return (
     <>
       <Header />
