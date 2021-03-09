@@ -81,7 +81,7 @@ function Books({ books, groups, name, user, onDeleteClick, visibleButtons }) {
                   </Card>
                 )}
 
-                <Button.Group size='large' className='card-button-group'>
+                <Button.Group size='large' className='card-buttonGroup'>
                   <Button
                     icon='delete'
                     color='black'

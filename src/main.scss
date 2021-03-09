@@ -85,7 +85,7 @@ span.link {
       color: var(--primary-color-light) !important;
     }
   }
-  .card-button-group {
+  .card-buttonGroup {
     opacity: 1;
   }
 }
@@ -148,7 +148,7 @@ label {
   width: 100%;
 }
 
-.button-group {
+.buttonGroup {
   margin-bottom: var(--size0);
   .ui.button {
     margin-right: var(--size0);
@@ -160,7 +160,7 @@ label {
   margin-top: var(--size4);
 }
 
-.card-button-group {
+.card-buttonGroup {
   position: absolute;
   right: 0;
   top: 50%;
@@ -330,7 +330,7 @@ label {
   line-height: 1.3;
 }
 
-.main-container {
+.mainContainer {
   margin: 0 auto;
   max-width: 90em;
   padding-left: var(--size1);
@@ -349,7 +349,7 @@ label {
   padding: var(--size-4) var(--size3);
 }
 
-.mobile-hidden {
+.mobileHidden {
   @include only-mobile {
     display: none;
   }

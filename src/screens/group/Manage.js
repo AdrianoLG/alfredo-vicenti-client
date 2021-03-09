@@ -26,7 +26,7 @@ function Manage({
   return (
     <>
       <Header />
-      <main className='main-container height-pad'>
+      <main className='mainContainer height-pad'>
         {loading ? (
           <div className='hundred'>
             <Loader active />

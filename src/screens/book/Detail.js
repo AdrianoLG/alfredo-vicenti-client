@@ -29,7 +29,7 @@ function BookDetail({ user, loadBook, history, ...props }) {
   return (
     <React.Fragment>
       <Header />
-      <div className='main-container height-pad'>
+      <div className='mainContainer height-pad'>
         {props.loading ? (
           <Loader active />
         ) : (

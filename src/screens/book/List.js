@@ -54,7 +54,7 @@ function BookList({ user, books, loadBooks, loading, history }) {
     return (
       <React.Fragment>
         <Header />
-        <main className='main-container'>
+        <main className='mainContainer'>
           <Grid>
             <Grid.Row className='pb0'>
               <Grid.Column

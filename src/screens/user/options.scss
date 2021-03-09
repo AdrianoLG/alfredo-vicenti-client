@@ -1,0 +1,11 @@
+.userForm {
+  .ui.basic.black.button {
+    &:hover,
+    &:focus {
+      background: rgba(0, 0, 0, 0.05) !important;
+    }
+  }
+}
+.userForm-fields {
+  max-width: 23rem;
+}

@@ -1,4 +1,4 @@
-.main-container {
+.mainContainer {
   .ui {
     &.active.button.dropdown:hover {
       color: white;
@@ -112,7 +112,7 @@
     .labeled.icon.button {
       padding-left: var(--size7) !important;
     }
-    &.card-button-group .button:hover {
+    &.card-buttonGroup .button:hover {
       background-color: var(--accent-color);
       opacity: 1;
     }

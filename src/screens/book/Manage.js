@@ -61,7 +61,7 @@ function BookManage({ user, loadBook, saveBook, history, ...props }) {
   return (
     <React.Fragment>
       <Header />
-      <main className='main-container height-pad'>
+      <main className='mainContainer height-pad'>
         {props.loading ? (
           <div className='hundred'>
             <Loader active />

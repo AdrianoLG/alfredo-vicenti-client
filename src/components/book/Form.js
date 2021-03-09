@@ -181,7 +181,7 @@ function BookForm({
                 onChange={onChange}
                 fluid
               />
-              <Form.Field className='mobile-hidden'></Form.Field>
+              <Form.Field className='mobileHidden'></Form.Field>
             </Form.Group>
             <Form.Group widths='equal'>
               <Form.TextArea
@@ -191,8 +191,8 @@ function BookForm({
                 value={book.synopsis || ''}
                 onChange={onChange}
               />
-              <Form.Field className='mobile-hidden'></Form.Field>
-              <Form.Field className='mobile-hidden'></Form.Field>
+              <Form.Field className='mobileHidden'></Form.Field>
+              <Form.Field className='mobileHidden'></Form.Field>
             </Form.Group>
             <Form.Group className='mmb'>
               <Form.Field className='flex-center'>

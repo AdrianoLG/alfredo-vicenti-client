@@ -11,7 +11,7 @@ function MenuDropdown() {
         history.push('/usuario/grupos');
         break;
       case 'options':
-        console.log('opciones');
+        history.push('/usuario/opciones');
         break;
       default:
         console.log('Error');

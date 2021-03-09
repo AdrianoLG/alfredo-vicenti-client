@@ -41,7 +41,7 @@ function BooksSection({ user, books, loading, deleteBook, name, setIsLoaded }) {
         ''
       )}
       <SearchBook books={books} getSearchText={setSearchText} />
-      <div className='button-group'>
+      <div className='buttonGroup'>
         <Button
           size='tiny'
           secondary

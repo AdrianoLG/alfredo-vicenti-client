@@ -11,7 +11,7 @@ function Header({ user }) {
 
   return (
     <header className='top-bar'>
-      <div className='main-container height-pad flex-center-between'>
+      <div className='mainContainer height-pad flex-center-between'>
         <div>
           <NavLink to='/' className='brand'>
             <img id='logo' src={logo} alt='' />
