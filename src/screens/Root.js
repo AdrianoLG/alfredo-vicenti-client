@@ -13,7 +13,7 @@ import NotFound from './NotFound';
 import FinishRegistration from './user/FinishRegistration';
 import Login from './user/Login';
 import Register from './user/Register';
-import UserOptions from './user/Options';
+import UserOptionsLogic from './user/OptionsLogic';
 
 const ScreensRoot = () => (
   <>
@@ -27,7 +27,7 @@ const ScreensRoot = () => (
       <Route path='/finalizar-registro' component={FinishRegistration} />
       <Route path='/aceptar-grupo' component={AcceptGroup} />
       <Route path='/usuario/grupos' component={ManageLogic} />
-      <Route path='/usuario/opciones' component={UserOptions} />
+      <Route path='/usuario/opciones' component={UserOptionsLogic} />
       <Route path='/imprimir' component={Print} />
       <Route component={NotFound} />
     </Switch>

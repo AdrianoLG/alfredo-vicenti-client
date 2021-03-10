@@ -27,6 +27,19 @@ export function userExists(userEmail) {
     .catch(handleError);
 }
 
+export function updateUser(userId, name, email) {
+  return fetch(`${baseUrl}/user/${userId}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${bearer}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({ name: name, email: email })
+  })
+    .then(handleResponse)
+    .catch(handleError);
+}
+
 export function saveUser(user) {
   return fetch(`${baseUrl}/user/`, {
     method: 'POST',

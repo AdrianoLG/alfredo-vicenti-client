@@ -1,51 +1,10 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import { useHistory } from 'react-router';
 import { Button, Form, Input, Message } from 'semantic-ui-react';
 import Header from '../../components/common/header/Header';
-import './options.scss';
 
-const UserOptions = ({ user }) => {
-  const [userData, setUserData] = useState({ ...user });
-  const [errors, setErrors] = useState({});
-  const [saving, setSaving] = useState(false);
+const UserOptions = ({ errors, saving, userData, onChange, handleSave }) => {
   const history = useHistory();
-
-  function onChange(e) {
-    console.log(e);
-    const { name, value } = e.target;
-    setUserData(prevGroup => ({
-      ...prevGroup,
-      [name]: value
-    }));
-  }
-
-  function formIsValid() {
-    const { name, email } = userData;
-    const errors = {};
-
-    if (!name) errors.name = 'El nombre es necesario.';
-    if (!email) errors.email = 'El email es necesario.';
-
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  }
-
-  function handleSave(event) {
-    event.preventDefault();
-    if (!formIsValid()) return;
-    setSaving(true);
-    console.log('Save');
-    // saveBook(book)
-    //   .then(() => {
-    //     toast('Libro guardado');
-    //     history.push('/');
-    //   })
-    //   .catch(error => {
-    //     setSaving(false);
-    //     setErrors({ onSave: error.message });
-    //   });
-  }
 
   return (
     <>
@@ -116,12 +75,4 @@ const UserOptions = ({ user }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  };
-};
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserOptions);
+export default UserOptions;

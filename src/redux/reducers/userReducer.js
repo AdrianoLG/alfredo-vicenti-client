@@ -5,6 +5,12 @@ export default function userReducer(state = initialState.user, action) {
   switch (action.type) {
     case types.GET_USER_SUCCESS:
       return action.user.data;
+    case types.UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        name: action.name,
+        email: action.email
+      };
     case types.CREATE_GROUP_SUCCESS:
       return {
         ...state,

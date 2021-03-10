@@ -5,9 +5,9 @@ import { toast } from 'react-toastify';
 import { Loader } from 'semantic-ui-react';
 
 import LoginForm from '../../components/user/LoginForm';
-import { getFormData } from '../../redux/actions/userFormActions';
+import { getUser } from '../../redux/actions/userActions';
 
-function UserLogin({ user, getFormData, ...props }) {
+function UserLogin({ user, getUser, ...props }) {
   const [userForm, setUserForm] = useState({});
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
@@ -36,7 +36,7 @@ function UserLogin({ user, getFormData, ...props }) {
     event.preventDefault();
     if (!formIsValid()) return;
     setSaving(true);
-    getFormData(userForm)
+    getUser(userForm)
       .then(() => {
         history.push('/');
       })
@@ -73,7 +73,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  getFormData
+  getUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserLogin);
