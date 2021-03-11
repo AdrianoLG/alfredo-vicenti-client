@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { userExists } from '../../api/userApi';
-import Manage from './Manage';
+import Manage from '../../components/group/Manage';
 import {
   changeGroupColor,
   deleteGroup,

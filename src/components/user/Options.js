@@ -3,7 +3,15 @@ import { useHistory } from 'react-router';
 import { Button, Form, Input, Message } from 'semantic-ui-react';
 import Header from '../../components/common/header/Header';
 
-const UserOptions = ({ errors, saving, userData, onChange, handleSave }) => {
+const UserOptions = ({
+  errors,
+  saving,
+  savingPassToken,
+  userData,
+  onChange,
+  handleSave,
+  changePassword
+}) => {
   const history = useHistory();
 
   return (
@@ -53,23 +61,23 @@ const UserOptions = ({ errors, saving, userData, onChange, handleSave }) => {
               {saving ? 'Guardando...' : 'Guardar'}
             </Button>
           </div>
-          <h3>Acciones</h3>
-          <div className='buttons mt7 mb7'>
-            <Button basic color='black'>
-              Cambiar contraseña
-            </Button>
-            <Button basic color='black'>
-              Borrar cuenta
-            </Button>
-          </div>
-          <Button
-            onClick={() => {
-              history.goBack();
-            }}
-          >
-            Volver
-          </Button>
         </Form>
+        <h3>Acciones</h3>
+        <div className='buttons mt7 mb7'>
+          <Button basic color='black' onClick={changePassword}>
+            {savingPassToken ? 'Cambiando contraseña...' : 'Cambiar contraseña'}
+          </Button>
+          <Button basic color='black'>
+            Borrar cuenta
+          </Button>
+        </div>
+        <Button
+          onClick={() => {
+            history.goBack();
+          }}
+        >
+          Volver
+        </Button>
       </div>
     </>
   );

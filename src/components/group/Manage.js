@@ -2,9 +2,9 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import { Button, Loader } from 'semantic-ui-react';
 
-import Header from '../../components/common/header/Header';
-import GroupForm from '../../components/group/GroupForm';
-import GroupList from '../../components/group/GroupList';
+import Header from '../common/header/Header';
+import GroupForm from './GroupForm';
+import GroupList from './GroupList';
 
 function Manage({
   group,

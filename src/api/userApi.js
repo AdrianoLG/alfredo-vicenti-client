@@ -40,6 +40,19 @@ export function updateUser(userId, name, email) {
     .catch(handleError);
 }
 
+export function updateUserPasswordToken(userId, token) {
+  return fetch(`${baseUrl}/user/password-token/${userId}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${bearer}`,
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({ token: token })
+  })
+    .then(handleResponse)
+    .catch(handleError);
+}
+
 export function saveUser(user) {
   return fetch(`${baseUrl}/user/`, {
     method: 'POST',

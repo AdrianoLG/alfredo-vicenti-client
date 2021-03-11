@@ -28,6 +28,7 @@ const ScreensRoot = () => (
       <Route path='/aceptar-grupo' component={AcceptGroup} />
       <Route path='/usuario/grupos' component={ManageLogic} />
       <Route path='/usuario/opciones' component={UserOptionsLogic} />
+      {/* <Route path='/cambiar-password' component={ChangePassword} /> */}
       <Route path='/imprimir' component={Print} />
       <Route component={NotFound} />
     </Switch>
