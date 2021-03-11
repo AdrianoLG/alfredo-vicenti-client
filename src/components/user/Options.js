@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { Button, Form, Input, Message } from 'semantic-ui-react';
 
 import Header from '../../components/common/header/Header';
+import UserDelete from './Delete';
 import './options.scss';
 
 const UserOptions = ({
@@ -69,9 +70,7 @@ const UserOptions = ({
           <Button basic color='black' onClick={changePassword}>
             {savingPassToken ? 'Cambiando contraseña...' : 'Cambiar contraseña'}
           </Button>
-          <Button basic color='black'>
-            Borrar cuenta
-          </Button>
+          <UserDelete userId={userData.id} />
         </div>
         <Button
           onClick={() => {

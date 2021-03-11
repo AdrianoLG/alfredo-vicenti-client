@@ -18,7 +18,7 @@ function BestRated({ books, user }) {
 
   return (
     <>
-      {rated.length > 0 ? (
+      {rated.slice(0, 4).filter(rating => rating.rating !== null).length > 0 ? (
         <>
           <h2>Mejor valorados</h2>
           <ul className='book-filter rating'>

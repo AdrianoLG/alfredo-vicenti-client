@@ -65,8 +65,8 @@ function BookList({ user, books, loadBooks, loading, history }) {
               >
                 {user.groups !== undefined && user.groups.length > 0 ? (
                   <Groups
+                    key={user.id}
                     user={user}
-                    key={user.name}
                     start={start}
                     handleGroupClick={handleGroupClick}
                   />

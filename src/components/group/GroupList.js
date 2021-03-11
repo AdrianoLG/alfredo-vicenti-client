@@ -26,6 +26,7 @@ function GroupList({
           {user.groups !== undefined && user.groups.length > 0 ? (
             user.groups.map(group => (
               <Grid.Column
+                key={group.id}
                 mobile={8}
                 tablet={4}
                 computer={4}
@@ -37,36 +38,34 @@ function GroupList({
                     <ul className='groupUsers'>
                       {group.users.length > 0
                         ? group.users.map(groupUser => (
-                            <>
-                              <li
-                                key={groupUser.pivot.group_id}
-                                data-group={groupUser.pivot.group_id}
-                              >
-                                <span
-                                  className='groupUser-color'
-                                  style={{
-                                    backgroundColor: '#' + groupUser.pivot.color
-                                  }}
-                                ></span>
-                                <span>{groupUser.name}</span>
-                                {group.admin === groupUser.pivot.user_id ? (
-                                  <Icon name='key' />
-                                ) : (
-                                  ''
-                                )}{' '}
-                                {group.admin === user.id &&
-                                group.admin !== groupUser.pivot.user_id ? (
-                                  <DeleteGroupMember
-                                    groupId={groupUser.pivot.group_id}
-                                    groupName={group.name}
-                                    userId={groupUser.pivot.user_id}
-                                    userName={groupUser.name}
-                                  />
-                                ) : (
-                                  ''
-                                )}
-                              </li>
-                            </>
+                            <li
+                              key={`${groupUser.pivot.group_id}-${groupUser.pivot.user_id}`}
+                              data-group={groupUser.pivot.group_id}
+                            >
+                              <span
+                                className='groupUser-color'
+                                style={{
+                                  backgroundColor: '#' + groupUser.pivot.color
+                                }}
+                              ></span>
+                              <span>{groupUser.name}</span>
+                              {group.admin === groupUser.pivot.user_id ? (
+                                <Icon name='key' />
+                              ) : (
+                                ''
+                              )}{' '}
+                              {group.admin === user.id &&
+                              group.admin !== groupUser.pivot.user_id ? (
+                                <DeleteGroupMember
+                                  groupId={groupUser.pivot.group_id}
+                                  groupName={group.name}
+                                  userId={groupUser.pivot.user_id}
+                                  userName={groupUser.name}
+                                />
+                              ) : (
+                                ''
+                              )}
+                            </li>
                           ))
                         : ''}
                     </ul>

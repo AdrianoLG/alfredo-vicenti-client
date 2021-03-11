@@ -121,7 +121,7 @@ export async function getToken(userData) {
 
 export function deleteUser(userId) {
   // TODO
-  return fetch(`${baseUrl}/user/`, {
+  return fetch(`${baseUrl}/user/${userId}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${bearer}`,
