@@ -4,10 +4,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import UserOptions from '../../components/user/Options';
-import './options.scss';
-import { updateUser } from '../../redux/actions/userActions';
 import { updateUserPasswordToken } from '../../api/userApi';
+import UserOptions from '../../components/user/Options';
+import { updateUser } from '../../redux/actions/userActions';
 
 const {
   REACT_APP_SECRET,

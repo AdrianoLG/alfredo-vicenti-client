@@ -10,10 +10,11 @@ import Print from './book/Print';
 import AcceptGroup from './group/AcceptGroup';
 import ManageLogic from './group/ManageLogic';
 import NotFound from './NotFound';
+import ChangePassword from './user/ChangePassword';
 import FinishRegistration from './user/FinishRegistration';
 import Login from './user/Login';
-import Register from './user/Register';
 import UserOptionsLogic from './user/OptionsLogic';
+import Register from './user/Register';
 
 const ScreensRoot = () => (
   <>
@@ -28,7 +29,7 @@ const ScreensRoot = () => (
       <Route path='/aceptar-grupo' component={AcceptGroup} />
       <Route path='/usuario/grupos' component={ManageLogic} />
       <Route path='/usuario/opciones' component={UserOptionsLogic} />
-      {/* <Route path='/cambiar-password' component={ChangePassword} /> */}
+      <Route path='/cambiar-password' component={ChangePassword} />
       <Route path='/imprimir' component={Print} />
       <Route component={NotFound} />
     </Switch>

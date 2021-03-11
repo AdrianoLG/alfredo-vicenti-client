@@ -1,7 +1,9 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import { Button, Form, Input, Message } from 'semantic-ui-react';
+
 import Header from '../../components/common/header/Header';
+import './options.scss';
 
 const UserOptions = ({
   errors,
