@@ -25,7 +25,7 @@ const GroupForm = ({
           <Form.Field
             control={Input}
             name='name'
-            label='Nombre'
+            label='Nombre*'
             placeholder='Escribe el nombre del grupo'
             value={group.name || ''}
             onChange={onChange}
@@ -42,7 +42,7 @@ const GroupForm = ({
                   : false
               }
             >
-              <label>Colores</label>
+              <label>Color*</label>
               {errors.color ? (
                 <div
                   className='ui pointing below prompt label'

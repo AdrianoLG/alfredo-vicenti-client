@@ -34,7 +34,9 @@ const UserOptionsLogic = ({ user, updateUser }) => {
     const errors = {};
 
     if (!name) errors.name = 'El nombre es necesario.';
+    if (name && name.length > 30) errors.name = 'Límite de 30 caracteres';
     if (!email) errors.email = 'El email es necesario.';
+    if (email && email.length > 50) errors.email = 'Límite de 50 caracteres';
 
     setErrors(errors);
     return Object.keys(errors).length === 0;

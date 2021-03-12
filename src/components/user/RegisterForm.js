@@ -20,7 +20,7 @@ function RegisterForm({ user, onSave, onChange, saving = false, errors = {} }) {
             <Form.Field
               control={Input}
               name='name'
-              label='Nombre'
+              label='Nombre*'
               placeholder='Escribe el nombre'
               value={user.name || ''}
               onChange={onChange}
@@ -34,7 +34,7 @@ function RegisterForm({ user, onSave, onChange, saving = false, errors = {} }) {
             <Form.Field
               control={Input}
               name='email'
-              label='Email'
+              label='Email*'
               placeholder='Escribe el email'
               value={user.email || ''}
               onChange={onChange}
@@ -49,7 +49,7 @@ function RegisterForm({ user, onSave, onChange, saving = false, errors = {} }) {
               control={Input}
               type='password'
               name='password'
-              label='Contraseña'
+              label='Contraseña*'
               placeholder='Escribe la contraseña'
               value={user.password || ''}
               onChange={onChange}

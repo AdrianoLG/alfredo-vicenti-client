@@ -31,12 +31,19 @@ function BookManage({ user, loadBook, saveBook, history, ...props }) {
   }
 
   function formIsValid() {
-    const { title, author, category } = book;
+    const { title, author, category, editorial } = book;
     const errors = {};
 
     if (!title) errors.title = 'El título es necesario.';
+    if (title && title.length > 50) errors.title = 'Límite de 50 caracteres';
     if (!author) errors.author = 'El autor es necesario.';
+    if (author && author.length > 50)
+      errors.author = 'Límite de 50 caracteres)';
     if (!category) errors.category = 'La categoría es necesaria.';
+    if (category && category.length > 30)
+      errors.category = 'Límite de 30 caracteres)';
+    if (editorial && editorial.length > 30)
+      errors.editorial = 'Límite de 30 caracteres)';
 
     setErrors(errors);
     return Object.keys(errors).length === 0;

@@ -41,7 +41,10 @@ function AddGroupMember({
               color => !userColors.includes(color)
             );
             handleEmail(group.id, group.name, name, tempColors[0]);
-            setOpen(false);
+
+            if (errors.length === 0) {
+              setOpen(false);
+            }
           }}
           className='addGroupUser-form'
         >
@@ -55,7 +58,7 @@ function AddGroupMember({
               <Form.Field
                 control={Input}
                 name='email'
-                label='Email'
+                label='Email*'
                 placeholder='Escribe el email del miembro a añadir'
                 value={email || ''}
                 onChange={handleMailChange}

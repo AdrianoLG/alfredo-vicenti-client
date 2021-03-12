@@ -97,9 +97,6 @@ function GroupList({
                           group={group}
                           name={user.name}
                         />
-                        {/* <Button secondary onClick={() => addUser(group.id)}>
-                          Añadir miembro
-                        </Button> */}
                       </div>
                     ) : (
                       <div className='buttons flex-row'>

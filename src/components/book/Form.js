@@ -120,7 +120,7 @@ function BookForm({
               <Form.Field
                 control={Input}
                 name='title'
-                label='Título'
+                label='Título*'
                 placeholder='Escribe el título'
                 value={book.title || ''}
                 onChange={onChange}
@@ -134,7 +134,7 @@ function BookForm({
               <Form.Field
                 control={Input}
                 name='author'
-                label='Autor'
+                label='Autor*'
                 placeholder='Escribe el autor'
                 value={book.author || ''}
                 onChange={onChange}
@@ -148,7 +148,7 @@ function BookForm({
               <Form.Field
                 control={Input}
                 name='category'
-                label='Categoría'
+                label='Categoría*'
                 placeholder='Escribe la categoría'
                 value={book.category || ''}
                 onChange={onChange}
@@ -180,6 +180,11 @@ function BookForm({
                 value={book.editorial || ''}
                 onChange={onChange}
                 fluid
+                error={
+                  errors.editorial
+                    ? { content: errors.editorial, pointing: 'below' }
+                    : false
+                }
               />
               <Form.Field className='mobileHidden'></Form.Field>
             </Form.Group>

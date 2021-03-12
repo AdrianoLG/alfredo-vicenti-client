@@ -31,8 +31,12 @@ function UserRegister({ history, ...props }) {
     const errors = {};
 
     if (!name) errors.name = 'El nombre es necesario.';
+    if (name && name.length > 30) errors.name = 'Límite de 30 caracteres';
     if (!email) errors.email = 'El email es necesario.';
+    if (email && email.length > 50) errors.email = 'Límite de 50 caracteres';
     if (!password) errors.password = 'La contraseña es necesaria.';
+    if (password && password.length > 60)
+      errors.password = 'Límite de 60 caracteres';
 
     setErrors(errors);
     return Object.keys(errors).length === 0;

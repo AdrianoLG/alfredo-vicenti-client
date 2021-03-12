@@ -47,6 +47,7 @@ function GroupManage({
     const errors = {};
 
     if (!name) errors.name = 'El nombre es necesario.';
+    if (name && name.length > 20) errors.name = 'Límite de 20 caracteres';
     if (!color) errors.color = 'El color es necesario.';
 
     setErrors(errors);
@@ -167,8 +168,9 @@ function GroupManage({
   function userGroupFormIsValid() {
     const errors = {};
 
-    if (email.length === 0) errors.email = 'El email es necesario.';
-    else if (!validateEmail(email)) errors.email = 'El email es inválido';
+    if (!email) errors.email = 'El email es necesario.';
+    if (email && email.length > 50) errors.email = 'Límite de 50 caracteres';
+    if (email && !validateEmail(email)) errors.email = 'El email es inválido';
 
     setErrors(errors);
     return Object.keys(errors).length === 0;
@@ -194,7 +196,7 @@ function GroupManage({
       handleEmail={handleEmail}
       email={email}
       savingUser={savingUser}
-      istory={history}
+      history={history}
       loading={loading}
     />
   );
