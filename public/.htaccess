@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+  Options -MultiViews
+  RewriteEngine On
+  RewriteBase /alfredovicentifront
+  RewriteCond %{SERVER_PORT} 80
+  RewriteRule ^(.*)$ https://alfredo-vicenti.adri.info/$1 [R,L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^ /index.html [QSA,L]
+</IfModule>

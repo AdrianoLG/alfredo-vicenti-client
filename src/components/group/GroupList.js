@@ -101,6 +101,7 @@ function GroupList({
                     ) : (
                       <div className='buttons flex-row'>
                         <Button
+                          basic
                           color='black'
                           onClick={e => {
                             onClick(e, 'quit', {

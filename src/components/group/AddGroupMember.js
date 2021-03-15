@@ -40,9 +40,7 @@ function AddGroupMember({
             tempColors = tempColors.filter(
               color => !userColors.includes(color)
             );
-            handleEmail(group.id, group.name, name, tempColors[0]);
-
-            if (errors.length === 0) {
+            if (handleEmail(group.id, group.name, name, tempColors[0])) {
               setOpen(false);
             }
           }}

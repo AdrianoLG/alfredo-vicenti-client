@@ -97,45 +97,55 @@ function GroupManage({
   }
 
   function handleEmail(groupId, groupName, name, color) {
-    if (!userGroupFormIsValid()) return;
+    if (!userGroupFormIsValid()) return false;
     setSavingUser(true);
-    userExists(email).then(() => {
-      const addToGroup = {
-        email: email,
-        groupId: groupId,
-        groupName: groupName,
-        color: color
-      };
-      var ciphertext = CryptoJS.AES.encrypt(
-        JSON.stringify(addToGroup),
-        REACT_APP_SECRET
-      ).toString();
+    userExists(email)
+      .then(() => {
+        const addToGroup = {
+          email: email,
+          groupId: groupId,
+          groupName: groupName,
+          color: color
+        };
+        var ciphertext = CryptoJS.AES.encrypt(
+          JSON.stringify(addToGroup),
+          REACT_APP_SECRET
+        ).toString();
 
-      const mailData = {
-        ciphertext: ciphertext,
-        email: addToGroup.email,
-        groupName: groupName,
-        name: name
-      };
-      emailjs
-        .send(
-          REACT_APP_SERVICE_ID,
-          REACT_APP_TEMPLATE_ID_JOIN_GROUP,
-          mailData,
-          REACT_APP_USER_ID
-        )
-        .then(() => {
-          toast(
-            `Se ha enviado un email ${email} al usuario para que se una al grupo ${groupName}`
-          );
-          setSavingUser(false);
-        })
-        .catch(error => {
-          setSavingUser(false);
-          toast.error('No existe ningún usuario con ese email');
-          setErrors({ onSave: error.message });
-        });
-    });
+        const mailData = {
+          ciphertext: ciphertext,
+          email: addToGroup.email,
+          groupName: groupName,
+          name: name
+        };
+        emailjs
+          .send(
+            REACT_APP_SERVICE_ID,
+            REACT_APP_TEMPLATE_ID_JOIN_GROUP,
+            mailData,
+            REACT_APP_USER_ID
+          )
+          .then(() => {
+            setSavingUser(false);
+            toast(
+              `Se ha enviado un email ${email} al usuario para que se una al grupo ${groupName}`
+            );
+          })
+          .catch(error => {
+            setSavingUser(false);
+            toast.error(
+              'Problemas con el servicio de email. Inténtalo más tarde.'
+            );
+            setErrors({ onSave: error.message });
+          });
+      })
+      .catch(error => {
+        setSavingUser(false);
+        toast.error('No existe ningún usuario con ese email');
+        setErrors({ onSave: error.message });
+      });
+    setEmail('');
+    return true;
   }
 
   function handleMailChange(event) {

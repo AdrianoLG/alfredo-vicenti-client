@@ -1,17 +1,16 @@
 import CryptoJS from 'crypto-js';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 
 import { saveUser } from '../../api/userApi';
 
 function FinishRegistration({ history, location }) {
-  useEffect(() => {
-    const params = location.search;
-    const token = params.substr(7, params.length);
-    const bytes = CryptoJS.AES.decrypt(token, process.env.REACT_APP_SECRET);
-    const decrypted = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-    registerUser(decrypted);
-  });
+  const params = location.search;
+  const token = params.substr(7, params.length);
+  const bytes = CryptoJS.AES.decrypt(token, process.env.REACT_APP_SECRET);
+  const decrypted = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+
+  registerUser(decrypted);
 
   function registerUser(decrypted) {
     saveUser(decrypted)
