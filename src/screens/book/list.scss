@@ -42,4 +42,10 @@ aside {
       margin-top: 0.25em;
     }
   }
+  .printBooks {
+    display: none !important;
+    @include tablet() {
+      display: inline-block !important;
+    }
+  }
 }

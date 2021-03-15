@@ -6,7 +6,11 @@ const PrintBooks = () => {
   const history = useHistory();
 
   return (
-    <Button basic className='hov' onClick={() => history.push('/imprimir')}>
+    <Button
+      basic
+      className='hov printBooks'
+      onClick={() => history.push('/imprimir')}
+    >
       <Icon name='print' /> Imprimir
     </Button>
   );

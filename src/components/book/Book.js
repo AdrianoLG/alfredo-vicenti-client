@@ -12,8 +12,12 @@ const Book = ({ book }) => (
       </Grid.Column>
       <Grid.Column mobile={16} tablet={5} computer={5} className='mt7 mmt0'>
         <p className='right'>
-          {book.editorial ? <span class='italic'>{book.editorial}</span> : ''}
-          {book.pages ? <span className='ml1'>{book.pages} pág.</span> : ''}
+          {book.editorial ? (
+            <span class='italic mr1'>{book.editorial}</span>
+          ) : (
+            ''
+          )}
+          {book.pages ? <span>{book.pages} pág.</span> : ''}
         </p>
         <p className='category right'>{book.category}</p>
       </Grid.Column>

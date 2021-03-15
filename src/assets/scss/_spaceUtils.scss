@@ -16,10 +16,6 @@
   }
 }
 
-.ml1 {
-  margin-left: 1rem;
-}
-
 .mmb {
   @include only-mobile {
     margin-bottom: var(--size0) !important;
@@ -34,6 +30,10 @@
 
 .mr0 {
   margin-right: 0 !important;
+}
+
+.mr1 {
+  margin-right: 1rem;
 }
 
 .mt4 {
