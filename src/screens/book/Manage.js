@@ -6,10 +6,17 @@ import { Loader } from 'semantic-ui-react';
 
 import BookForm from '../../components/book/Form';
 import Header from '../../components/common/header/Header';
-import { loadBook, saveBook } from '../../redux/actions/bookActions';
+import { loadBook, resetBook, saveBook } from '../../redux/actions/bookActions';
 import { newBook } from '../../utils/mockData';
 
-function BookManage({ user, loadBook, saveBook, history, ...props }) {
+function BookManage({
+  user,
+  loadBook,
+  saveBook,
+  resetBook,
+  history,
+  ...props
+}) {
   const [book, setBook] = useState({ ...props.book });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
@@ -63,6 +70,7 @@ function BookManage({ user, loadBook, saveBook, history, ...props }) {
         setSaving(false);
         setErrors({ onSave: error.message });
       });
+    resetBook();
   }
 
   return (
@@ -103,7 +111,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   loadBook,
-  saveBook
+  saveBook,
+  resetBook
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookManage);

@@ -42,11 +42,6 @@ function BookForm({
       if (book.image !== null) {
         setCover(book.image);
       }
-    } else {
-      setRead(false);
-      setLent(false);
-      setRating(null);
-      setCover('');
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -56,8 +51,12 @@ function BookForm({
   }
 
   function handleReadRadio(type) {
-    setRead(!read);
-    if (read) {
+    if (read === false) {
+      setRead(true);
+    } else {
+      setRead(false);
+      setRating(0);
+      book.rating = null;
       book.read_date = null;
     }
   }
@@ -316,7 +315,7 @@ function BookForm({
                 <Button
                   onClick={() => {
                     book = null;
-                    history.goBack();
+                    history.push('/');
                   }}
                 >
                   Volver

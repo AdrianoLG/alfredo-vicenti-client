@@ -5,9 +5,9 @@ import { Button, Loader } from 'semantic-ui-react';
 
 import Book from '../../components/book/Book';
 import Header from '../../components/common/header/Header';
-import { loadBook } from '../../redux/actions/bookActions';
+import { loadBook, resetBook } from '../../redux/actions/bookActions';
 
-function BookDetail({ user, loadBook, history, ...props }) {
+function BookDetail({ user, loadBook, resetBook, history, ...props }) {
   const [book, setBook] = useState({ ...props.book });
   const paramId = props.match.params.id;
   const paramUserId = props.match.params.userId;
@@ -38,6 +38,7 @@ function BookDetail({ user, loadBook, history, ...props }) {
             <div className='buttons mt7'>
               <Button
                 onClick={() => {
+                  resetBook();
                   history.push('/');
                 }}
               >
@@ -73,7 +74,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  loadBook
+  loadBook,
+  resetBook
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookDetail);

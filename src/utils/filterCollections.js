@@ -51,3 +51,20 @@ export function sortDesc(arr, field) {
     return 0;
   });
 }
+
+export function sortDescNum(arr, field) {
+  return arr.sort(function (a, b) {
+    if (!a[field] || !b[field]) {
+      return 0;
+    }
+    let x = a[field];
+    let y = b[field];
+    if (x > y) {
+      return -1;
+    }
+    if (y > x) {
+      return 1;
+    }
+    return 0;
+  });
+}

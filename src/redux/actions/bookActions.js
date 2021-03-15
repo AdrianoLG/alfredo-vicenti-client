@@ -18,6 +18,10 @@ export function loadBookSuccess(book) {
   return { type: types.LOAD_BOOK_SUCCESS, book };
 }
 
+export function resetBookData() {
+  return { type: types.RESET_BOOK };
+}
+
 export function updateBookSuccess(book) {
   return { type: types.UPDATE_BOOK_SUCCESS, book };
 }
@@ -36,6 +40,10 @@ export function filterBooksAuthor(author) {
 
 export function filterBooksEditorial(editorial) {
   return { type: types.FILTER_BOOKS_BY_EDITORIAL, editorial };
+}
+
+export function filterBooksRated(rated) {
+  return { type: types.FILTER_BOOKS_BY_RATED, rated };
 }
 
 export function filterBooksValue(value, books) {
@@ -138,6 +146,12 @@ export function loadBook(bookId, userId) {
   };
 }
 
+export function resetBook() {
+  return function (dispatch) {
+    dispatch(resetBookData());
+  };
+}
+
 export function saveBook(book) {
   return function (dispatch) {
     dispatch(beginApiCall());
@@ -177,6 +191,12 @@ export function filterBooksByAuthor(author) {
 export function filterBooksByEditorial(editorial) {
   return function (dispatch) {
     dispatch(filterBooksEditorial(editorial));
+  };
+}
+
+export function filterBooksByRated(rated) {
+  return function (dispatch) {
+    dispatch(filterBooksRated(rated));
   };
 }
 

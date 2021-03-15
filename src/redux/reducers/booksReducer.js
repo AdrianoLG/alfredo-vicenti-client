@@ -22,6 +22,8 @@ export default function booksReducer(state = initialState.books, action) {
       return state.filter(book => book.author === action.author);
     case types.FILTER_BOOKS_BY_EDITORIAL:
       return state.filter(book => book.editorial === action.editorial);
+    case types.FILTER_BOOKS_BY_RATED:
+      return state.filter(book => book.rating === action.rating);
     case types.FILTER_BOOKS_BY_VALUE:
       return action.books.filter(
         book =>

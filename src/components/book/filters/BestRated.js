@@ -2,19 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Icon } from 'semantic-ui-react';
 
-import { sortDesc } from '../../../utils/filterCollections';
+import { sortDescNum } from '../../../utils/filterCollections';
+import {
+  filterBooksByRated,
+  resetFilters
+} from '../../../redux/actions/bookActions';
+import { connect } from 'react-redux';
 
-function BestRated({ books, user }) {
+function BestRated({ books, user, filterBooksByRated }) {
   const [rated, setRated] = useState([]);
 
   useEffect(() => {
     const sortsRated = objectArray => {
-      return sortDesc(objectArray, 'rating');
+      return sortDescNum(objectArray, 'rating');
     };
     const ratedBooks = books.filter(book => book.rating !== null);
     const sortedRatedBooks = sortsRated(ratedBooks);
     setRated(sortedRatedBooks);
-  }, [books]);
+  }, [books, filterBooksByRated]);
 
   return (
     <>
@@ -39,4 +44,15 @@ function BestRated({ books, user }) {
   );
 }
 
-export default BestRated;
+const mapStateToProps = state => {
+  return {
+    books: state.books
+  };
+};
+
+const mapDispatchToProps = {
+  filterBooksByRated,
+  resetFilters
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BestRated);
