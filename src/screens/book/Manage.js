@@ -89,6 +89,7 @@ function BookManage({
             onSave={handleSave}
             saving={saving}
             user={user}
+            resetBook={resetBook}
           />
         )}
       </main>

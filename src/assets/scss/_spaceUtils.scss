@@ -23,8 +23,10 @@
 }
 
 .mmt0 {
-  @include only-mobile {
-    margin-top: 0 !important;
+  &.mt7 {
+    @include only-mobile {
+      margin-top: 0 !important;
+    }
   }
 }
 

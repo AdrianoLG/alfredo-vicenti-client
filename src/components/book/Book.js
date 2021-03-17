@@ -13,7 +13,7 @@ const Book = ({ book }) => (
       <Grid.Column mobile={16} tablet={5} computer={5} className='mt7 mmt0'>
         <p className='right'>
           {book.editorial ? (
-            <span class='italic mr1'>{book.editorial}</span>
+            <span className='italic mr1'>{book.editorial}</span>
           ) : (
             ''
           )}
@@ -39,54 +39,58 @@ const Book = ({ book }) => (
           )}
         </div>
       </Grid.Column>
-      <Grid.Column mobile={16} tablet={5} computer={5}>
-        {book.synopsis ? (
+      {book.synopsis ? (
+        <Grid.Column mobile={16} tablet={5} computer={5}>
           <div>
             <p>Sinopsis:</p>
             <p className='small'>{book.synopsis}</p>
           </div>
-        ) : (
-          ''
-        )}
-      </Grid.Column>
-      <Grid.Column mobile={0} tablet={1} computer={1} className='mdn' />
-      <Grid.Column mobile={16} tablet={5} computer={5}>
-        {book.comments ? (
-          <div className='mb1'>
-            <p>Comentarios:</p>
-            <p className='small'>{book.comments}</p>
-          </div>
-        ) : (
-          ''
-        )}
-        {book.read_date ? (
-          <p className='lh1'>
-            Leído el {new Date(book.read_date).toLocaleDateString('es-ES')}
-          </p>
-        ) : (
-          ''
-        )}
-        {book.rating ? (
-          <Rating
-            className='mb1'
-            icon='star'
-            value={book.rating}
-            rating={book.rating}
-            maxRating={10}
-            disabled
-          />
-        ) : (
-          ''
-        )}
-        {book.lent_to ? (
-          <p className='lent-warn'>
-            Prestado a {book.lent_to} el{' '}
-            {new Date(book.lent_date).toLocaleDateString('es-ES')}
-          </p>
-        ) : (
-          ''
-        )}
-      </Grid.Column>
+        </Grid.Column>
+      ) : (
+        <Grid.Column tablet={5} computer={5} className='mdn'></Grid.Column>
+      )}
+      <Grid.Column tablet={1} computer={1} className='mdn' />
+      {book.comments || book.read_date ? (
+        <Grid.Column mobile={16} tablet={5} computer={5}>
+          {book.comments ? (
+            <div className='mb1'>
+              <p>Comentarios:</p>
+              <p className='small'>{book.comments}</p>
+            </div>
+          ) : (
+            ''
+          )}
+          {book.read_date ? (
+            <p className='lh1'>
+              Leído el {new Date(book.read_date).toLocaleDateString('es-ES')}
+            </p>
+          ) : (
+            ''
+          )}
+          {book.rating ? (
+            <Rating
+              className='mb1'
+              icon='star'
+              value={book.rating}
+              rating={book.rating}
+              maxRating={10}
+              disabled
+            />
+          ) : (
+            ''
+          )}
+          {book.lent_to ? (
+            <p className='lent-warn'>
+              Prestado a {book.lent_to} el{' '}
+              {new Date(book.lent_date).toLocaleDateString('es-ES')}
+            </p>
+          ) : (
+            ''
+          )}
+        </Grid.Column>
+      ) : (
+        <Grid.Column tablet={5} computer={5} className='mdn'></Grid.Column>
+      )}
     </Grid>
   </div>
 );

@@ -15,11 +15,15 @@ import Lent from '../../components/book/filters/Lent';
 import Header from '../../components/common/header/Header';
 import Groups from '../../components/group/Groups';
 import './list.scss';
-import { deleteBook, loadBooks } from '../../redux/actions/bookActions';
+import {
+  deleteBook,
+  loadBooks,
+  resetBook
+} from '../../redux/actions/bookActions';
 import PrintBooks from '../../components/book/export/Print';
 import SaveBooks from '../../components/book/export/Save';
 
-function BookList({ user, books, loadBooks, loading, history }) {
+function BookList({ user, books, resetBook, loadBooks, loading, history }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [start, setStart] = useState(true);
 
@@ -31,6 +35,7 @@ function BookList({ user, books, loadBooks, loading, history }) {
     } else {
       history.push('/login');
     }
+    resetBook();
   }, [isLoaded, loadBooks]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function getBooks() {
@@ -144,7 +149,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   loadBooks,
-  deleteBook
+  deleteBook,
+  resetBook
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);

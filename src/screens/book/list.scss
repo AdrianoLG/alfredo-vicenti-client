@@ -33,7 +33,8 @@ aside {
   .active {
     color: var(--accent-color) !important;
   }
-  .lent {
+  .lent,
+  .read {
     p {
       margin-bottom: 0;
     }

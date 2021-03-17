@@ -28,11 +28,14 @@ function LastRead({ books, user, resetFilters }) {
             {read.slice(0, 4).map(read => (
               <li key={read.id}>
                 <NavLink to={`libro/${read.id}/usuario/${user.id}`}>
-                  {read.title} (
-                  {new Intl.DateTimeFormat('es-ES').format(
-                    new Date(read.read_date)
-                  )}
-                  )
+                  {read.title}{' '}
+                  <p className='small'>
+                    (
+                    {new Intl.DateTimeFormat('es-ES').format(
+                      new Date(read.read_date)
+                    )}
+                    )
+                  </p>
                 </NavLink>
                 <Icon name='close' />
               </li>
