@@ -204,12 +204,12 @@ function BookForm({
                   checked={read}
                   toggle
                   onClick={handleReadRadio}
-                  tabindex='0'
                   onKeyPress={e => {
                     if (e.key === 'Enter') {
                       setRead(!read);
                     }
                   }}
+                  label={{ tabIndex: 0 }}
                 />
                 <span>{read ? 'Leído' : 'No leído'}</span>
               </Form.Field>
@@ -267,12 +267,12 @@ function BookForm({
                   checked={lent}
                   toggle
                   onClick={handleLentRadio}
-                  tabindex='0'
                   onKeyPress={e => {
                     if (e.key === 'Enter') {
                       setLent(!lent);
                     }
                   }}
+                  label={{ tabIndex: 0 }}
                 />
                 <span>{lent ? 'Prestado' : 'No prestado'}</span>
               </Form.Field>

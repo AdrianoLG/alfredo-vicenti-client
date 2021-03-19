@@ -18,12 +18,30 @@ import './list.scss';
 import {
   deleteBook,
   loadBooks,
-  resetBook
+  resetBook,
+  refreshBooks
 } from '../../redux/actions/bookActions';
 import PrintBooks from '../../components/book/export/Print';
 import SaveBooks from '../../components/book/export/Save';
+import {
+  saveBooksCounter,
+  saveOriginalList
+} from '../../redux/actions/complementaryActions';
 
-function BookList({ user, books, resetBook, loadBooks, loading, history }) {
+function BookList({
+  user,
+  books,
+  resetBook,
+  loadBooks,
+  saveBooksCounter,
+  saveOriginalList,
+  counter,
+  originalList,
+  refreshBooks,
+  loading,
+  history,
+  ...props
+}) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [start, setStart] = useState(true);
 
@@ -32,16 +50,26 @@ function BookList({ user, books, resetBook, loadBooks, loading, history }) {
       if (books.length === 0 && !isLoaded) {
         getBooks();
       }
+      if (counter < books.length) {
+        saveOriginalList(books);
+        saveBooksCounter(books.length);
+      } else if (counter > books.length) {
+        refreshBooks(originalList);
+      }
     } else {
       history.push('/login');
     }
-    resetBook();
+    if (Object.keys(props.book).length !== 0) {
+      resetBook();
+    }
   }, [isLoaded, loadBooks]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function getBooks() {
     let bearer = localStorage.getItem('access_token');
     loadBooks(user.id, bearer)
-      .then(() => setIsLoaded(true))
+      .then(() => {
+        setIsLoaded(true);
+      })
       .catch(error => {
         toast.error(`La carga de los libros ha fallado.\n${error}`);
       });
@@ -143,14 +171,19 @@ const mapStateToProps = state => {
     books: state.books,
     loading: state.apiCallsInProgress > 0,
     visibleButtons: state.visibleButtons,
-    user: state.user
+    user: state.user,
+    originalList: state.originalList,
+    counter: state.counter
   };
 };
 
 const mapDispatchToProps = {
   loadBooks,
   deleteBook,
-  resetBook
+  resetBook,
+  saveOriginalList,
+  saveBooksCounter,
+  refreshBooks
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);

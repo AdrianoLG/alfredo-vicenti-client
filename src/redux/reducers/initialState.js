@@ -5,7 +5,9 @@ const initialState = {
   tokens: {},
   apiCallsInProgress: 0,
   name: '',
-  chosenGroup: {}
+  chosenGroup: {},
+  originalList: [],
+  counter: 0
 };
 
 export default initialState;

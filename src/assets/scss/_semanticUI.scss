@@ -148,6 +148,10 @@
     &.secondary.buttons .button {
       background-color: var(--success-color) !important;
     }
+    &.toggle.checkbox label:focus::before {
+      background-color: rgba(0, 0, 0, 0.15);
+      border: none;
+    }
   }
 }
 

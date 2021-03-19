@@ -6,6 +6,8 @@ import books from './booksReducer';
 import chosenGroup from './groupReducer';
 import name from './nameReducer';
 import user from './userReducer';
+import originalList from './originalListReducer';
+import counter from './counterReducer';
 
 const rootReducer = combineReducers({
   apiCallsInProgress,
@@ -13,7 +15,9 @@ const rootReducer = combineReducers({
   books,
   user,
   name,
-  chosenGroup
+  chosenGroup,
+  originalList,
+  counter
 });
 
 export default rootReducer;

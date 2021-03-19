@@ -8,6 +8,8 @@ export default function booksReducer(state = initialState.books, action) {
       return sortAsc([...state, { ...action.book.data }], 'title');
     case types.LOAD_BOOKS_SUCCESS:
       return sortAsc(action.books, 'title');
+    case types.REFRESH_BOOK_LIST:
+      return action.books;
     case types.LOAD_GROUP_BOOKS_SUCCESS:
       return sortAsc(action.books, 'title');
     case types.UPDATE_BOOK_SUCCESS:

@@ -18,6 +18,10 @@ export function loadBookSuccess(book) {
   return { type: types.LOAD_BOOK_SUCCESS, book };
 }
 
+export function refreshBookList(books) {
+  return { type: types.REFRESH_BOOK_LIST, books };
+}
+
 export function resetBookData() {
   return { type: types.RESET_BOOK };
 }
@@ -106,6 +110,12 @@ export function loadBooks(userId, bearer) {
           throw error;
         });
     }
+  };
+}
+
+export function refreshBooks(books) {
+  return function (dispatch) {
+    dispatch(refreshBookList(books));
   };
 }
 
